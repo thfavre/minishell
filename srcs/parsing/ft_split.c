@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 14:21:23 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/02/09 14:53:26 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/02/09 17:05:34 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static char	*ft_getword(char **s, char c)
 	return (word);
 }
 
-char	**ft_split(char *s)
+char	**ft_split_prompt(char *s)
 {
 	int		i;
 	char	**strs;

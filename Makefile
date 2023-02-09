@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mjulliat <marvin@42lausanne.ch>            +#+  +:+       +#+         #
+#    By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/01 12:18:20 by mjulliat          #+#    #+#              #
-#    Updated: 2023/02/09 14:46:53 by mjulliat         ###   ########.fr        #
+#    Created: 2023/02/09 16:32:30 by mjulliat          #+#    #+#              #
+#    Updated: 2023/02/09 18:05:59 by mjulliat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 	### COMPILATION ###
 
-CC			= gcc -g3 -fsanitize=address
+CC			= gcc -g3
 FLAGS		= -Wall -Werror -Wextra
 
 	### EXECUTABLE ###
@@ -37,7 +37,8 @@ ENV_FILES	= ft_get_env.c
 
 	# PARSING
 
-PARS_FILES	= ft_split.c
+PARS_FILES	= ft_split.c\
+			  ft_parsing.c
 
 	# UTILS
 

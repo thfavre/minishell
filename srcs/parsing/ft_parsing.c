@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/08 12:12:10 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/02/09 18:05:18 by mjulliat         ###   ########.fr       */
+/*   Created: 2023/02/09 17:42:30 by mjulliat          #+#    #+#             */
+/*   Updated: 2023/02/09 18:04:58 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
-int	main(int ac, char **av, char **env)
+void	ft_parsing(t_minishell *ms, char *str_prompt)
 {
-	t_minishell	ms;
-	char		*str_prompt;
+	char	**split_prompt;
 
-	(void) ac;
-	(void) av;
-	ms.env = env;
-	str_prompt = readline(PROMPT);
-	while (str_prompt != NULL)
+	(void) ms;
+	split_prompt = ft_pars_prompt(str_prompt);
+	if (!split_prompt)
 	{
-		str_prompt = readline(PROMPT);
-		ft_parsing(&ms, str_prompt);
 		free(str_prompt);
+		exit(1);
 	}
-	return (0);
+}
+
+char	**ft_pars_prompt(char *str_prompt)
+{
+	char **prompt_split;
+
+	prompt_split = ft_split_prompt(str_prompt);
+	if (!prompt_split)
+		return (NULL);
+	return (prompt_split);
 }

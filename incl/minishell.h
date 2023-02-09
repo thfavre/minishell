@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:39:34 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/02/09 14:24:27 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/02/09 18:03:41 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+# include "struct.h"
+
 # define PROMPT "minishell/"
 
 //		----- ENVIRONMENT_DIRECTORY -----
@@ -30,8 +32,12 @@ char	**ft_get_env(char **env);
 
 //		----- PARSING DIRECTORY -----
 
+//		##### Ft_parsing.c #####
+void	ft_parsing(t_minishell *ms, char *str_prompt);
+char	**ft_pars_prompt(char *str_prompt);
+
 //		##### Ft_Split.c #####
-char	**ft_split(char *s);
+char	**ft_split_prompt(char *s);
 
 //		----- UTILS_DIRECTORY -----
 
