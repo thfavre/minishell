@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 14:21:23 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/02/09 17:05:34 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/02/09 18:15:03 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,11 @@ char	**ft_split_prompt(char *s)
 			strs[i++] = ft_getword(&s, '"');
 		else if (*s != ' ')
 			strs[i++] = ft_getword(&s, ' ');
-/*		if (!strs[i - 1])
+		if (!strs[i - 1])
 		{
 			ft_freesplit(strs);
 			return (NULL);
-		}*/
+		}
 		if (*s == ' ')
 			s++;
 	}

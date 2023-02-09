@@ -6,7 +6,7 @@
 #    By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 16:32:30 by mjulliat          #+#    #+#              #
-#    Updated: 2023/02/09 18:05:59 by mjulliat         ###   ########.fr        #
+#    Updated: 2023/02/09 18:22:44 by mjulliat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,16 +33,18 @@ SOURCES		= main.c
 
 	# ENVIRONMENT
 
-ENV_FILES	= ft_get_env.c
+ENV_FILES	= ft_get_env.c\
+			  ft_get_path.c
 
 	# PARSING
 
-PARS_FILES	= ft_split.c\
+PARS_FILES	= ft_split_pars.c\
 			  ft_parsing.c
 
 	# UTILS
 
 UTILS_FILES	= utils.c\
+			  ft_split.c\
 			  ft_memory_allocation.c
 
 	# ALL FILES

@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:03:31 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/02/09 17:50:16 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/02/09 18:16:13 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,14 @@
 //		### All Data ###
 
 typedef struct s_minishell {
-	char	**env;
-	char	**path;
+	char			**env;
+	char			**path;
+	int				nb_cmd;
+	int				fd_infile;
+	int				fd_outfile;
+	int				**fd_pipe;
 	struct s_list	*start;
-	int		nb_cmd;
-	int		fd_infile;
-	int		fd_outfile;
-	int		*fd_pipe[2];
 }			t_minishell;
-
 
 //		### Chain List ###
 
