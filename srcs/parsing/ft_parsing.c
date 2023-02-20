@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 17:42:30 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/02/09 18:47:44 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/02/20 10:57:46 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,12 @@
 
 void	ft_parsing(t_minishell *ms, char *str_prompt)
 {
-	char	**split_prompt;
+	int j = 0;
 
-	ms->path = ft_get_path(ms);
-	split_prompt = ft_get_prompt(str_prompt);
-	if (!split_prompt)
+	ft_prompt(ms, str_prompt);
+	while (ms->prompt_split[j] != NULL)
 	{
-		free(str_prompt);
-		exit(1);
+		printf("[%s]\n", ms->prompt_split[j]);
+		j++;
 	}
-	int	i = 0;
-	while (ms->path[i] != NULL)
-	{
-		printf("%s\n", ms->path[i]);
-		i++;
-	}
-}
-
-char	**ft_get_prompt(char *str_prompt)
-{
-	char	**prompt_split;
-
-	prompt_split = ft_split_prompt(str_prompt);
-	if (!prompt_split)
-		return (NULL);
-	return (prompt_split);
 }

@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:03:31 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/02/09 18:16:13 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/02/20 10:06:35 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct s_minishell {
 	char			**env;
 	char			**path;
+	char			**prompt_split;
 	int				nb_cmd;
 	int				fd_infile;
 	int				fd_outfile;

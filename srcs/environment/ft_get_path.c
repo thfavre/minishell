@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:17:45 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/02/09 18:35:21 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/02/16 10:43:24 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ char	**ft_get_path(t_minishell *ms)
 		if (ft_strncmp(ms->env[i], "PATH=", 5) == 0)
 		{
 			str = ft_calloc(ft_strlen(ms->env[i]) + 1, sizeof(char));
-				if (!str)
-					return (NULL);
-				while (j < ft_strlen(ms->env[i]))
-				{
-					str[j] = ms->env[i][j];
-					j++;
-				}
+			if (!str)
+				return (NULL);
+			while (j < ft_strlen(ms->env[i]))
+			{
+				str[j] = ms->env[i][j];
+				j++;
+			}
 		}
 		i++;
 	}

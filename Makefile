@@ -6,7 +6,7 @@
 #    By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 16:32:30 by mjulliat          #+#    #+#              #
-#    Updated: 2023/02/09 18:22:44 by mjulliat         ###   ########.fr        #
+#    Updated: 2023/02/20 11:15:44 by mjulliat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,14 +31,27 @@ LIBS_PATH	= -L$(PRINTF_PATH)
 
 SOURCES		= main.c
 
+	# BUILTINS
+
+BUILT_FILES	= ft_builtins.c
+
 	# ENVIRONMENT
 
 ENV_FILES	= ft_get_env.c\
 			  ft_get_path.c
 
+	# EXECUTION
+
+EXEC_FILES	= ft_exec.c
+
+	# INIT_DATA
+
+INITD_FILES	= ft_init_data.c
+
 	# PARSING
 
-PARS_FILES	= ft_split_pars.c\
+PARS_FILES	= ft_split_prompt.c\
+			  ft_prompt.c\
 			  ft_parsing.c
 
 	# UTILS
@@ -50,13 +63,19 @@ UTILS_FILES	= utils.c\
 	# ALL FILES
 
 FILES		= $(SOURCES)\
+			  $(BUILT_FILES)\
 			  $(ENV_FILES)\
+			  $(EXEC_FILES)\
+			  $(INITD_FILES)\
 			  $(UTILS_FILES)\
 			  $(PARS_FILES)
 
 	### OBJECTS ###
 
+BUILT_FILES	:= $(addprefix builtins/, $(BUILT_FILES))
 ENV_FILES	:= $(addprefix environment/, $(ENV_FILES))
+EXEC_FILES	:= $(addprefix execution/, $(EXEC_FILES))
+INITD_FILES := $(addprefix init_data/, $(INITD_FILES))
 PARS_FILES	:= $(addprefix parsing/, $(PARS_FILES))
 UTILS_FILES	:= $(addprefix utils/, $(UTILS_FILES))
 

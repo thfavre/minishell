@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:39:34 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/02/09 18:41:50 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/02/20 13:45:29 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,12 @@
 
 # define PROMPT "minishell/"
 
-//		----- ENVIRONMENT_DIRECTORY -----
+//		----- BUILTINS DIRECTORY -----
+
+//		##### Ft_builtins.c #####
+void	ft_builtins(void);	
+
+//		----- ENVIRONMENT DIRECTORY -----
 
 //		##### Ft_Get_Env.c #####
 char	**ft_get_env(char **env);
@@ -33,11 +38,25 @@ char	**ft_get_env(char **env);
 //		##### Ft_Get_Path.c #####
 char	**ft_get_path(t_minishell *ms);
 
+//		----- EXECUTION DIRECTORY -----
+
+//		###### Ft_Exec.c #####
+void	ft_exec(void);
+
+//		----- INIT_DATA DIRECTORY -----
+
+//		##### Ft_Init_Data.c #####
+void	ft_init_data(t_minishell *ms, char **env);
+
 //		----- PARSING DIRECTORY -----
 
 //		##### Ft_parsing.c #####
 void	ft_parsing(t_minishell *ms, char *str_prompt);
-char	**ft_get_prompt(char *str_prompt);
+
+//		##### Ft_Prompt.c #####
+void	ft_prompt(t_minishell *ms, char *str_prompt);
+int		ft_count_cmd(t_minishell *ms);
+int		ft_is_cmd(t_minishell *ms, char *str);
 
 //		##### Ft_Split_Pars.c #####
 char	**ft_split_prompt(char *s);

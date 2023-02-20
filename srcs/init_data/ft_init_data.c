@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_init_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/08 12:12:10 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/02/20 13:42:41 by mjulliat         ###   ########.fr       */
+/*   Created: 2023/02/20 10:02:35 by mjulliat          #+#    #+#             */
+/*   Updated: 2023/02/20 13:42:11 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **env)
+void	ft_init_data(t_minishell *ms, char **env)
 {
-	t_minishell	ms;
-	char		*str_prompt;
-
-	(void) ac;
-	(void) av;
-	ft_init_data(&ms, env);
-	str_prompt = readline(PROMPT);
-	while (str_prompt != NULL)
-	{
-		ft_parsing(&ms, str_prompt);
-		str_prompt = readline(PROMPT);
-	}
-	free(str_prompt);
-	return (0);
+	ms->env = ft_get_env(env);
+	ms->path = ft_get_path(ms);
 }
