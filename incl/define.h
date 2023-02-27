@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:33:00 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/02/22 12:46:05 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:08:43 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@
 # define ENV	"env"
 # define EXIT	"exit"
 
-//		### TOKEN ###
+//		### REDIRECTION ###
 
 # define INFILE		"<"
 # define OUTFILE	">"
-# define PIPE		"|"
 # define INFILE2	"<<"
 # define OUTFILE2	">>"
 
+//		### PIPE ###
+
+# define PIPE		"|"
 #endif
