@@ -6,7 +6,7 @@
 #    By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 16:32:30 by mjulliat          #+#    #+#              #
-#    Updated: 2023/02/20 11:15:44 by mjulliat         ###   ########.fr        #
+#    Updated: 2023/02/22 12:04:01 by mjulliat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,8 @@ INITD_FILES	= ft_init_data.c
 
 PARS_FILES	= ft_split_prompt.c\
 			  ft_prompt.c\
-			  ft_parsing.c
+			  ft_parsing.c\
+			  ft_prompt_pars.c
 
 	# UTILS
 

@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_prompt.c                                        :+:      :+:    :+:   */
+/*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 10:55:24 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/02/22 12:45:47 by mjulliat         ###   ########.fr       */
+/*   Created: 2023/02/22 11:33:00 by mjulliat          #+#    #+#             */
+/*   Updated: 2023/02/22 12:46:05 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef DEFINE_H
+# define DEFINE_H
 
-char	**ft_prompt(t_minishell *ms, char *str_prompt)
-{
-	char	**prompt_split;
+//		### BUILTINS ###
 
-	(void) ms;
-	prompt_split = ft_split_prompt(str_prompt);
-	if (!prompt_split)
-		return (NULL);
-	return (prompt_split);
-}
+# define ECHO	"echo"
+# define CD 	"cd"
+# define PWD	"pwd"
+# define EXPORT	"export"
+# define UNSET	"unset"
+# define ENV	"env"
+# define EXIT	"exit"
+
+//		### TOKEN ###
+
+# define INFILE		"<"
+# define OUTFILE	">"
+# define PIPE		"|"
+# define INFILE2	"<<"
+# define OUTFILE2	">>"
+
+#endif

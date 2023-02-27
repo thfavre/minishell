@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:39:34 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/02/20 13:45:29 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/02/22 16:07:57 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <readline/history.h>
 
 # include "struct.h"
+# include "define.h"
 
 # define PROMPT "minishell/"
 
@@ -52,11 +53,16 @@ void	ft_init_data(t_minishell *ms, char **env);
 
 //		##### Ft_parsing.c #####
 void	ft_parsing(t_minishell *ms, char *str_prompt);
+void	ft_analyse_prompt(t_minishell *ms);
 
 //		##### Ft_Prompt.c #####
-void	ft_prompt(t_minishell *ms, char *str_prompt);
-int		ft_count_cmd(t_minishell *ms);
-int		ft_is_cmd(t_minishell *ms, char *str);
+char	**ft_prompt(t_minishell *ms, char *str_prompt);
+
+//		##### Ft_Prompt_Pars.c #####
+int		ft_is_token(char *str);
+int		ft_is_builtins(char *str);
+int		ft_is_varenv(char *str);
+int		ft_is_signal(char *str);
 
 //		##### Ft_Split_Pars.c #####
 char	**ft_split_prompt(char *s);
@@ -67,6 +73,7 @@ char	**ft_split_prompt(char *s);
 size_t	ft_strlen(char *str);
 void	*ft_memset(void *b, int c, size_t len);
 char	*ft_substr(char *str, size_t start, size_t len);
+int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 //		##### Ft_Split.c #####

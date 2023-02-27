@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 14:48:42 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/02/09 18:40:34 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/02/22 12:13:59 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,24 @@ char	*ft_substr(char *str, size_t start, size_t len)
 		start++;
 	}
 	return (cpy);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	unsigned int	i;
+	unsigned char	*str1;
+	unsigned char	*str2;
+
+	i = 0;
+	str1 = (unsigned char *) s1;
+	str2 = (unsigned char *) s2;
+	while (str1[i] != '\0')
+	{
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
+		i++;
+	}
+	return (str1[i] - str2[i]);
 }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
