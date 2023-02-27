@@ -25,6 +25,8 @@ void handle_signal(int signo)
 		rl_replace_line("", 0);  // Clear the user input.
 		rl_on_new_line();
 		rl_redisplay();
+		// Terminate any child processes that are currently running.
+		kill(0, SIGTERM);
 	}
 }
 
@@ -66,18 +68,30 @@ int main()
 			i++;
 		}
 		args[i] = NULL;
+
 		// all up was the same as with no pipes
 
 		// Parse the user input to identify the commands that should be piped together.
-		char *cmd1[256], *cmd2[256];
+		//char *cmd1[256], *cmd2[256];
+		char **cmd1;
+		char **cmd2;
 		int pipe_index = 0;
-		while (args[pipe_index] != '|')
+		while (strcmp(args[pipe_index], "|") != 0)
 			pipe_index++;
 		args[pipe_index] = NULL;
-		cmd1 = args;
-		cmd2 = args[pipe_index];
-		printf("DEBUG (cmd1:%s), (cmd2:%s)\n", cmd1, cmd2);
 
+		cmd1 = args;
+		cmd2 = &args[pipe_index+1];
+		int j = 0;
+		printf("\tDEBUG [cmd1]\n");
+		while (cmd1[j])
+			printf("\t\t%s\n", cmd1[j++]);
+		printf("\tDEBUG [cmd2]\n");
+		j = 0;
+		while (cmd2[j])
+			printf("\t\t%s\n", cmd2[j++]);
+
+		execvp(cmd2[0], cmd2);
 
 
 		// Create a pipe.
@@ -93,13 +107,16 @@ int main()
 			// This is the child process.
 			// Redirect the standard output to the write end of the pipe.
 			close(fd[0]);
-			dup2(fd[1], STDOUT_FILENO);
+			//dup2(fd[1], STDOUT_FILENO);
 			close(fd[1]);
 
 			// Execute the first command in the pipeline.
+			printf("WHY DOES IT NOT GET EXECUTED\n");
 			execvp(cmd1[0], cmd1);
-			perror("Error: command execution failed");
 			exit(EXIT_FAILURE);
+
+			// perror("Error: command execution failed");
+			// exit(EXIT_FAILURE);
 		} else if (pid1 < 0) {
 			// There was an error forking.
 			perror("Error: fork failed");
@@ -112,27 +129,29 @@ int main()
 			// This is the child process.
 			// Redirect the standard input to the read end of the pipe.
 			close(fd[1]);
-			dup2(fd[0], STDIN_FILENO);
+			//dup2(fd[0], STDIN_FILENO);
 			close(fd[0]);
 
 			// Execute the second command in the pipeline.
 			execvp(cmd2[0], cmd2);
-			perror("Error: command execution failed");
 			exit(EXIT_FAILURE);
+			// perror("Error: command execution failed");
+			// exit(EXIT_FAILURE);
 		} else if (pid2 < 0) {
 			// There was an error forking.
 			perror("Error: fork failed");
 			continue;
 		}
+		else
+		{
+			// Close both ends of the pipe.
+			close(fd[0]);
+			close(fd[1]);
 
-		// Close both ends of the pipe.
-		close(fd[0]);
-		close(fd[1]);
-
-		// Wait for both child processes to finish executing.
-		waitpid(pid1, NULL, 0);
-		waitpid(pid2, NULL, 0);
-
+			// Wait for both child processes to finish executing.
+			waitpid(pid1, NULL, 0);
+			waitpid(pid2, NULL, 0);
+		}
 
 		// Free the user input.
 		free(input);
