@@ -13,7 +13,6 @@
 #include <termios.h>		   // For terminal I/O functions such as tcsetattr and tcgetattr
 // #include <curses.h>    // For terminal I/O functions such as tgetent and tputs
 
-#define MAX_INPUT_LENGTH 1024
 
 void handle_signal(int signo)
 {
@@ -26,6 +25,10 @@ void handle_signal(int signo)
 		rl_on_new_line();
 		rl_redisplay();
 		// Terminate any child processes that are currently running.
+		//kill(0, SIGTERM);
+	}
+	else if (signo == SIGTSTP)
+	{
 		kill(0, SIGTERM);
 	}
 }
@@ -43,6 +46,12 @@ int main()
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = SA_RESTART;
 	if (sigaction(SIGINT, &sa, NULL) == -1)
+	{
+		perror("Error: cannot handle SIGINT");
+	}
+
+	// To be able to close the program with CTRL-Z
+	if (sigaction(SIGTSTP, &sa, NULL) == -1)
 	{
 		perror("Error: cannot handle SIGINT");
 	}
@@ -75,7 +84,6 @@ int main()
 		// all up was the same as with no pipes
 
 		// Parse the user input to identify the commands that should be piped together.
-		// char *cmd1[256], *cmd2[256];
 		char **cmd1;
 		char **cmd2;
 		int pipe_index = 0;
@@ -86,6 +94,7 @@ int main()
 		cmd1 = args;
 		cmd2 = &args[pipe_index + 1];
 		int j = 0;
+		printf("\n\n__________________________\n");
 		printf("\tDEBUG [cmd1]\n");
 		while (cmd1[j])
 			printf("\t\t%s\n", cmd1[j++]);
@@ -93,7 +102,8 @@ int main()
 		j = 0;
 		while (cmd2[j])
 			printf("\t\t%s\n", cmd2[j++]);
-
+		printf("__________________________\n\n");
+		
 		// Create a pipe.
 		int fd[2];
 		if (pipe(fd) == -1)
@@ -112,8 +122,6 @@ int main()
 			// Execute the first command in the pipeline.
 			close(fd[1]);
 			execvp(cmd1[0], cmd1);
-			// char message[] = "Hello, parent!";
-			// write(fd[1], message, sizeof(message));
 		}
 		else if (pid1 < 0)
 		{
@@ -130,12 +138,10 @@ int main()
 			{
 				// This is the child process.
 				close(fd[1]);
-				char buffer[1024];
-				read(fd[0], buffer, sizeof(buffer));
-				printf("This is the result of the first command =>%s<=\n", buffer);
+				dup2(fd[0], 0); // Redirect standard input to the read end of the pipe.
 				close(fd[0]);
 				// Execute the second command in the pipeline.
-				// execvp(cmd2[0], cmd2);
+				execvp(cmd2[0], cmd2);
 			}
 			else if (pid2 < 0)
 			{
