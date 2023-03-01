@@ -91,7 +91,7 @@ int main()
 		while (cmd2[j])
 			printf("\t\t%s\n", cmd2[j++]);
 
-		execvp(cmd2[0], cmd2);
+		// execvp(cmd2[0], cmd2);
 
 
 		// Create a pipe.
@@ -124,45 +124,46 @@ int main()
 			perror("Error: fork failed");
 			continue;
 		}
-
-		// Fork another child process to run the second command in the pipeline.
-		pid_t pid2 = fork();
-		if (pid2 == 0) {
-			// This is the child process.
-			// Redirect the standard input to the read end of the pipe.
-			close(fd[1]);
-//			dup2(fd[0], STDIN_FILENO);
-//			close(fd[0]);
-			
-
-			char buffer[1024];	
-			read(fd[0], buffer, sizeof(buffer));
-			buffer[0] = 'A';
-			printf("new=>%s<=\n", buffer);
-			close(fd[0]);
-			// Execute the second command in the pipeline.
-			//execvp(cmd2[0], cmd2);
+		else
+		{
+			// from parent child
+			// Fork another child process to run the second command in the pipeline.
+			pid_t pid2 = fork();
+			if (pid2 == 0) { 
+				// This is the child process.  
+				// Redirect the standard input to the read end of the pipe.  
+				close(fd[1]); 
+//			dup2(fd[0], STDIN_FILENO); 
+//			close(fd[0]); 
+				char buffer[1024];	
+				read(fd[0], buffer, sizeof(buffer));
+				buffer[0] = 'A';
+				printf("new=>%s<=\n", buffer);
+				close(fd[0]);
+				// Execute the second command in the pipeline.
+				//execvp(cmd2[0], cmd2);
 			//exit(EXIT_FAILURE);
 			//perror("Error: command execution failed");
 			// exit(EXIT_FAILURE);
-		} else if (pid2 < 0) {
-			// There was an error forking.
-			perror("Error: fork failed");
-			continue;
-		}
-		else
-		{
-			// Close both ends of the pipe.
-			close(fd[0]);
-			close(fd[1]);
-
-			// Wait for both child processes to finish executing.
-			waitpid(pid1, NULL, 0);
-			waitpid(pid2, NULL, 0);
-		}
+			} else if (pid2 < 0) {
+				// There was an error forking.
+				perror("Error: fork failed");
+				continue;
+			}
+			else
+			{
+				// Close both ends of the pipe.
+				close(fd[0]);
+				close(fd[1]);
+	
+				// Wait for both child processes to finish executing.
+				waitpid(pid1, NULL, 0);
+				waitpid(pid2, NULL, 0);
+			}
 
 		// Free the user input.
-		free(input);
+			free(input);
+		}
 	}
 
 
