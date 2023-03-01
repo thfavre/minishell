@@ -11,7 +11,7 @@
 #include <sys/stat.h>  // For file status functions such as stat and fstat
 #include <errno.h>     // For error handling functions such as perror and strerror
 #include <termios.h>   // For terminal I/O functions such as tcsetattr and tcgetattr
-#include <curses.h>    // For terminal I/O functions such as tgetent and tputs
+//#include <curses.h>    // For terminal I/O functions such as tgetent and tputs
 
 #define MAX_INPUT_LENGTH 1024
 
@@ -107,15 +107,17 @@ int main()
 			// This is the child process.
 			// Redirect the standard output to the write end of the pipe.
 			close(fd[0]);
-			//dup2(fd[1], STDOUT_FILENO);
-			close(fd[1]);
+//			dup2(fd[1], STDOUT_FILENO);
+//			close(fd[1]);
 
 			// Execute the first command in the pipeline.
-			printf("WHY DOES IT NOT GET EXECUTED\n");
-			execvp(cmd1[0], cmd1);
-			exit(EXIT_FAILURE);
-
-			// perror("Error: command execution failed");
+//			printf("WHY DOES IT NOT GET EXECUTED\n");
+//			execvp(cmd1[0], cmd1);
+//			perror("Error: command execution failed");
+//			exit(EXIT_FAILURE);
+			char message[] = "Hello, parent!";
+			write(fd[1], message, sizeof(message));
+			close(fd[1]);
 			// exit(EXIT_FAILURE);
 		} else if (pid1 < 0) {
 			// There was an error forking.
@@ -129,13 +131,19 @@ int main()
 			// This is the child process.
 			// Redirect the standard input to the read end of the pipe.
 			close(fd[1]);
-			//dup2(fd[0], STDIN_FILENO);
-			close(fd[0]);
+//			dup2(fd[0], STDIN_FILENO);
+//			close(fd[0]);
+			
 
+			char buffer[1024];	
+			read(fd[0], buffer, sizeof(buffer));
+			buffer[0] = 'A';
+			printf("new=>%s<=\n", buffer);
+			close(fd[0]);
 			// Execute the second command in the pipeline.
-			execvp(cmd2[0], cmd2);
-			exit(EXIT_FAILURE);
-			// perror("Error: command execution failed");
+			//execvp(cmd2[0], cmd2);
+			//exit(EXIT_FAILURE);
+			//perror("Error: command execution failed");
 			// exit(EXIT_FAILURE);
 		} else if (pid2 < 0) {
 			// There was an error forking.
