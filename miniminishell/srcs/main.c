@@ -103,7 +103,7 @@ int main()
 		while (cmd2[j])
 			printf("\t\t%s\n", cmd2[j++]);
 		printf("__________________________\n\n");
-		
+
 		// Create a pipe.
 		int fd[2];
 		if (pipe(fd) == -1)
@@ -138,7 +138,14 @@ int main()
 			{
 				// This is the child process.
 				close(fd[1]);
-				dup2(fd[0], 0); // Redirect standard input to the read end of the pipe.
+
+				// implementation of the > (output)
+				int output_fd = 0;
+
+				dup2(fd[0], output_fd); // Redirect standard input to the read end of the pipe.
+				// should we close the output_fd ? (if not 0)
+				if (output_fd != 0)
+					close(output_fd);
 				close(fd[0]);
 				// Execute the second command in the pipeline.
 				execvp(cmd2[0], cmd2);
