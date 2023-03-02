@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:52:17 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/01 15:28:14 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/02 11:40:28 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,22 @@ char	*ft_getword_quote(char **str, char c)
 	if (**str == c)
 	{
 		word[i] = (**str);
+		(*str)++;
+	}
+	return (word);
+}
+
+char	*ft_getword_space(char **str)
+{
+	char	*word;
+	int		i;
+
+	i = 0;
+	word = ft_calloc(sizeof(char), ft_lenword_space(*str) + 1);
+	while (**str == ' ' || **str == '\t')
+	{
+		word[i] = (**str);
+		i++;
 		(*str)++;
 	}
 	return (word);

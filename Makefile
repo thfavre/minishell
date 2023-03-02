@@ -6,13 +6,13 @@
 #    By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 16:32:30 by mjulliat          #+#    #+#              #
-#    Updated: 2023/03/01 14:49:20 by mjulliat         ###   ########.fr        #
+#    Updated: 2023/03/02 10:58:26 by mjulliat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 	### COMPILATION ###
 
-CC			= gcc -g3 -fsanitize=address
+CC			= gcc -g3
 FLAGS		= -Wall -Werror -Wextra
 
 	### EXECUTABLE ###
@@ -33,6 +33,11 @@ SOURCES		= main.c
 
 ENV_FILES	= ft_get_env.c\
 			  ft_get_path.c
+
+	# EXIT
+
+EXIT_FILES	= ft_exit.c\
+			  ft_free_allocation.c
 
 	# INIT_DATA
 
@@ -56,6 +61,7 @@ UTILS_FILES	= ft_memory_allocation.c\
 
 FILES		= $(SOURCES)\
 			  $(ENV_FILES)\
+			  $(EXIT_FILES)\
 			  $(INITD_FILES)\
 			  $(UTILS_FILES)\
 			  $(PARS_FILES)
@@ -63,6 +69,7 @@ FILES		= $(SOURCES)\
 	### OBJECTS ###
 
 ENV_FILES	:= $(addprefix environment/, $(ENV_FILES))
+EXIT_FILES	:= $(addprefix exit/, $(EXIT_FILES))
 INITD_FILES := $(addprefix init_data/, $(INITD_FILES))
 PARS_FILES	:= $(addprefix parsing/, $(PARS_FILES))
 UTILS_FILES	:= $(addprefix utils/, $(UTILS_FILES))

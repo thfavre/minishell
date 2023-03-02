@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:39:34 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/02 10:26:08 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/02 11:34:20 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,16 @@ char	**ft_get_env(char **env);
 //		##### Ft_Get_Path.c #####
 char	**ft_get_path(t_minishell *ms);
 
+//		----- EXIT DIRECTORY -----
+
+//		##### Ft_Exit.c #####
+void	ft_exit(t_minishell *ms);
+
+//		##### Ft_Free_Allocation.c #####
+void	ft_free_env(t_minishell *ms);
+void	ft_free_path(t_minishell *ms);
+void	ft_free_token(t_minishell *ms);
+
 //		----- INIT_DATA DIRECTORY -----
 
 //		##### Ft_Init_Data.c #####
@@ -47,11 +57,13 @@ void	ft_parsing(t_minishell *ms, char *str_prompt);
 //		##### Ft_Getword.c #####
 char	*ft_getword_redirection(char **str, char c);
 char	*ft_getword_quote(char **str, char c);
+char	*ft_getword_space(char **str);
 char	*ft_getword(char **str);
 //
 //		##### Ft_Lenword.c #####
 int		ft_lenword_redirection(char *str, char c);
 int		ft_lenword_quote(char *str, char c);
+int		ft_lenword_space(char *str);
 int		ft_lenword(char *str);
 
 //		##### Ft_Tokenizing_Prompt.c #####
@@ -59,7 +71,7 @@ void	ft_tokenizing_prompt(t_minishell *ms, char *str);
 char	*ft_get_token(char **str);
 void	ft_free_token(t_minishell *ms);
 
-//		----- UTILS_DIRECTORY -----
+//		----- UTILS DIRECTORY -----
 
 //		##### Ft_Memory_Allocation.c #####
 void	*ft_calloc(size_t nbyte, size_t size);
