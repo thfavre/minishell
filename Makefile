@@ -6,7 +6,7 @@
 #    By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 16:32:30 by mjulliat          #+#    #+#              #
-#    Updated: 2023/03/02 10:58:26 by mjulliat         ###   ########.fr        #
+#    Updated: 2023/03/02 14:22:51 by mjulliat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,9 @@ INITD_FILES	= ft_init_data.c
 
 PARS_FILES	= ft_getword.c\
 			  ft_lenword.c\
+			  ft_parse_token.c\
 			  ft_parsing.c\
+			  ft_redirection.c\
 			  ft_tokenizing_prompt.c
 
 	# UTILS

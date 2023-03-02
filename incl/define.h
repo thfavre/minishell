@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:33:00 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/02/27 11:08:43 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/02 14:29:46 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 
 //		### REDIRECTION ###
 
-# define INFILE		"<"
-# define OUTFILE	">"
-# define INFILE2	"<<"
-# define OUTFILE2	">>"
+# define D_INFILE	"<"
+# define D_OUTFILE	">"
+# define D_HEREDOC	"<<"
+# define D_APPEND	">>"
 
 //		### PIPE ###
 

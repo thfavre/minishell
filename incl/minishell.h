@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:39:34 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/02 11:34:20 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/02 14:50:03 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,15 @@ void	ft_init_data(t_minishell *ms, char **env);
 
 //		##### Ft_parsing.c #####
 void	ft_parsing(t_minishell *ms, char *str_prompt);
+
+//		##### Ft_Parse_Token.c #####
+void	ft_parse_token(t_minishell *ms);
+void	ft_check_redirection(t_minishell *ms, t_list *pars);
+
+//		##### Ft_redirection.c #####
+int		ft_is_redirection(char *str);
+int		ft_get_infile(t_list *pars);
+int		ft_get_outfile(t_list *pars);
 
 //		##### Ft_Getword.c #####
 char	*ft_getword_redirection(char **str, char c);
