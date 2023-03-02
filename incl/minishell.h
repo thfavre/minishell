@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:39:34 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/02/22 16:07:57 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/02 10:26:08 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,6 @@
 
 # define PROMPT "minishell/"
 
-//		----- BUILTINS DIRECTORY -----
-
-//		##### Ft_builtins.c #####
-void	ft_builtins(void);	
-
 //		----- ENVIRONMENT DIRECTORY -----
 
 //		##### Ft_Get_Env.c #####
@@ -38,11 +33,6 @@ char	**ft_get_env(char **env);
 
 //		##### Ft_Get_Path.c #####
 char	**ft_get_path(t_minishell *ms);
-
-//		----- EXECUTION DIRECTORY -----
-
-//		###### Ft_Exec.c #####
-void	ft_exec(void);
 
 //		----- INIT_DATA DIRECTORY -----
 
@@ -53,21 +43,34 @@ void	ft_init_data(t_minishell *ms, char **env);
 
 //		##### Ft_parsing.c #####
 void	ft_parsing(t_minishell *ms, char *str_prompt);
-void	ft_analyse_prompt(t_minishell *ms);
 
-//		##### Ft_Prompt.c #####
-char	**ft_prompt(t_minishell *ms, char *str_prompt);
+//		##### Ft_Getword.c #####
+char	*ft_getword_redirection(char **str, char c);
+char	*ft_getword_quote(char **str, char c);
+char	*ft_getword(char **str);
+//
+//		##### Ft_Lenword.c #####
+int		ft_lenword_redirection(char *str, char c);
+int		ft_lenword_quote(char *str, char c);
+int		ft_lenword(char *str);
 
-//		##### Ft_Prompt_Pars.c #####
-int		ft_is_token(char *str);
-int		ft_is_builtins(char *str);
-int		ft_is_varenv(char *str);
-int		ft_is_signal(char *str);
-
-//		##### Ft_Split_Pars.c #####
-char	**ft_split_prompt(char *s);
+//		##### Ft_Tokenizing_Prompt.c #####
+void	ft_tokenizing_prompt(t_minishell *ms, char *str);
+char	*ft_get_token(char **str);
+void	ft_free_token(t_minishell *ms);
 
 //		----- UTILS_DIRECTORY -----
+
+//		##### Ft_Memory_Allocation.c #####
+void	*ft_calloc(size_t nbyte, size_t size);
+void	ft_freesplit(char **strs);
+
+//		##### Ft_Split.c #####
+char	**ft_split(char *str, char c);
+
+//		##### Ft_Utils_List.c #####
+t_list	*ft_lstnew(char *word);
+void	ft_lstadd_back(t_list **lst, t_list *nw);
 
 //		##### Utils.c #####
 size_t	ft_strlen(char *str);
@@ -75,12 +78,5 @@ void	*ft_memset(void *b, int c, size_t len);
 char	*ft_substr(char *str, size_t start, size_t len);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-
-//		##### Ft_Split.c #####
-char	**ft_split(char *str, char c);
-
-//		##### Ft_Memory_Allocation.c #####
-void	*ft_calloc(size_t nbyte, size_t size);
-void	ft_freesplit(char **strs);
 
 #endif
