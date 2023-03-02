@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 12:12:10 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/02 10:52:10 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:37:16 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ int	main(int ac, char **av, char **env)
 		ft_exit(&ms);
 		str_prompt = readline(PROMPT);
 	}
+	//ft_execute(&ms);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:39:34 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/02 11:34:20 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/02 14:33:34 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+#include <signal.h>
 
 # include "struct.h"
 # include "define.h"
@@ -70,6 +71,19 @@ int		ft_lenword(char *str);
 void	ft_tokenizing_prompt(t_minishell *ms, char *str);
 char	*ft_get_token(char **str);
 void	ft_free_token(t_minishell *ms);
+
+//		----- SIGNAL DIRECTORY -----
+
+//		##### Ft_handle_signals.c #####
+void	ft_handle_signals();
+
+//		##### Ft_init_signals.c #####
+void	ft_init_signals();
+
+//		----- EXECUTE DIRECTORY -----
+
+//		##### Ft_execute.c #####
+void	ft_execute(t_minishell *ms);
 
 //		----- UTILS DIRECTORY -----
 

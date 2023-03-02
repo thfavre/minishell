@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+         #
+#    By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 16:32:30 by mjulliat          #+#    #+#              #
-#    Updated: 2023/03/02 10:58:26 by mjulliat         ###   ########.fr        #
+#    Updated: 2023/03/02 14:45:18 by thfavre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,15 @@ PARS_FILES	= ft_getword.c\
 			  ft_parsing.c\
 			  ft_tokenizing_prompt.c
 
+	# SIGNALS
+
+SIGN_FILES	= ft_init_signals.c\
+			  ft_handle_signals.c
+
+	# SIGNALS
+
+EXEC_FILES	= ft_execute.c
+
 	# UTILS
 
 UTILS_FILES	= ft_memory_allocation.c\
@@ -64,7 +73,9 @@ FILES		= $(SOURCES)\
 			  $(EXIT_FILES)\
 			  $(INITD_FILES)\
 			  $(UTILS_FILES)\
-			  $(PARS_FILES)
+			  $(PARS_FILES)\
+			  $(SIGN_FILES)\
+			  $(EXEC_FILES)
 
 	### OBJECTS ###
 
@@ -73,6 +84,8 @@ EXIT_FILES	:= $(addprefix exit/, $(EXIT_FILES))
 INITD_FILES := $(addprefix init_data/, $(INITD_FILES))
 PARS_FILES	:= $(addprefix parsing/, $(PARS_FILES))
 UTILS_FILES	:= $(addprefix utils/, $(UTILS_FILES))
+SIGN_FILES	:= $(addprefix signals/, $(SIGN_FILES))
+EXEC_FILES	:= $(addprefix execute/, $(EXEC_FILES))
 
 SRCS		= $(addprefix $(SRCS_PATH)/, $(FILES))
 OBJS		= $(addprefix $(OBJS_PATH)/, $(FILES:.c=.o))
@@ -105,10 +118,10 @@ all:		tmp $(NAME)
 
 $(NAME):	$(OBJS)
 			@echo "$(BLUE)##### Compiling Project #####$(WHITE)"
-			$(CC) $(FLAGS) $(LIBS_PATH) $(LIBS) -o $@ $^ 
+			$(CC) $(FLAGS) $(LIBS_PATH) $(LIBS) -o $@ $^
 			@echo "$(GREEN)##### Project Compilated #####$(WHITE)"
 
-tmp:		
+tmp:
 			@echo "$(CYAN)##### Compiling SRCS in OBJS #####$(WHITE)"
 			@mkdir -p objs
 
@@ -116,7 +129,7 @@ $(OBJS_PATH)/%.o:	$(SRCS_PATH)/%.c
 					@mkdir -p $(@D)
 					$(CC) $(FLAGS) $(INCS_PATH) -c $< -o $@
 
-clean:	
+clean:
 			@echo "$(VIOLET)##### Supressing FILES #####$(YELLOW)"
 			rm -rf $(OBJS_PATH)
 
