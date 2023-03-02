@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 12:12:10 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/02 15:56:46 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/03/02 16:02:17 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,5 @@ int	main(int ac, char **av, char **env)
 	}
 	//ft_execute(&ms);
 	ft_exit(&ms);
-	//comment
 	return (0);
 }

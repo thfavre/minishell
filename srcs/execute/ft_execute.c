@@ -1,7 +1,14 @@
 
-#include "minishell.h"
+//#include "minishell.h"
 
-
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <sys/wait.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+#include <signal.h>
 // struc s_cmd
 // {
 
@@ -11,9 +18,47 @@
 // }
 
 
-void ft_execute(t_minishell *ms)
+int main()
 {
-	(void)ms;
+
+	char *cmd1[] = {"/bin/ls", "-la", NULL};
+	char *cmd2[] = {"/usr/bin/grep", "13", NULL};
+
+	char **cmd[2] = {cmd1, cmd2};
+
+	int fd[2];
+	pipe(fd);
+
+	int i = 0;
+	while (i < 2)
+	{
+		if (!fork())
+		{
+			//child
+			if (i == 0)
+			{
+				//dup2(fd[0], 0);
+				dup2(fd[1], 1); //fd[1] write
+			}
+			else
+			{
+				dup2(fd[0], 0);
+				// close(fd[1]);
+			}
+			execve(cmd[i][0], cmd[i], NULL);
+		}
+		else
+		{
+			// parent
+			i++;
+		}
+	}
+	close(fd[0]);
+	close(fd[1]);
+	while (waitpid(-1, NULL, WUNTRACED) == -1)
+		;
+}
+	//(void)ms;
 	// t_list_cmd	current_cmd;
 
 	// current_cmd = ms->cmd;
@@ -42,4 +87,4 @@ void ft_execute(t_minishell *ms)
 	// 	current_cmd = current_cmd->next;
 	// }
 
-}
+// }
