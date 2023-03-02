@@ -6,7 +6,7 @@
 #    By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 16:32:30 by mjulliat          #+#    #+#              #
-#    Updated: 2023/03/02 14:45:18 by thfavre          ###   ########.fr        #
+#    Updated: 2023/03/02 15:52:05 by thfavre          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,9 @@ INITD_FILES	= ft_init_data.c
 
 PARS_FILES	= ft_getword.c\
 			  ft_lenword.c\
+			  ft_parse_token.c\
 			  ft_parsing.c\
+			  ft_redirection.c\
 			  ft_tokenizing_prompt.c
 
 	# SIGNALS
