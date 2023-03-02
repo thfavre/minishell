@@ -117,7 +117,7 @@ int main()
 		if (pid1 == 0)
 		{
 			// This is the child process.
-			close(fd[0]);
+			close(fd[0]); // close the read
 			dup2(fd[1], 1);
 			// Execute the first command in the pipeline.
 			close(fd[1]);
