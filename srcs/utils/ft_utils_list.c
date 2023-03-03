@@ -6,13 +6,13 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:11:26 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/01 13:44:24 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/03 11:27:11 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_list	*ft_lstnew(char *word)
+t_list	*ft_lstnew_token(char *word)
 {
 	t_list	*new;
 

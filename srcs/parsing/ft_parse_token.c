@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:05:03 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/02 15:39:10 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/02 17:23:27 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_parse_token(t_minishell *ms)
 	t_list	*pars;
 
 	pars = ms->token;
+	//	need to get all the fd_write and the fd_read
 	ft_check_redirection(ms, pars);
 }
 

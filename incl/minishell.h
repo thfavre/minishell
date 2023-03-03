@@ -6,11 +6,8 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:39:34 by mjulliat          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/03/02 14:33:34 by thfavre          ###   ########.fr       */
-=======
+/*   Updated: 2023/03/03 11:49:18 by mjulliat         ###   ########.fr       */
 /*   Updated: 2023/03/02 14:50:03 by mjulliat         ###   ########.fr       */
->>>>>>> fdfc1a3390ced2f441d812efd5a6af0a56b7537f
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +21,7 @@
 # include <sys/wait.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-#include <signal.h>
+# include <signal.h>
 
 # include "struct.h"
 # include "define.h"
@@ -88,7 +85,7 @@ void	ft_free_token(t_minishell *ms);
 //		----- SIGNAL DIRECTORY -----
 
 //		##### Ft_handle_signals.c #####
-void	ft_handle_signals();
+void	ft_handle_signals(int signo);
 
 //		##### Ft_init_signals.c #####
 void	ft_init_signals();
@@ -108,7 +105,7 @@ void	ft_freesplit(char **strs);
 char	**ft_split(char *str, char c);
 
 //		##### Ft_Utils_List.c #####
-t_list	*ft_lstnew(char *word);
+t_list	*ft_lstnew_token(char *word);
 void	ft_lstadd_back(t_list **lst, t_list *nw);
 
 //		##### Utils.c #####

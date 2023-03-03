@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:03:31 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/02 15:31:11 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/02 16:51:34 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_list {
 typedef struct s_list_cmd {
 	char				*cmd;
 	char				**option;
+	int					fd_read;
+	int					fd_write;
 	struct s_list_cmd	*next;
 }						t_list_cmd;
 

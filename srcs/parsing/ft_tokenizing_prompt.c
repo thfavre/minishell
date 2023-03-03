@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:03:11 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/02 11:38:35 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/03 11:27:27 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	ft_tokenizing_prompt(t_minishell *ms, char *str)
 
 	while (*str == ' ' && *str == '\t')
 		str++;
-	token = ft_lstnew(ft_get_token(&str));
+	token = ft_lstnew_token(ft_get_token(&str));
 	ms->token = token;
 	while (*str != '\0')
-		ft_lstadd_back(&ms->token, ft_lstnew(ft_get_token(&str)));
+		ft_lstadd_back(&ms->token, ft_lstnew_token(ft_get_token(&str)));
 }
 
 char	*ft_get_token(char **str)
