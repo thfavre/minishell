@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:05:03 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/02 17:23:27 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/03 15:39:51 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,20 @@
 
 void	ft_parse_token(t_minishell *ms)
 {
-	t_list	*pars;
+	t_list_token	*pars;
 
 	pars = ms->token;
-	//	need to get all the fd_write and the fd_read
-	ft_check_redirection(ms, pars);
-}
-
-void	ft_check_redirection(t_minishell *ms, t_list *pars)
-{
-	int	type;
-
 	while (pars != NULL)
 	{
-		type = ft_is_redirection(pars->word);
-		if (type == 0)
-			pars = pars->next;
+		if (!ms->cmd)
+		{
+			printf("coucou hiboux\n");
+			ms->cmd = ft_lstnew_cmd(ft_init_cmd(&pars));
+		}
 		else
 		{
-			if (type == INFILE)
-			{
-				ms->fd_infile = ft_get_infile(pars);
-				break ;
-			}
-			else if (type == OUTFILE)
-			{
-				ms->fd_outfile = ft_get_outfile(pars);
-				break ;
-			}
+			printf("coucou moi\n");
+			ft_lstadd_back_cmd(&ms->cmd, ft_lstnew_cmd(ft_init_cmd(&pars));
 		}
 	}
 }

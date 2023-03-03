@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 12:12:10 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/02 15:52:12 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/03/03 14:35:43 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int ac, char **av, char **env)
 
 	(void) ac;
 	(void) av;
-	ft_init_data(&ms, env);
+	ft_init_minishell(&ms, env);
 	str_prompt = readline(PROMPT);
 	while (str_prompt != NULL)
 	{

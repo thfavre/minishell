@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_redirection.c                                   :+:      :+:    :+:   */
+/*   ft_init_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/02 14:20:47 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/03 12:50:55 by mjulliat         ###   ########.fr       */
+/*   Created: 2023/03/03 15:15:48 by mjulliat          #+#    #+#             */
+/*   Updated: 2023/03/03 15:51:51 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_get_infile(t_list_token *pars)
+t_cmd	*ft_init_cmd(t_list_token **pars)
 {
-	int	fd;
+	t_cmd	*cmd;
 
-	pars = pars->next;
-	while (pars->word[0] == ' ' || pars->word[0] == '\t')
-		pars = pars->next;
-	fd = open(pars->word, O_RDONLY);
-	return (fd);
-}
-
-int	ft_get_outfile(t_list_token *pars)
-{
-	int	fd;
-
-	pars = pars->next;
-	while (pars->word[0] == ' ' || pars->word[0] == '\t')
-		pars = pars->next;
-	fd = open(pars->word, O_TRUNC | O_CREAT | O_RDWR, 0644);
-	return (fd);
+	cmd = *(cmd) {};
+	if (*pars->type == E_REDIRECTION)
+	//need to get the variable that needed to the t_list_cmd
 }
