@@ -12,6 +12,6 @@ void ft_init_signals()
 		perror("Error: cannot handle SIGINT");
 
 	// To be able to close the program with CTRL-Z
-	if (sigaction(SIGTSTP, &sa, NULL) == -1)
-		perror("Error: cannot handle SIGTSTP");
+	// if (sigaction(SIGTSTP, &sa, NULL) == -1)
+	// 	perror("Error: cannot handle SIGTSTP");
 }

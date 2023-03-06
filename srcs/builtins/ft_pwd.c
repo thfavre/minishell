@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/02 10:55:50 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/07 00:38:09 by thomas           ###   ########.fr       */
+/*   Created: 2023/03/07 00:39:31 by thomas            #+#    #+#             */
+/*   Updated: 2023/03/07 00:39:35 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void ft_exit(t_minishell *ms)
+void ft_pwd_command(void)
 {
-	ft_free_env(ms);
-	ft_free_path(ms);
-	printf("exit\n");
+	char cwd[1024];
+
+	if (getcwd(cwd, sizeof(cwd)) == NULL)
+		perror("getcwd() error");
+	printf("%s\n", cwd);
 }

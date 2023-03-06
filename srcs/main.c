@@ -3,36 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 12:12:10 by mjulliat          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/03/06 16:03:55 by mjulliat         ###   ########.fr       */
-=======
-/*   Updated: 2023/03/02 16:02:17 by thfavre          ###   ########.fr       */
->>>>>>> 735b8b9037a82fb679b473b929187d035e3d363d
+/*   Updated: 2023/03/07 00:45:02 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **env)
+int main(int ac, char **av, char **env)
 {
-	t_minishell	ms;
-	char		*str_prompt;
+	t_minishell ms;
+	char *str_prompt;
 
-	(void) ac;
-	(void) av;
+	(void)ac;
+	(void)av;
 	ft_init_minishell(&ms, env);
+	ft_init_signals();
 	str_prompt = readline(PROMPT);
 	while (str_prompt != NULL)
 	{
-		ft_parsing(&ms, str_prompt);
-		ft_free_token(&ms);
-		ft_free_pars(&ms);
+		if (str_prompt[0] != '\0') // TODO change that, not clean
+		{
+			add_history(str_prompt);
+			ft_parsing(&ms, str_prompt);
+			ft_execute(&ms);
+			ft_free_token(&ms);
+			ft_free_pars(&ms);
+			// rl_clear_history();
+		}
 		str_prompt = readline(PROMPT);
 	}
-	//ft_execute(&ms);
+	free(str_prompt);
 	ft_exit(&ms);
 	return (0);
 }
