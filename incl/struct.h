@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:03:31 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/02 16:51:34 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/06 14:40:17 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,19 @@
 typedef struct s_minishell {
 	char				**env;
 	char				**path;
-	int					fd_infile;
-	int					fd_outfile;
-	int					**fd_pipe;
-	struct s_list		*token;
+	int					fd_pipe[2];
+	int					fd_tmp_pipe;
+	struct s_list_token	*token;
 	struct s_list_cmd	*cmd;
 }						t_minishell;
 
 //		### Chain List Token ###
 
-typedef struct s_list {
-	char			*word;
-	struct s_list	*next;
-}					t_list;
+typedef struct s_list_token {
+	char				*word;
+	int					type;
+	struct s_list_token	*next;
+}					t_list_token;
 
 //		### Chain List Cmd ###
 
@@ -42,11 +42,11 @@ typedef struct s_list_cmd {
 	struct s_list_cmd	*next;
 }						t_list_cmd;
 
-enum redirection {
-	INFILE = 1,
-	OUTFILE = 2,
-	HEREDOC = 3,
-	APPEND = 4
-};
+typedef struct s_cmd {
+	char	*cmd;
+	char	**option;
+	int		read;
+	int		write;
+}			t_cmd;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:39:34 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/03 11:49:18 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/06 16:27:50 by mjulliat         ###   ########.fr       */
 /*   Updated: 2023/03/02 14:50:03 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -45,11 +45,15 @@ void	ft_exit(t_minishell *ms);
 void	ft_free_env(t_minishell *ms);
 void	ft_free_path(t_minishell *ms);
 void	ft_free_token(t_minishell *ms);
+void	ft_free_pars(t_minishell *ms);
 
 //		----- INIT_DATA DIRECTORY -----
 
 //		##### Ft_Init_Data.c #####
-void	ft_init_data(t_minishell *ms, char **env);
+void	ft_init_minishell(t_minishell *ms, char **env);
+
+//		##### Ft_Init_Cmd.c #####
+t_cmd	*ft_init_cmd(t_list_token **pars, int *fd_pipe);
 
 //		----- PARSING DIRECTORY -----
 
@@ -58,12 +62,11 @@ void	ft_parsing(t_minishell *ms, char *str_prompt);
 
 //		##### Ft_Parse_Token.c #####
 void	ft_parse_token(t_minishell *ms);
-void	ft_check_redirection(t_minishell *ms, t_list *pars);
+int		ft_get_nbcmd(t_list_token *pars);
 
-//		##### Ft_redirection.c #####
-int		ft_is_redirection(char *str);
-int		ft_get_infile(t_list *pars);
-int		ft_get_outfile(t_list *pars);
+//		##### Ft_Redirection.c #####
+int		ft_get_infile(t_list_token **pars);
+int		ft_get_outfile(t_list_token **pars);
 
 //		##### Ft_Getword.c #####
 char	*ft_getword_redirection(char **str, char c);
@@ -77,10 +80,16 @@ int		ft_lenword_quote(char *str, char c);
 int		ft_lenword_space(char *str);
 int		ft_lenword(char *str);
 
+//		##### Ft_Token_Type.c #####
+int		ft_is_redirection(char *str);
+int		ft_is_builtins(char *str);
+int		ft_is_pipe(char *str);
+int		ft_is_space(char *str);
+
 //		##### Ft_Tokenizing_Prompt.c #####
 void	ft_tokenizing_prompt(t_minishell *ms, char *str);
 char	*ft_get_token(char **str);
-void	ft_free_token(t_minishell *ms);
+int		ft_get_token_type(char *str);
 
 //		----- SIGNAL DIRECTORY -----
 
@@ -105,8 +114,10 @@ void	ft_freesplit(char **strs);
 char	**ft_split(char *str, char c);
 
 //		##### Ft_Utils_List.c #####
-t_list	*ft_lstnew_token(char *word);
-void	ft_lstadd_back(t_list **lst, t_list *nw);
+t_list_cmd		*ft_lstnew_cmd(t_cmd *cmd);
+t_list_token	*ft_lstnew_token(char *word);
+void			ft_lstadd_back_cmd(t_list_cmd **lst, t_list_cmd *nw);
+void			ft_lstadd_back_token(t_list_token **lst, t_list_token *nw);
 
 //		##### Utils.c #####
 size_t	ft_strlen(char *str);
