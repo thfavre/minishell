@@ -24,31 +24,85 @@ void	ft_cd_command(char* path)
 	if (path == NULL)
 		chdir(getenv("HOME"));
 	else if (chdir(path) != 0)
-        perror("chdir() error");
+		perror("chdir() error");
 }
 
 
 void	ft_pwd_command(void)
 {
-  char cwd[1024];
-    if (getcwd(cwd, sizeof(cwd)) == NULL)
+	char cwd[1024];
+	if (getcwd(cwd, sizeof(cwd)) == NULL)
 		perror("getcwd() error");
 	printf("%s\n", cwd);
 }
 
 
+int ft_lst_len(char **lst)
+{
+	int i = 0;
+	while (lst[i])
+		i++;
+	return i;
+
+}
+
+
 int main()
 {
+	char *cmd1[] = {"ls", "-la", NULL};
+	char *cmd2[] = {"head", "-n 3", NULL};
+	char *cmd3[] = {"grep","13", NULL};
+	char *cmd4[] = {"wc", NULL};
+	char **commands[] = {cmd1, cmd2, cmd3,cmd4, NULL};
 
-	char *cmd1[] = {""};
-	ft_pwd_command();
+	int i = 0;
+	int fd_tmp = 0;
+	int fd_pipe[2];
+
+
+	while (commands[i])
+	{
+		pipe(fd_pipe);
+		pid_t fork_pid = fork();
+		if (fork_pid == 0) //child
+		{
+			dup2(fd_tmp, 0); // read
+
+
+			// 	fd_pipe[1] = 1;
+			if (!commands[i+1])
+				// close pipe 1
+				fd_pipe[1] = 1;
+
+			// if (cmd->fd_write > 1)
+			// 	//close pipe 1?
+			// 	fd_pipe[1] = cmd->fd_write;
+
+
+			// if (cmd->fd_read > 0)
+			// 	//close pipe 0?
+			// 	fd_pipe[0] = cmd->fd_read;
+
+
+			dup2(fd_pipe[1], 1); // write
+			execvp(commands[i][0], commands[i]);
+			close(fd_pipe[1]);
+			close(fd_tmp);
+			break;
+		}
+		// parent
+		close(fd_pipe[1]);
+		fd_tmp = fd_pipe[0];
+		i++;
+	}
+	close(fd_pipe[0]);
 }
 
 
 
 // int main()
 // {
-// 
+//
 // 	char *cmd1[] = {"/bin/ls", "-la", NULL};
 // 	char *cmd2[] = {"/usr/bin/grep", "13", NULL};
 
