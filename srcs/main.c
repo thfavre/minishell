@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 12:12:10 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/03 14:35:43 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/06 16:03:55 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int ac, char **av, char **env)
 	{
 		ft_parsing(&ms, str_prompt);
 		ft_free_token(&ms);
+		ft_free_pars(&ms);
 		str_prompt = readline(PROMPT);
 	}
 	//ft_execute(&ms);

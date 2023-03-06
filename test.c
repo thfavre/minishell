@@ -14,6 +14,7 @@ int	main(int ac, char **av, char **env)
 	int	fd_pipe[2];
 	int	pid_fork[10000];
 	pipe(fd_pipe);
+
 	while (i < 3)
 	{
 		pid_fork[i] = fork();
@@ -40,4 +41,27 @@ int	main(int ac, char **av, char **env)
 		waitpid(pid_fork[i], NULL, 0);
 		i++;
 	}
+}
+
+
+
+
+void	fonction()
+{
+	fd_tmp_pipe = dup(0);
+	boulce 
+	{
+		pipe(fd_pipe); <- reasigne the pipe each loop
+		fork();
+		dup2(fd_tmp_pipe, 0);
+		if (infile)
+			dup2(infile, 0);
+		dup2(fd_pipe[1], 1);
+		close(minimum fd_pipe[1], fd_tmp_pipe, maybe fd_pipe[0])
+		execve;
+	
+		in parent;
+		fd_tmp_pipe = fd_pipe[0];
+	}
+	waitpid(fd_fork);
 }

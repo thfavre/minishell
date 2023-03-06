@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:03:11 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/03 14:45:00 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/06 16:28:30 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ int	ft_get_token_type(char *str)
 		return (E_PIPE);
 	else if (ft_is_space(str) == 1)
 		return (E_SPACE);
-	else if (ft_is_var_env(str) == 1)
-		return (E_VAR_ENV);
 	else
 		return (E_STRING);
 }

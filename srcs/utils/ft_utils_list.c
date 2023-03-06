@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:11:26 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/03 15:12:02 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:39:41 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ t_list_cmd	*ft_lstnew_cmd(t_cmd *cmd)
 {
 	t_list_cmd	*new;
 
-	(void) pars;
 	new = malloc(sizeof(t_list_cmd));
+	if (!new)
+		return (NULL);
 	new->cmd = cmd->cmd;
 	new->option = cmd->option;
 	new->fd_read = cmd->read;
 	new->fd_write = cmd->write;
 	new->next = NULL;
+	free(cmd);
 	return (new);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:03:31 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/03 15:11:24 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/06 14:40:17 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@
 typedef struct s_minishell {
 	char				**env;
 	char				**path;
-	int					fd_infile;
-	int					fd_outfile;
-	int					**fd_pipe;
+	int					fd_pipe[2];
+	int					fd_tmp_pipe;
 	struct s_list_token	*token;
 	struct s_list_cmd	*cmd;
 }						t_minishell;

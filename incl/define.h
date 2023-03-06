@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:33:00 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/03 12:46:45 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/06 16:28:15 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ enum token_type {
 	E_REDIRECTION = 2,
 	E_PIPE = 3,
 	E_SPACE = 4,
-	E_VAR_ENV = 5,
-	E_STRING = 6
+	E_STRING = 5
 };
 
 //		### DEFINE BUILTINS ###
@@ -53,5 +52,12 @@ enum redirection {
 //		### DEFINE PIPE ###
 
 # define D_PIPE		"|"
+
+//		### ENUM FD_READ_WRITE ###
+
+enum read_write {
+	E_ERROR = -1,
+	E_SUCCSESS = -2
+};
 
 #endif

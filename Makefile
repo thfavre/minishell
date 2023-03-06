@@ -6,7 +6,7 @@
 #    By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/09 16:32:30 by mjulliat          #+#    #+#              #
-#    Updated: 2023/03/03 15:15:41 by mjulliat         ###   ########.fr        #
+#    Updated: 2023/03/06 16:34:03 by mjulliat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ UTILS_FILES	= ft_memory_allocation.c\
 FILES		= $(SOURCES)\
 			  $(ENV_FILES)\
 			  $(EXIT_FILES)\
-			  $(INITD_FILES)\
+			  $(INIT_FILES)\
 			  $(UTILS_FILES)\
 			  $(PARS_FILES)\
 			  $(SIGN_FILES)\
@@ -85,7 +85,7 @@ FILES		= $(SOURCES)\
 
 ENV_FILES	:= $(addprefix environment/, $(ENV_FILES))
 EXIT_FILES	:= $(addprefix exit/, $(EXIT_FILES))
-INIT_FILES	:= $(addprefix init_data/, $(INIT_FILES))
+INIT_FILES	:= $(addprefix init_minishell/, $(INIT_FILES))
 PARS_FILES	:= $(addprefix parsing/, $(PARS_FILES))
 UTILS_FILES	:= $(addprefix utils/, $(UTILS_FILES))
 SIGN_FILES	:= $(addprefix signals/, $(SIGN_FILES))

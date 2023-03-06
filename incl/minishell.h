@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:39:34 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/03 15:10:38 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/06 16:27:50 by mjulliat         ###   ########.fr       */
 /*   Updated: 2023/03/02 14:50:03 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -45,11 +45,15 @@ void	ft_exit(t_minishell *ms);
 void	ft_free_env(t_minishell *ms);
 void	ft_free_path(t_minishell *ms);
 void	ft_free_token(t_minishell *ms);
+void	ft_free_pars(t_minishell *ms);
 
 //		----- INIT_DATA DIRECTORY -----
 
 //		##### Ft_Init_Data.c #####
 void	ft_init_minishell(t_minishell *ms, char **env);
+
+//		##### Ft_Init_Cmd.c #####
+t_cmd	*ft_init_cmd(t_list_token **pars, int *fd_pipe);
 
 //		----- PARSING DIRECTORY -----
 
@@ -58,10 +62,11 @@ void	ft_parsing(t_minishell *ms, char *str_prompt);
 
 //		##### Ft_Parse_Token.c #####
 void	ft_parse_token(t_minishell *ms);
+int		ft_get_nbcmd(t_list_token *pars);
 
 //		##### Ft_Redirection.c #####
-int		ft_get_infile(t_list_token *pars);
-int		ft_get_outfile(t_list_token *pars);
+int		ft_get_infile(t_list_token **pars);
+int		ft_get_outfile(t_list_token **pars);
 
 //		##### Ft_Getword.c #####
 char	*ft_getword_redirection(char **str, char c);
@@ -80,7 +85,6 @@ int		ft_is_redirection(char *str);
 int		ft_is_builtins(char *str);
 int		ft_is_pipe(char *str);
 int		ft_is_space(char *str);
-int		ft_is_var_env(char *str);
 
 //		##### Ft_Tokenizing_Prompt.c #####
 void	ft_tokenizing_prompt(t_minishell *ms, char *str);
