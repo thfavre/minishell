@@ -1,18 +1,7 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: thomas <thomas@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/09 16:32:30 by mjulliat          #+#    #+#              #
-#    Updated: 2023/03/07 15:20:46 by thomas           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
 	### COMPILATION ###
 
-CC			= gcc -g3
+CC			= gcc -g3 -fsanitize=address
 FLAGS		= -Wall -Werror -Wextra
 
 	### EXECUTABLE ###
@@ -41,7 +30,8 @@ EXIT_FILES	= ft_exit.c\
 
 	# INIT_DATA
 
-INITD_FILES	= ft_init_data.c
+INIT_FILES	= ft_init_minishell.c\
+			  ft_init_cmd.c
 
 	# PARSING
 
@@ -50,6 +40,7 @@ PARS_FILES	= ft_getword.c\
 			  ft_parse_token.c\
 			  ft_parsing.c\
 			  ft_redirection.c\
+			  ft_token_type.c\
 			  ft_tokenizing_prompt.c
 
 	# SIGNALS
@@ -73,7 +64,7 @@ UTILS_FILES	= ft_memory_allocation.c\
 FILES		= $(SOURCES)\
 			  $(ENV_FILES)\
 			  $(EXIT_FILES)\
-			  $(INITD_FILES)\
+			  $(INIT_FILES)\
 			  $(UTILS_FILES)\
 			  $(PARS_FILES)\
 			  $(SIGN_FILES)\
@@ -83,7 +74,7 @@ FILES		= $(SOURCES)\
 
 ENV_FILES	:= $(addprefix environment/, $(ENV_FILES))
 EXIT_FILES	:= $(addprefix exit/, $(EXIT_FILES))
-INITD_FILES := $(addprefix init_data/, $(INITD_FILES))
+INIT_FILES	:= $(addprefix init_minishell/, $(INIT_FILES))
 PARS_FILES	:= $(addprefix parsing/, $(PARS_FILES))
 UTILS_FILES	:= $(addprefix utils/, $(UTILS_FILES))
 SIGN_FILES	:= $(addprefix signals/, $(SIGN_FILES))

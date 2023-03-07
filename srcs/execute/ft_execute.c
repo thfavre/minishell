@@ -1,90 +1,133 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_execute.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/07 00:39:24 by thomas            #+#    #+#             */
+/*   Updated: 2023/03/07 00:39:26 by thomas           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-//#include "minishell.h"
+#include "minishell.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-# include <sys/wait.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-#include <signal.h>
-// struc s_cmd
-// {
-
-// 	int read_fd;
-// 	int write_fd;
-// 	int *pipe_fds[2];
-// }
-
-
-int main()
+void ft_execute(t_minishell *ms)
 {
+	int fd_pipe_read_tmp = 0;
+	int fd_pipe[2];
 
-	char *cmd1[] = {"/bin/ls", "-la", NULL};
-	char *cmd2[] = {"/usr/bin/grep", "13", NULL};
+	struct s_list_cmd *cmd = ms->cmd;
 
-	char **cmd[2] = {cmd1, cmd2};
-
-	int fd[2];
-	pipe(fd);
-
-	int i = 0;
-	while (i < 2)
+	while (cmd)
 	{
-		if (!fork())
+		pipe(fd_pipe);
+		pid_t fork_pid = fork();
+		if (fork_pid == 0) // child
 		{
-			//child
-			if (i == 0)
+			dup2(fd_pipe_read_tmp, 0); // read
+
+			if (!cmd->next) // if last command
 			{
-				//dup2(fd[0], 0);
-				dup2(fd[1], 1); //fd[1] write
+				close(fd_pipe[1]);
+				fd_pipe[1] = 1;
 			}
-			else
+
+			if (cmd->fd_read > 1) // TODO change to 0 and // TODO rename fd_read to file_read_fd? And set to 0 if defaut, -1 error, else file fd
 			{
-				dup2(fd[0], 0);
-				// close(fd[1]);
+				close(fd_pipe[0]);
+				fd_pipe[0] = cmd->fd_read;
 			}
-			execve(cmd[i][0], cmd[i], NULL);
+
+			if (cmd->fd_write > 1) // TODO same
+			{
+				close(fd_pipe[1]);
+				fd_pipe[1] = cmd->fd_write;
+			}
+
+			dup2(fd_pipe[1], 1); // write
+			execvp(cmd->cmd, cmd->option);
 		}
-		else
-		{
-			// parent
-			i++;
-		}
+		// parent
+		close(fd_pipe[1]);
+		fd_pipe_read_tmp = fd_pipe[0];
+
+		cmd = cmd->next;
 	}
-	close(fd[0]);
-	close(fd[1]);
+	close(fd_pipe[0]);
+	close(fd_pipe[1]);
 	while (waitpid(-1, NULL, WUNTRACED) == -1)
 		;
 }
-	//(void)ms;
-	// t_list_cmd	current_cmd;
 
-	// current_cmd = ms->cmd;
-	// while (current_cmd)
-	// {
-	// 	// execute the command in a fork
-	// 	pid_t pid = fork();
-	// 	if (pid == 0) // This is the child process.
-	// 	{
-	// 		dup2(ms->cmd->read_fd, 0);
-	// 		dup2(ms->cmd->write_fd, 1);
-	// 		close(ms->cmd->fd[0]);
-	// 		close(ms->cmd->fd[1]);
-	// 		// check...
-	// 		execvp(current_cmd->cmd, current_cmd->options);
-	// 		break;
-	// 	}
-	// 	// parent process
-	// 	close(ms->cmd->fd[0]);
-	// 	close(ms->cmd->fd[1]);
+// int main()
+// {
+//
+// 	char *cmd1[] = {"/bin/ls", "-la", NULL};
+// 	char *cmd2[] = {"/usr/bin/grep", "13", NULL};
 
-	// 	// Wait for both child processes to finish executing.
-	// 	waitpid(pid, NULL, 0);
-	// 	//waitpid(pid2, NULL, 0);
+// 	char **cmd[2] = {cmd1, cmd2};
 
-	// 	current_cmd = current_cmd->next;
-	// }
+// 	int fd[2];
+// 	pipe(fd);
+
+// 	int i = 0;
+// 	while (i < 2)
+//	{
+//		if (!fork())
+//		{
+//			//child
+//			if (i == 0)
+//			{
+//				//dup2(fd[0], 0);
+//				dup2(fd[1], 1); //fd[1] write
+//			}
+//			else
+//			{
+//				dup2(fd[0], 0);
+//				// close(fd[1]);
+//			}
+//			execve(cmd[i][0], cmd[i], NULL);
+//		}
+//		else
+//		{
+//			// parent
+//			i++;
+//		}
+//	}
+//	close(fd[0]);
+//	close(fd[1]);
+//	while (waitpid(-1, NULL, WUNTRACED) == -1)
+//		;
+//}
+
+//(void)ms;
+// t_list_cmd	current_cmd;
+
+// current_cmd = ms->cmd;
+// while (current_cmd)
+// {
+// 	// execute the command in a fork
+// 	pid_t pid = fork();
+// 	if (pid == 0) // This is the child process.
+// 	{
+// 		dup2(ms->cmd->read_fd, 0);
+// 		dup2(ms->cmd->write_fd, 1);
+// 		close(ms->cmd->fd[0]);
+// 		close(ms->cmd->fd[1]);
+// 		// check...
+// 		execvp(current_cmd->cmd, current_cmd->options);
+// 		break;
+// 	}
+// 	// parent process
+// 	close(ms->cmd->fd[0]);
+// 	close(ms->cmd->fd[1]);
+
+// 	// Wait for both child processes to finish executing.
+// 	waitpid(pid, NULL, 0);
+// 	//waitpid(pid2, NULL, 0);
+
+// 	current_cmd = current_cmd->next;
+// }
 
 // }
