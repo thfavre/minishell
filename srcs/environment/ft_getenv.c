@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_minishell.c                                :+:      :+:    :+:   */
+/*   ft_getenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 10:02:35 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/07 20:00:39 by thomas           ###   ########.fr       */
+/*   Created: 2023/03/07 21:22:03 by thomas            #+#    #+#             */
+/*   Updated: 2023/03/07 22:33:46 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_init_minishell(t_minishell *ms, char **env)
+char	*ft_getenv(char **env, char *key)
 {
-	*ms = (t_minishell) {};
-	ms->env = ft_initenv(env);
-	ms->path = ft_get_path(ms);
+	size_t	i;
+	size_t	key_end_index;
+
+	i = 0;
+	while (env[i])
+	{
+		key_end_index = 0;
+		while (env[i][key_end_index] != '=')
+			key_end_index++;
+		if (ft_strncmp(env[i], key, key_end_index) == 0)
+			return (env[i] + key_end_index + 1);
+		i++;
+	}
+
+	return (NULL);
 }

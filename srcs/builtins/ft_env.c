@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_minishell.c                                :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 10:02:35 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/07 20:00:39 by thomas           ###   ########.fr       */
+/*   Created: 2023/03/07 20:45:16 by thomas            #+#    #+#             */
+/*   Updated: 2023/03/07 21:12:08 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_init_minishell(t_minishell *ms, char **env)
+void	ft_env(char **env)
 {
-	*ms = (t_minishell) {};
-	ms->env = ft_initenv(env);
-	ms->path = ft_get_path(ms);
+	int	i;
+
+	// if (!env)
+	// 	return;
+	i = 0;
+	while (env[i])
+		printf("%s\n", env[i++]);
 }

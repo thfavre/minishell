@@ -6,11 +6,13 @@
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:24 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/07 00:39:26 by thomas           ###   ########.fr       */
+/*   Updated: 2023/03/07 23:33:17 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_run_cmd(t_minishell *ms, struct s_list_cmd *cmd);
 
 void ft_execute(t_minishell *ms)
 {
@@ -46,7 +48,8 @@ void ft_execute(t_minishell *ms)
 			}
 
 			dup2(fd_pipe[1], 1); // write
-			execvp(cmd->cmd, cmd->option);
+			ft_run_cmd(ms, cmd);
+			// execvp(cmd->cmd, cmd->option);
 		}
 		// parent
 		close(fd_pipe[1]);
@@ -58,6 +61,30 @@ void ft_execute(t_minishell *ms)
 	close(fd_pipe[1]);
 	while (waitpid(-1, NULL, WUNTRACED) == -1)
 		;
+}
+
+void	ft_run_cmd(t_minishell *ms, struct s_list_cmd *cmd)
+{
+	// if builtin command execute the command with the correct function
+	if (0)
+	{
+
+	}
+	// if it is an external command, run it with execve
+	else
+	{
+		execvp(cmd->cmd, cmd->option);
+		// ft_setenv(ms, "TEST_KEY", "TEST_VALUE", 1);
+		// ft_setenv(ms, "TEST_KEY2", "TEST_VALUE2", 1);
+		// ft_unsetenv(ms->env, "TEST_KEY2");
+		// ft_unsetenv(ms->env, "PATH");
+		// ft_env(ms->env);
+		// printf("->%s|\n", ft_getenv(ms->env, "TEST_KEY"));
+	}
+	(void)cmd;
+	(void)ms;
+
+
 }
 
 // int main()

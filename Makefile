@@ -20,8 +20,11 @@ SOURCES		= main.c
 
 	# ENVIRONMENT
 
-ENV_FILES	= ft_get_env.c\
-			  ft_get_path.c
+ENV_FILES	= ft_initenv.c\
+			  ft_get_path.c\
+			  ft_setenv.c\
+			  ft_getenv.c\
+			  ft_unsetenv.c
 
 	# EXIT
 
@@ -52,6 +55,11 @@ SIGN_FILES	= ft_init_signals.c\
 
 EXEC_FILES	= ft_execute.c
 
+	# BUILTINS
+BUILT_FILES	= ft_cd.c\
+			  ft_env.c\
+			  ft_pwd.c
+
 	# UTILS
 
 UTILS_FILES	= ft_memory_allocation.c\
@@ -68,7 +76,8 @@ FILES		= $(SOURCES)\
 			  $(UTILS_FILES)\
 			  $(PARS_FILES)\
 			  $(SIGN_FILES)\
-			  $(EXEC_FILES)
+			  $(EXEC_FILES)\
+			  $(BUILT_FILES)
 
 	### OBJECTS ###
 
@@ -79,6 +88,7 @@ PARS_FILES	:= $(addprefix parsing/, $(PARS_FILES))
 UTILS_FILES	:= $(addprefix utils/, $(UTILS_FILES))
 SIGN_FILES	:= $(addprefix signals/, $(SIGN_FILES))
 EXEC_FILES	:= $(addprefix execute/, $(EXEC_FILES))
+BUILT_FILES	:= $(addprefix builtins/, $(BUILT_FILES))
 
 SRCS		= $(addprefix $(SRCS_PATH)/, $(FILES))
 OBJS		= $(addprefix $(OBJS_PATH)/, $(FILES:.c=.o))

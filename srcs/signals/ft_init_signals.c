@@ -10,6 +10,8 @@ void ft_init_signals()
 	sa.sa_flags = SA_RESTART;
 	if (sigaction(SIGINT, &sa, NULL) == -1)
 		perror("Error: cannot handle SIGINT");
+	if (sigaction(SIGQUIT, &sa, NULL) == -1)
+		perror("Error: cannot handle SIGQUIT");
 
 	// To be able to close the program with CTRL-Z
 	// if (sigaction(SIGTSTP, &sa, NULL) == -1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 17:42:30 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/06 13:25:41 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:30:10 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	ft_parsing(t_minishell *ms, char *str_prompt)
 	ft_tokenizing_prompt(ms, str_prompt);
 	free(prompt);
 	test = ms->token;
-	printf("####################\n");
-	printf("TOKENIZING PROMPT ->\n");
+	// printf("####################\n");
+	// printf("TOKENIZING PROMPT ->\n");
 	while (test != NULL)
 	{
-		printf("-----\n");
-		printf("[%s] <- token\n", test->word);
-		printf("{%d} <- type\n", test->type);
+		// printf("-----\n");
+		// printf("[%s] <- token\n", test->word);
+		// printf("{%d} <- type\n", test->type);
 		test = test->next;
 	}
 	ft_parse_token(ms);

@@ -12,6 +12,7 @@ void ft_handle_signals(int signo)
 		// Terminate any child processes that are currently running.
 		//kill(0, SIGTERM);
 	}
-	else if (signo == SIGTSTP) // to close the program using CTRL-Z
-		kill(0, SIGTERM);
+	// else if (signo == SIGQUIT) // to close the program using CTRL-D
+	// 	{printf("AAAA\n");
+	// 	kill(0, SIGTERM);}
 }

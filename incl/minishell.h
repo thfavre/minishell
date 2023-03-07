@@ -6,7 +6,7 @@
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:39:34 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/07 00:30:58 by thomas           ###   ########.fr       */
+/*   Updated: 2023/03/07 23:10:51 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,17 @@
 
 //		----- ENVIRONMENT DIRECTORY -----
 
-//		##### Ft_Get_Env.c #####
-char **ft_get_env(char **env);
+//		##### Ft_initenv.c #####
+char **ft_initenv(char **env);
+
+//		##### Ft_setenv.c #####
+int	ft_setenv(t_minishell *ms, char *key, char *value, int overwrite);
+
+//		##### Ft_unsetenv.c #####
+int	ft_unsetenv(char **env, char *key);
+
+//		##### Ft_getenv.c #####
+char	*ft_getenv(char **env, char *key);
 
 //		##### Ft_Get_Path.c #####
 char **ft_get_path(t_minishell *ms);
@@ -41,7 +50,7 @@ char **ft_get_path(t_minishell *ms);
 void ft_exit(t_minishell *ms);
 
 //		##### Ft_Free_Allocation.c #####
-void ft_free_env(t_minishell *ms);
+void *ft_free_env(char **env);
 void ft_free_path(t_minishell *ms);
 void ft_free_token(t_minishell *ms);
 void ft_free_pars(t_minishell *ms);
@@ -102,6 +111,11 @@ void ft_init_signals();
 
 //		##### Ft_execute.c #####
 void ft_execute(t_minishell *ms);
+
+//		----- BUILTINS DIRECTORY -----
+
+//		##### Ft_env.c #####
+void	ft_env(char **env);
 
 //		----- UTILS DIRECTORY -----
 
