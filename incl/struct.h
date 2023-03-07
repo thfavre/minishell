@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:03:31 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/06 14:40:17 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:15:32 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_list_token {
 	char				*word;
 	int					type;
 	struct s_list_token	*next;
-}					t_list_token;
+}						t_list_token;
 
 //		### Chain List Cmd ###
 
