@@ -6,7 +6,7 @@
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 17:42:30 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/07 15:30:10 by thomas           ###   ########.fr       */
+/*   Updated: 2023/03/08 14:16:43 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ void	ft_parsing(t_minishell *ms, char *str_prompt)
 		// printf("{%d} <- type\n", test->type);
 		test = test->next;
 	}
+	ft_parse_varenv(ms);
 	ft_parse_token(ms);
 }

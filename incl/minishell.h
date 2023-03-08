@@ -6,7 +6,7 @@
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:39:34 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/07 23:10:51 by thomas           ###   ########.fr       */
+/*   Updated: 2023/03/08 14:17:17 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ void ft_parsing(t_minishell *ms, char *str_prompt);
 //		##### Ft_Parse_Token.c #####
 void ft_parse_token(t_minishell *ms);
 int ft_get_nbcmd(t_list_token *pars);
+
+//		##### Ft_Parse_Varenv.c #####
+void	ft_parse_varenv(t_minishell *ms);
 
 //		##### Ft_Redirection.c #####
 int ft_get_infile(t_list_token **pars);
