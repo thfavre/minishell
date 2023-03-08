@@ -6,7 +6,7 @@
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:39:34 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/08 21:42:53 by thomas           ###   ########.fr       */
+/*   Updated: 2023/03/09 00:02:40 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void	ft_env(char **env);
 void	ft_pwd(void);
 
 //		##### Ft_cd.c #####
-void	ft_cd(char **paths);
+void	ft_cd(t_minishell *ms, char **paths);
 
 //		----- UTILS DIRECTORY -----
 

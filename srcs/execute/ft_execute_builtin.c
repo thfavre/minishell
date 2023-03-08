@@ -19,5 +19,5 @@ void	ft_execute_builtin(t_minishell *ms, struct s_list_cmd *cmd)
 	else if (ft_strcmp("env", cmd->cmd) == 0)
 		ft_env(ms->env);
 	else if (ft_strcmp("cd", cmd->cmd) == 0)
-		ft_cd(cmd->option);
+		ft_cd(ms, cmd->option);
 }
