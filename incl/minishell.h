@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:39:34 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/07 23:10:51 by thomas           ###   ########.fr       */
+/*   Updated: 2023/03/08 17:06:06 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_unsetenv(char **env, char *key);
 char	*ft_getenv(char **env, char *key);
 
 //		##### Ft_Get_Path.c #####
-char **ft_get_path(t_minishell *ms);
+char **ft_getsplitedpath(char **env);
 
 //		----- EXIT DIRECTORY -----
 
@@ -116,6 +116,12 @@ void ft_execute(t_minishell *ms);
 
 //		##### Ft_env.c #####
 void	ft_env(char **env);
+
+//		##### Ft_pwd.c #####
+void	ft_pwd(void);
+
+//		##### Ft_cd.c #####
+void	ft_cd(char **paths);
 
 //		----- UTILS DIRECTORY -----
 

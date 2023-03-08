@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tokenizing_prompt.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:03:11 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/06 16:28:30 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:56:20 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ char	*ft_get_token(char **str)
 
 int	ft_get_token_type(char *str)
 {
-	if (ft_is_builtins(str) == 1)
-		return (E_BUILTINS);
-	else if (ft_is_redirection(str) == 1)
+	// if (ft_is_builtins(str) == 1)
+	// 	return (E_BUILTINS);
+	if (ft_is_redirection(str) == 1)
 		return (E_REDIRECTION);
 	else if (ft_is_pipe(str) == 1)
 		return (E_PIPE);

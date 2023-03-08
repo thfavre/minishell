@@ -3,40 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_path.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 18:17:45 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/06 16:42:12 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:01:04 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**ft_get_path(t_minishell *ms)
+char	**ft_getsplitedpath(char **env)
 {
-	char	**all_path;
-	char	*str;
-	size_t	i;
-	size_t	j;
+	char	*unsplited_path;
+	char	**splited_path;
 
-	i = 0;
-	j = 0;
-	while (ms->env[i] != NULL)
-	{
-		if (ft_strncmp(ms->env[i], "PATH=", 5) == 0)
-		{
-			str = ft_calloc(ft_strlen(ms->env[i]) + 1, sizeof(char));
-			if (!str)
-				return (NULL);
-			while (j < ft_strlen(ms->env[i]))
-			{
-				str[j] = ms->env[i][j];
-				j++;
-			}
-		}
-		i++;
-	}
-	all_path = ft_split(str + 5, ':');
-	free(str);
-	return (all_path);
+	unsplited_path = ft_getenv(env, "PATH");
+	if (unsplited_path == NULL)
+		return (NULL);
+	splited_path = ft_split(unsplited_path + 5, ':');
+	// free(unsplited_path);
+	return (splited_path);
 }

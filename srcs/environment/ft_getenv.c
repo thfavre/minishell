@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_getenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:22:03 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/07 22:33:46 by thomas           ###   ########.fr       */
+/*   Updated: 2023/03/08 16:37:23 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,5 @@ char	*ft_getenv(char **env, char *key)
 			return (env[i] + key_end_index + 1);
 		i++;
 	}
-
 	return (NULL);
 }
