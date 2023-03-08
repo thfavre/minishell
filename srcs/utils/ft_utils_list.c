@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 11:11:26 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/06 11:39:41 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:51:52 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_list_token	*ft_lstnew_token(char *word)
 		return (NULL);
 	new->word = word;
 	new->type = ft_get_token_type(word);
+	new->quote = ft_token_is_quoted(word);
 	new->next = NULL;
 	return (new);
 }

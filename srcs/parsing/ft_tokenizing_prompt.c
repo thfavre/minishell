@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 12:03:11 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/06 16:28:30 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:56:09 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,20 @@ int	ft_get_token_type(char *str)
 		return (E_SPACE);
 	else
 		return (E_STRING);
+}
+
+int	ft_token_is_quoted(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '\'')
+			return (E_SINGLE);
+		else if (str[i] == '"')
+			return (E_DOUBLE);
+		i++;
+	}
+	return (E_NONE);
 }
