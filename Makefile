@@ -69,6 +69,8 @@ UTILS_FILES	= ft_memory_allocation.c\
 			  utils.c
 
 VENV_FILES	= ft_parse_varenv.c\
+			  ft_replace_varenv.c\
+			  ft_add_varenv_in_token.c
 
 	# ALL FILES
 

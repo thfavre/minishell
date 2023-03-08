@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:16:46 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/08 16:45:00 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/08 17:27:58 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,26 +35,6 @@ void	ft_parse_varenv(t_minishell *ms)
 	ms->token = start;
 }
 
-void	ft_add_varenv_in_token(t_list_token *token, char **env)
-{
-}
-
-void	ft_replace_varenv(t_list_token *list, char **env)
-{
-	size_t	i;
-	char	*var_env;
-
-	i = 0;
-	while (token->word[i] != '\0')
-	{
-		if (token->word[i] == '$')
-		{
-			var_env = ft_get_name_varenv(&token->word[i]);
-
-		}
-		i++;
-	}
-}
 
 char	*ft_get_name_varenv(char *str)
 {
