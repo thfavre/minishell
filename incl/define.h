@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:33:00 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/08 14:54:39 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:48:35 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //		### ENUM TOKEN TYPE ###
 
-enum token_type {
+enum e_token_type {
 	E_BUILTINS = 1,
 	E_REDIRECTION = 2,
 	E_PIPE = 3,
@@ -42,7 +42,7 @@ enum token_type {
 
 //		### ENUM REDIRECTION ###
 
-enum redirection {
+enum e_redirection {
 	E_INFILE = 1,
 	E_OUTFILE = 2,
 	E_HEREDOC = 3,
@@ -57,7 +57,7 @@ enum redirection {
 
 //		### ENUM QUOTE ###
 
-enum token_quoted {
+enum e_token_quoted {
 	E_NONE = 1,
 	E_SINGLE = 2,
 	E_DOUBLE = 3

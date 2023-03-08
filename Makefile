@@ -68,6 +68,8 @@ UTILS_FILES	= ft_memory_allocation.c\
 			  ft_utils_list.c\
 			  utils.c
 
+VENV_FILES	= ft_parse_varenv.c\
+
 	# ALL FILES
 
 FILES		= $(SOURCES)\
@@ -78,7 +80,8 @@ FILES		= $(SOURCES)\
 			  $(PARS_FILES)\
 			  $(SIGN_FILES)\
 			  $(EXEC_FILES)\
-			  $(BUILT_FILES)
+			  $(BUILT_FILES)\
+			  $(VENV_FILES)
 
 	### OBJECTS ###
 
@@ -90,6 +93,7 @@ UTILS_FILES	:= $(addprefix utils/, $(UTILS_FILES))
 SIGN_FILES	:= $(addprefix signals/, $(SIGN_FILES))
 EXEC_FILES	:= $(addprefix execute/, $(EXEC_FILES))
 BUILT_FILES	:= $(addprefix builtins/, $(BUILT_FILES))
+VENV_FILES	:= $(addprefix variable_env/, $(VENV_FILES))
 
 SRCS		= $(addprefix $(SRCS_PATH)/, $(FILES))
 OBJS		= $(addprefix $(OBJS_PATH)/, $(FILES:.c=.o))
