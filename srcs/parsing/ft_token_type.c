@@ -6,7 +6,7 @@
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:42:45 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/08 20:27:51 by thomas           ###   ########.fr       */
+/*   Updated: 2023/03/08 21:58:35 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	ft_is_builtins(char *str) // (Do not erase, I need this function for the exe
 	else if (ft_strcmp(str, D_EXPORT) == 0)
 		return (1);
 	else if (ft_strcmp(str, D_UNSET) == 0)
+		return (1);
+	else if (ft_strcmp(str, D_ENV) == 0)
 		return (1);
 	else if (ft_strcmp(str, D_EXIT) == 0)
 		return (1);
