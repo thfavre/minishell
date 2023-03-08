@@ -6,7 +6,7 @@
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 20:37:18 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/08 20:57:50 by thomas           ###   ########.fr       */
+/*   Updated: 2023/03/08 22:08:32 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	ft_execute_cmds(t_minishell *ms)
 			dup2(cmd->fd_write, 1); // write
 
 			ft_run_cmd(ms, cmd);
-			exit(0);
 			// execvp(cmd->cmd, cmd->option);
 		}
 		// parent
@@ -68,4 +67,5 @@ void	ft_run_cmd(t_minishell *ms, struct s_list_cmd *cmd)
 		ft_execute_builtin(ms, cmd);
 	else
 		ft_execute_external(ms->env, cmd);
+	exit(0);
 }

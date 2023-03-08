@@ -6,7 +6,7 @@
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 20:40:30 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/08 21:58:41 by thomas           ###   ########.fr       */
+/*   Updated: 2023/03/08 22:09:09 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ void	ft_execute_cmd(t_minishell *ms)
 	}
 	fork_pid = fork();
 	if (fork_pid == 0)
+	{
 		ft_execute_external(ms->env, ms->cmd);
+		exit(0);
+	}
 	waitpid(fork_pid, NULL, 0);
 }
 
