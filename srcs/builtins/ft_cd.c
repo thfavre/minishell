@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:00 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/08 17:34:30 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:31:37 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// The longer answer is that in bash, commands in a pipeline are each executed in a subshell. Since cd is a shell builtin, it only affects the shell it's executed in. If you cd within a subshell, the effect will disappear when the subshell exits.
 void ft_cd(char **paths)
 {
 	if (paths[1] == NULL)
 		chdir(getenv("HOME"));
-	else if (chdir(paths[0]) != 0)
-		perror("chdir() error");
+	else if (chdir(paths[1]) != 0)
+		printf("cd: %s: %s ()\n", paths[1], strerror(errno));
+		//perror("chdir() error");
 }

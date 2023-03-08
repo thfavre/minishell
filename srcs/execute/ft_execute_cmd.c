@@ -1,22 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   ft_execute_cmd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 00:39:31 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/08 21:14:29 by thomas           ###   ########.fr       */
+/*   Created: 2023/03/08 20:40:30 by thomas            #+#    #+#             */
+/*   Updated: 2023/03/08 21:05:01 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void ft_pwd(void)
+void	ft_execute_cmd(t_minishell *ms)
 {
-	char cwd[1024];
+	pid_t fork_pid;
 
-	if (getcwd(cwd, sizeof(cwd)) == NULL)
-		perror("getcwd() error");
-	printf("%s\n", cwd);
+	if (ft_is_builtins(ms->cmd->cmd))
+	{
+		ft_execute_builtin(ms, ms->cmd);
+		return ;
+	}
+	fork_pid = fork();
+	if (fork_pid == 0)
+		ft_execute_external(ms->env, ms->cmd);
+	waitpid(fork_pid, NULL, 0);
 }
+
+

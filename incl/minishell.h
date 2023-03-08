@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:39:34 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/08 17:06:06 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:31:27 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <signal.h>
+#include <errno.h>
 
 #include "struct.h"
 #include "define.h"
@@ -111,6 +112,18 @@ void ft_init_signals();
 
 //		##### Ft_execute.c #####
 void ft_execute(t_minishell *ms);
+
+//		##### Ft_execute_builtin.c #####
+void	ft_execute_external(char **env, struct s_list_cmd *cmd);
+
+//		##### Ft_execute_cmd.c #####
+void	ft_execute_cmd(t_minishell *ms);
+
+//		##### Ft_execute_cmds.c #####
+void	ft_execute_cmds(t_minishell *ms);
+
+//		##### Ft_execute_external.c #####
+void	ft_execute_builtin(t_minishell *ms, struct s_list_cmd *cmd);
 
 //		----- BUILTINS DIRECTORY -----
 

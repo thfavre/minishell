@@ -53,9 +53,15 @@ SIGN_FILES	= ft_init_signals.c\
 
 	# SIGNALS
 
-EXEC_FILES	= ft_execute.c
+EXEC_FILES	= ft_execute.c\
+			  ft_execute_cmds.c\
+			  ft_execute_cmd.c\
+			  ft_execute_builtin.c\
+			  ft_execute_external.c
+
 
 	# BUILTINS
+
 BUILT_FILES	= ft_cd.c\
 			  ft_env.c\
 			  ft_pwd.c

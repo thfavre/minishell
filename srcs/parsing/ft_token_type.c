@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_token_type.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:42:45 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/06 16:27:43 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/08 20:27:51 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_is_builtins(char *str)
+int	ft_is_builtins(char *str) // (Do not erase, I need this function for the execution)
 {
 	if (ft_strcmp(str, D_ECHO) == 0)
 		return (1);
