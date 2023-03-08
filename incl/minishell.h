@@ -6,7 +6,7 @@
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:39:34 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/08 21:31:27 by thomas           ###   ########.fr       */
+/*   Updated: 2023/03/08 21:42:53 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@
 
 #include "struct.h"
 #include "define.h"
-
-#define PROMPT "minishell/"
 
 //		----- ENVIRONMENT DIRECTORY -----
 

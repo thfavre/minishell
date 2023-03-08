@@ -6,7 +6,7 @@
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 12:12:10 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/08 21:34:15 by thomas           ###   ########.fr       */
+/*   Updated: 2023/03/08 21:51:55 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,14 @@ char	*ft_get_prompt(void)  // TODO put somewhere else
 
 	alloc_size  = sizeof(*cwd) * 1024;
 	cwd = malloc(alloc_size);
-	cwd[0]='#';
+	strcpy(cwd, PROMPT_COLOR);
 	// TODO what if malloc error ?
-	if (getcwd(cwd + 1, alloc_size) == NULL)
+	if (getcwd(cwd + ft_strlen(PROMPT_COLOR), alloc_size) == NULL)
 		perror("getcwd() error");
 	else
+	{
+		strcat(cwd, COLOR_RESET);
 		strcat(cwd, "$ ");
+	}
+	return (cwd);
 }
