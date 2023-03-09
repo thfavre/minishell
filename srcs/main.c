@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/08 12:12:10 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/09 17:41:05 by thfavre          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -23,7 +12,7 @@ int main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	ft_init_minishell(&ms, env);
-	ft_init_signals();
+//	ft_init_signals();
 
 	// ft_setenv(&ms, "NEW_KEY", "NEW_VALUE1", 1);
 	// char *a = ft_getenv(ms.env, "PATH");

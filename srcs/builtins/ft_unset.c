@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:31 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/09 13:53:20 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/03/09 18:13:33 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,4 @@
 void	ft_unset(char **env, char aa)
 {
 	(void)env;
-	(void)aa;
-}
+	(void)aa;}

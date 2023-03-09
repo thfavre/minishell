@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -9,6 +10,8 @@
 /*   Updated: 2023/03/09 17:40:16 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+=======
+>>>>>>> 0e3d06c340fd28f257ad9a4feb73732a0db7efd2
 
 #ifndef STRUCT_H
 # define STRUCT_H
@@ -29,6 +32,7 @@ typedef struct s_minishell {
 typedef struct s_list_token {
 	char				*word;
 	int					type;
+	int					quote;
 	struct s_list_token	*next;
 }						t_list_token;
 

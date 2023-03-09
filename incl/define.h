@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   define.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/22 11:33:00 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/08 21:51:46 by thomas           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef DEFINE_H
 # define DEFINE_H
@@ -25,7 +14,7 @@
 
 //		### ENUM TOKEN TYPE ###
 
-enum token_type {
+enum e_token_type {
 	E_BUILTINS = 1,
 	E_REDIRECTION = 2,
 	E_PIPE = 3,
@@ -52,22 +41,25 @@ enum token_type {
 
 //		### ENUM REDIRECTION ###
 
-enum redirection {
+enum e_redirection {
 	E_INFILE = 1,
 	E_OUTFILE = 2,
 	E_HEREDOC = 3,
 	E_APPEND = 4
 };
 
-//		### DEFINE PIPE ###
+//		### DEFINE PIPE & QUOTE ###
 
 # define D_PIPE		"|"
+# define D_SQUOTE	"'"
+# define D_DQUOTE	"\""
 
-//		### ENUM FD_READ_WRITE ###
+//		### ENUM QUOTE ###
 
-enum read_write {
-	E_ERROR = -1,
-	E_SUCCSESS = -2
+enum e_token_quoted {
+	E_NONE = 1,
+	E_SINGLE = 2,
+	E_DOUBLE = 3
 };
 
 #endif

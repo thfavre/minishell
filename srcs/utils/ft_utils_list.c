@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_utils_list.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/01 11:11:26 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/08 22:33:40 by thomas           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -37,6 +26,7 @@ t_list_token	*ft_lstnew_token(char *word)
 		return (NULL);
 	new->word = word;
 	new->type = ft_get_token_type(word);
+	new->quote = ft_token_is_quoted(word);
 	new->next = NULL;
 	return (new);
 }
