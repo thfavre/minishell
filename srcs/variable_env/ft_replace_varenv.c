@@ -18,7 +18,7 @@ void	ft_replace_varenv(t_list_token *token, char **env)
 		i++;
 	}
 	var_env = ft_calloc(sizeof(char *), nb_venv + 1);
-	//check error malloc
+	// TODO check error malloc
 	i = 0;
 	nb_venv = 0;
 	while (token->word[i] != '\0')
