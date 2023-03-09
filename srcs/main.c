@@ -1,18 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/08 12:12:10 by mjulliat          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/03/09 11:33:00 by mjulliat         ###   ########.fr       */
-=======
-/*   Updated: 2023/03/09 13:38:57 by thfavre          ###   ########.fr       */
->>>>>>> master
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -27,11 +12,7 @@ int main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	ft_init_minishell(&ms, env);
-<<<<<<< HEAD
 //	ft_init_signals();
-	str_prompt = readline(PROMPT);
-=======
-	ft_init_signals();
 
 	// ft_setenv(&ms, "NEW_KEY", "NEW_VALUE1", 1);
 	// char *a = ft_getenv(ms.env, "PATH");
@@ -41,14 +22,13 @@ int main(int ac, char **av, char **env)
 	prompt = ft_get_prompt(); // TODO find a other way instead of copy paste..
 	str_prompt = readline(prompt);
 	free(prompt);
->>>>>>> master
 	while (str_prompt != NULL)
 	{
 		if (str_prompt[0] != '\0') // TODO change that, not clean
 		{
 			add_history(str_prompt);
 			ft_parsing(&ms, str_prompt);
-		//	ft_execute(&ms);
+			ft_execute(&ms);
 			ft_free_token(&ms);
 			ft_free_pars(&ms);
 			// rl_clear_history();

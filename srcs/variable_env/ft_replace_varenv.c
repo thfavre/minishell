@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_replace_varenv.c                                :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 16:59:30 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/09 14:31:33 by mjulliat         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "minishell.h"
 char	*ft_get_new_word(char *word, char **var_env);
@@ -45,6 +34,7 @@ void	ft_replace_varenv(t_list_token *token, char **env)
 		i++;
 	}
 	token->word = ft_get_new_word(token->word, var_env);
+	free(var_env);
 }
 
 char	*ft_get_new_word(char *word, char **var_env)
@@ -63,17 +53,21 @@ char	*ft_get_new_word(char *word, char **var_env)
 	{
 		if (word[i] == '$')
 		{
-			save = i;
+			save = i + 1;
 			i = 0;
-			while (var_env[k][i] != '\0')
+			if (var_env[k] != NULL)
 			{
-				new_word[j] = var_env[k][i];
-				i++;
-				j++;
+				while (var_env[k][i] != '\0') // TODO need to replace by strcat
+				{
+					new_word[j] = var_env[k][i];
+					i++;
+					j++;
+				}
 			}
 			k++;
 			i = save;
-			while (word[i] != '\0' && word[i] != ' ' && word[i] != '$')
+			i++;
+			while (word[i] != '"' && word[i] != ' ' && word[i] != '$')
 				i++;
 		}
 		else
@@ -92,7 +86,6 @@ int	ft_len_new_word(char *word, char **var_env)
 	int	count;
 	int	i;
 	int	j;
-	int	k = 0;
 
 	i = 0;
 	j = 0;
@@ -101,15 +94,11 @@ int	ft_len_new_word(char *word, char **var_env)
 	{
 		if (word[i] == '$')
 		{
-			while (var_env[j][k] != '\0')
-			{
-				printf("{%c}", var_env[j][k]);
-				k++;
-				count++;
-			}
-			k = 0;
+			if (var_env[j] != NULL)
+				count += ft_strlen(var_env[j]);
 			j++;
-			while (word[i] != '\0' && word[i] != ' ' && word[i] != '$')
+			i++;
+			while (word[i] != '"' && word[i] != ' ' && word[i] != '$')
 				i++;
 		}
 		else

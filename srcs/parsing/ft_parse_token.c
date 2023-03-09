@@ -1,18 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_parse_token.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/02 14:05:03 by mjulliat          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/03/08 15:44:17 by mjulliat         ###   ########.fr       */
-=======
-/*   Updated: 2023/03/08 21:05:41 by thomas           ###   ########.fr       */
->>>>>>> master
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -22,17 +7,10 @@ void	ft_parse_token(t_minishell *ms)
 	t_list_cmd		*test;
 
 	pars = ms->token;
-<<<<<<< HEAD
 	printf("####################\n");
 	printf("parsing token ->\n");
-=======
-	/*nb_cmd = ft_get_nbcmd(pars);
-	if (nb_cmd != 1)
-		pipe(ms->fd_pipe[nb_cmd - 1][2]);
-	*/
 	// printf("####################\n");
 	// printf("parsing token ->\n");
->>>>>>> master
 	while (pars != NULL)
 	{
 		if (!ms->cmd)

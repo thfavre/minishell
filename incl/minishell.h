@@ -1,23 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/08 10:39:34 by mjulliat          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/03/09 11:27:08 by mjulliat         ###   ########.fr       */
-=======
-/*   Updated: 2023/03/09 00:02:40 by thomas           ###   ########.fr       */
->>>>>>> master
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-<<<<<<< HEAD
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -26,26 +10,19 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
-=======
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <sys/wait.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <signal.h>
-#include <errno.h>
->>>>>>> master
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <sys/wait.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <signal.h>
+# include <errno.h>
 
 # include "struct.h"
 # include "define.h"
 
-<<<<<<< HEAD
-# define PROMPT "minishell/"
-
-=======
->>>>>>> master
 //		----- ENVIRONMENT DIRECTORY -----
 //
 //		##### Ft_initenv.c #####
@@ -61,11 +38,8 @@ int		ft_unsetenv(char **env, char *key);
 char	*ft_getenv(char **env, char *key);
 
 //		##### Ft_Get_Path.c #####
-<<<<<<< HEAD
 char	**ft_get_path(t_minishell *ms);
-=======
 char **ft_getsplitedpath(char **env);
->>>>>>> master
 
 //		----- EXIT DIRECTORY -----
 //
