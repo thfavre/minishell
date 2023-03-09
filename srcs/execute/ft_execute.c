@@ -6,86 +6,23 @@
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:24 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/07 23:33:17 by thomas           ###   ########.fr       */
+/*   Updated: 2023/03/08 20:58:54 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_run_cmd(t_minishell *ms, struct s_list_cmd *cmd);
-
 void ft_execute(t_minishell *ms)
 {
-	int fd_pipe_read_tmp = 0;
-	int fd_pipe[2];
-
-	struct s_list_cmd *cmd = ms->cmd;
-
-	while (cmd)
-	{
-		pipe(fd_pipe);
-		pid_t fork_pid = fork();
-		if (fork_pid == 0) // child
-		{
-			dup2(fd_pipe_read_tmp, 0); // read
-
-			if (!cmd->next) // if last command
-			{
-				close(fd_pipe[1]);
-				fd_pipe[1] = 1;
-			}
-
-			if (cmd->fd_read > 1) // TODO change to 0 and // TODO rename fd_read to file_read_fd? And set to 0 if defaut, -1 error, else file fd
-			{
-				close(fd_pipe[0]);
-				fd_pipe[0] = cmd->fd_read;
-			}
-
-			if (cmd->fd_write > 1) // TODO same
-			{
-				close(fd_pipe[1]);
-				fd_pipe[1] = cmd->fd_write;
-			}
-
-			dup2(fd_pipe[1], 1); // write
-			ft_run_cmd(ms, cmd);
-			// execvp(cmd->cmd, cmd->option);
-		}
-		// parent
-		close(fd_pipe[1]);
-		fd_pipe_read_tmp = fd_pipe[0];
-
-		cmd = cmd->next;
-	}
-	close(fd_pipe[0]);
-	close(fd_pipe[1]);
-	while (waitpid(-1, NULL, WUNTRACED) == -1)
-		;
-}
-
-void	ft_run_cmd(t_minishell *ms, struct s_list_cmd *cmd)
-{
-	// if builtin command execute the command with the correct function
-	if (0)
-	{
-
-	}
-	// if it is an external command, run it with execve
+	// if only one command => No need of a fork for ONLY the builtins ^^
+	if (ms->cmd->next == NULL)
+		ft_execute_cmd(ms);
 	else
-	{
-		execvp(cmd->cmd, cmd->option);
-		// ft_setenv(ms, "TEST_KEY", "TEST_VALUE", 1);
-		// ft_setenv(ms, "TEST_KEY2", "TEST_VALUE2", 1);
-		// ft_unsetenv(ms->env, "TEST_KEY2");
-		// ft_unsetenv(ms->env, "PATH");
-		// ft_env(ms->env);
-		// printf("->%s|\n", ft_getenv(ms->env, "TEST_KEY"));
-	}
-	(void)cmd;
-	(void)ms;
-
-
+		ft_execute_cmds(ms);
 }
+
+
+
 
 // int main()
 // {

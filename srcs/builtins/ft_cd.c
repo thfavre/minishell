@@ -3,20 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:00 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/07 00:39:29 by thomas           ###   ########.fr       */
+/*   Updated: 2023/03/09 13:45:31 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// The longer answer is that in bash, commands in a pipeline are each executed in a subshell. Since cd is a shell builtin, it only affects the shell it's executed in. If you cd within a subshell, the effect will disappear when the subshell exits.
-void ft_cd_command(char *path)
+void ft_cd(t_minishell *ms, char **paths)
 {
-	if (path == NULL)
-		chdir(getenv("HOME"));
-	else if (chdir(path) != 0)
-		perror("chdir() error");
+	char	*dest;
+	char	old_cwd[1024];
+	// TODO check errors of this function
+
+	if (getcwd(old_cwd, sizeof(old_cwd)) == NULL)
+			return perror("getcwd() error");
+	dest = paths[1];
+	if (dest == NULL)
+	{
+		dest = ft_getenv(ms->env, "HOME");
+		if (dest == NULL)
+		{
+			write(2, "cd: HOME not set\n", 18);
+			return ;
+		}
+	}
+	else if (ft_strcmp(dest, "-") == 0)
+	{
+		dest = ft_getenv(ms->env, "OLDPWD"); // TODO free
+		if (dest == NULL)
+		{
+			write(2, "cd: OLDPWD not set\n", 20);
+			return ;
+		}
+	}
+	if (chdir(dest) != 0)
+		printf("cd: %s: %s ()\n", paths[1], strerror(errno)); // TODO do in on STDERROR fd...
+	else
+	{
+		ft_setenv(ms, "OLDPWD", old_cwd, 1); // WHY LEAKS?!!!
+	}
 }

@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 20:45:16 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/09 00:26:24 by thomas           ###   ########.fr       */
+/*   Created: 2023/03/07 00:39:31 by thomas            #+#    #+#             */
+/*   Updated: 2023/03/09 13:53:20 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_env(char **env)
+void	ft_unset(char **env, char aa)
 {
-	int	i;
-
-	// if (!env)
-	// 	return;
-	i = 0;
-	while (env[i])
-		printf("%s\n", env[i++]);
+	(void)env;
+	(void)aa;
 }

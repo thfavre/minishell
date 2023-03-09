@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   ft_getsplitedpath.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 20:45:16 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/09 00:26:24 by thomas           ###   ########.fr       */
+/*   Created: 2023/02/09 18:17:45 by mjulliat          #+#    #+#             */
+/*   Updated: 2023/03/08 14:41:33 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_env(char **env)
+char	** ft_getsplitedpath(char **env)
 {
-	int	i;
+	char	*unsplited_path;
+	char	**splited_path;
 
-	// if (!env)
-	// 	return;
-	i = 0;
-	while (env[i])
-		printf("%s\n", env[i++]);
+	unsplited_path = ft_getenv(env, "PATH");
+	if (unsplited_path == NULL)
+		return (NULL);
+	splited_path = ft_split(unsplited_path + 5, ':');
+	free(unsplited_path);
+	return (splited_path);
 }

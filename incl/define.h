@@ -3,15 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:33:00 by mjulliat          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/03/08 15:48:35 by mjulliat         ###   ########.fr       */
+=======
+/*   Updated: 2023/03/08 21:51:46 by thomas           ###   ########.fr       */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINE_H
 # define DEFINE_H
+
+//		### COLORS ###
+
+# define GREEN_BOLD		"\e[1;32m"
+# define RED_BOLD		"\e[1;31m"
+# define YELLOW_BOLD	"\e[1;33m"
+# define PURPLE_BOLD	"\e[1;35m"
+# define CYAN_BOLD		"\e[1;36m"
+# define COLOR_RESET	"\e[0m"
+# define PROMPT_COLOR	CYAN_BOLD
 
 //		### ENUM TOKEN TYPE ###
 

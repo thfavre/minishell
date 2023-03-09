@@ -3,25 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 12:12:10 by mjulliat          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/03/09 11:33:00 by mjulliat         ###   ########.fr       */
+=======
+/*   Updated: 2023/03/09 13:38:57 by thfavre          ###   ########.fr       */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+char	*ft_get_prompt(void);
+
 int main(int ac, char **av, char **env)
 {
 	t_minishell ms;
 	char *str_prompt;
+	char	*prompt;
 
 	(void)ac;
 	(void)av;
 	ft_init_minishell(&ms, env);
+<<<<<<< HEAD
 //	ft_init_signals();
 	str_prompt = readline(PROMPT);
+=======
+	ft_init_signals();
+
+	// ft_setenv(&ms, "NEW_KEY", "NEW_VALUE1", 1);
+	// char *a = ft_getenv(ms.env, "PATH");
+	// ft_setenv(&ms, "NEW_KEY", "NEW_VALUE2", 1);
+	// printf("a : %s\n", a);
+
+	prompt = ft_get_prompt(); // TODO find a other way instead of copy paste..
+	str_prompt = readline(prompt);
+	free(prompt);
+>>>>>>> master
 	while (str_prompt != NULL)
 	{
 		if (str_prompt[0] != '\0') // TODO change that, not clean
@@ -33,9 +53,30 @@ int main(int ac, char **av, char **env)
 			ft_free_pars(&ms);
 			// rl_clear_history();
 		}
-		str_prompt = readline(PROMPT);
+		prompt = ft_get_prompt();
+		str_prompt = readline(prompt);
+		free(prompt);
 	}
 	free(str_prompt);
 	ft_exit(&ms);
 	return (0);
+}
+
+char	*ft_get_prompt(void)  // TODO put somewhere else
+{
+	char	*cwd;
+	size_t alloc_size;
+
+	alloc_size  = sizeof(*cwd) * 1024;
+	cwd = malloc(alloc_size);
+	strcpy(cwd, PROMPT_COLOR);
+	// TODO what if malloc error ?
+	if (getcwd(cwd + ft_strlen(PROMPT_COLOR), alloc_size) == NULL)
+		perror("getcwd() error");
+	else
+	{
+		strcat(cwd, COLOR_RESET);
+		strcat(cwd, "$ ");
+	}
+	return (cwd);
 }
