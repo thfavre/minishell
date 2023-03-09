@@ -64,7 +64,8 @@ EXEC_FILES	= ft_execute.c\
 
 BUILT_FILES	= ft_cd.c\
 			  ft_env.c\
-			  ft_pwd.c
+			  ft_pwd.c\
+			  ft_unset.c
 
 	# UTILS
 

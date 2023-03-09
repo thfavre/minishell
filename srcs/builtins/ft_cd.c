@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:00 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/09 00:29:38 by thomas           ###   ########.fr       */
+/*   Updated: 2023/03/09 13:45:31 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void ft_cd(t_minishell *ms, char **paths)
 	// TODO check errors of this function
 
 	if (getcwd(old_cwd, sizeof(old_cwd)) == NULL)
-			perror("getcwd() error");
+			return perror("getcwd() error");
 	dest = paths[1];
 	if (dest == NULL)
 	{
@@ -43,6 +43,6 @@ void ft_cd(t_minishell *ms, char **paths)
 		printf("cd: %s: %s ()\n", paths[1], strerror(errno)); // TODO do in on STDERROR fd...
 	else
 	{
-		// ft_setenv(ms, "OLDPWD", old_cwd, 1); // WHY LEAKS?!!!
+		ft_setenv(ms, "OLDPWD", old_cwd, 1); // WHY LEAKS?!!!
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 12:12:10 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/08 21:51:55 by thomas           ###   ########.fr       */
+/*   Updated: 2023/03/09 13:38:57 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ int main(int ac, char **av, char **env)
 	(void)av;
 	ft_init_minishell(&ms, env);
 	ft_init_signals();
+
+	// ft_setenv(&ms, "NEW_KEY", "NEW_VALUE1", 1);
+	// char *a = ft_getenv(ms.env, "PATH");
+	// ft_setenv(&ms, "NEW_KEY", "NEW_VALUE2", 1);
+	// printf("a : %s\n", a);
+
 	prompt = ft_get_prompt(); // TODO find a other way instead of copy paste..
 	str_prompt = readline(prompt);
 	free(prompt);
