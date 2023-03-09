@@ -6,7 +6,7 @@
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 21:22:03 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/07 22:33:46 by thomas           ###   ########.fr       */
+/*   Updated: 2023/03/09 12:02:58 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,5 @@ char	*ft_getenv(char **env, char *key)
 			return (env[i] + key_end_index + 1);
 		i++;
 	}
-
 	return (NULL);
 }

@@ -41,7 +41,6 @@ INIT_FILES	= ft_init_minishell.c\
 PARS_FILES	= ft_getword.c\
 			  ft_lenword.c\
 			  ft_parse_token.c\
-			  ft_parse_varenv.c\
 			  ft_parsing.c\
 			  ft_redirection.c\
 			  ft_token_type.c\

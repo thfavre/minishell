@@ -6,13 +6,13 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:16:46 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/08 17:27:58 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/09 11:52:25 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-int		ft_token_got_varenv(char *str);
 char	*ft_get_name_varenv(char *str);
+int		ft_token_got_varenv(char *str);
 
 void	ft_parse_varenv(t_minishell *ms)
 {
@@ -31,6 +31,7 @@ void	ft_parse_varenv(t_minishell *ms)
 			if (ft_token_got_varenv(ms->token->word) == 1)
 				ft_replace_varenv(ms->token, ms->env);
 		}
+		ms->token = ms->token->next;
 	}
 	ms->token = start;
 }

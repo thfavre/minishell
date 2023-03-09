@@ -6,7 +6,7 @@
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/08 10:39:34 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/08 16:49:32 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/09 11:27:08 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define PROMPT "minishell/"
 
 //		----- ENVIRONMENT DIRECTORY -----
-
+//
 //		##### Ft_initenv.c #####
 char	**ft_initenv(char **env);
 
@@ -45,7 +45,7 @@ char	*ft_getenv(char **env, char *key);
 char	**ft_get_path(t_minishell *ms);
 
 //		----- EXIT DIRECTORY -----
-
+//
 //		##### Ft_Exit.c #####
 void	ft_exit(t_minishell *ms);
 
@@ -56,7 +56,7 @@ void	ft_free_token(t_minishell *ms);
 void	ft_free_pars(t_minishell *ms);
 
 //		----- INIT_DATA DIRECTORY -----
-
+//
 //		##### Ft_Init_Data.c #####
 void	ft_init_minishell(t_minishell *ms, char **env);
 
@@ -64,7 +64,7 @@ void	ft_init_minishell(t_minishell *ms, char **env);
 t_cmd	*ft_init_cmd(t_list_token **pars, int *fd_pipe);
 
 //		----- PARSING DIRECTORY -----
-
+//
 //		##### Ft_parsing.c #####
 void	ft_parsing(t_minishell *ms, char *str_prompt);
 
@@ -100,7 +100,7 @@ int		ft_get_token_type(char *str);
 int		ft_token_is_quoted(char *str);
 
 //		----- SIGNAL DIRECTORY -----
-
+//
 //		##### Ft_handle_signals.c #####
 void	ft_handle_signals(int signo);
 
@@ -108,17 +108,17 @@ void	ft_handle_signals(int signo);
 void	ft_init_signals(void);
 
 //		----- EXECUTE DIRECTORY -----
-
+//
 //		##### Ft_execute.c #####
 void	ft_execute(t_minishell *ms);
 
 //		----- BUILTINS DIRECTORY -----
-
+//
 //		##### Ft_env.c #####
 void	ft_env(char **env);
 
 //		----- UTILS DIRECTORY -----
-
+//
 //		##### Ft_Memory_Allocation.c #####
 void	*ft_calloc(size_t nbyte, size_t size);
 void	ft_freesplit(char **strs);
@@ -143,6 +143,13 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 //
 //		##### Ft_Parse_Varenv.c #####
 void	ft_parse_varenv(t_minishell *ms);
+char	*ft_get_name_varenv(char *str);
+int		ft_token_got_varenv(char *str);
 
+//		##### Ft_Add_Varenv_In_Token.c #####
+void	ft_add_varenv_in_token(t_list_token *token, char **env);
+
+//		##### Ft_Replace_Varenv.c #####
+void	ft_replace_varenv(t_list_token *token, char **env);
 
 #endif
