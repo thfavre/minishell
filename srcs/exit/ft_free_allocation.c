@@ -14,15 +14,16 @@ void	*ft_free_env(char **env)
 
 void	ft_free_path(t_minishell *ms)
 {
-	int i;
+	// int i;
 
-	i = 0;
-	while (ms->path[i] != NULL)
-	{
-		free(ms->path[i]);
-		i++;
-	}
-	free(ms->path);
+	// i = 0;
+	// while (ms->path[i] != NULL)
+	// {
+	// 	free(ms->path[i]);
+	// 	i++;
+	// }
+	// free(ms->path);
+	(void)ms;
 }
 
 void	ft_free_token(t_minishell *ms)
