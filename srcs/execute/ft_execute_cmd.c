@@ -14,7 +14,8 @@ void	ft_execute_cmd(t_minishell *ms)
 	if (fork_pid == 0)
 	{
 		ft_execute_external(ms->env, ms->cmd);
-		exit(0);
+		exit(0); // NEEDED TO EXIT CHILD PROCESS
+
 	}
 	waitpid(fork_pid, NULL, 0);
 }

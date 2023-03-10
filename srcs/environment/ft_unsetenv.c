@@ -3,60 +3,34 @@
 #include "minishell.h"
 
 
-int	ft_unsetenv(char **env, char *key) // it does just slide up all values after the key
+int	ft_unsetenv(char **env, char *key)
 {
 	size_t	i;
 	size_t	j;
 	size_t	len;
 
-	if (key == NULL || key[0] == '\0' || strchr(key, '=') != NULL) // TODO repalce with ft version
+	if (key == NULL || key[0] == '\0' || ft_strchr(key, '=') != NULL)
 		return (-1);
 	len = ft_strlen(key);
 	i = 0;
 	while (env[i] != NULL)
 	{
-		if (ft_strncmp(env[i], key, len) == 0 && env[i][len] == '=')	// it is the line to remove! ^^
+		if (ft_strncmp(env[i], key, len) == 0 && env[i][len] == '=')
 		{
 			j = i;
 			while (env[j] != NULL)
 			{
-				env[j] = env[j + 1];
+				if (env[j] != NULL)
+					free(env[j]);
+				if (env[j + 1] != NULL)
+					env[j] = ft_strdup(env[j + 1]);
+				else
+					env[j] = NULL;
 				j++;
 			}
-			free(env[j]); // Is it leak free?
+			// free(env[j]); // Is it leak free?
 		}
 		i++;
 	}
 	return (0);
 }
-
-/* Remove a the key and value of a key.
-Ex : ft_removeenv(env, "pouic=ls")*/
-// char	**ft_removeenv(char **env, char *key)
-// {
-// 	int		env_size;
-// 	char	**new_env;
-// 	size_t	key_end_index;
-
-
-// 	env_size = 0;
-// 	while (env[env_size++])
-// 		;
-// 	new_env = ft_calloc(sizeof(*new_env), (env_size + 1));
-// 	if (!new_env)
-// 		return (NULL);
-// 	env_size = -1;
-// 	while (env[++env_size] != NULL)
-// 	{
-// 		key_end_index = 0;
-// 		while (env[env_size][key_end_index] != '=')
-// 			key_end_index++;
-// 		if (ft_strncmp(env[env_size], key, key_end_index) != 0)
-// 			continue;
-// 		new_env[env_size] = ft_calloc(sizeof(**new_env), strlen(env[env_size]) + 1);
-// 		if (!new_env[env_size])
-// 			return (ft_free_env(new_env));
-// 		new_env[env_size] = strdup(env[env_size]); // TODO repalce with ft version
-// 	}
-// 	return (new_env);
-// }

@@ -25,7 +25,7 @@ int main(int ac, char **av, char **env)
 		ft_free_token(&ms);
 		ft_free_pars(&ms);
 	}
-	// rl_clear_history(); // TODO: make it works and put in ft_exit?
+	rl_clear_history(); // TODO: make it works and put in ft_exit?
 	free(prompt_output);
 	ft_exit(&ms);
 	return (0);

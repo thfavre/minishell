@@ -133,14 +133,14 @@ void	ft_pwd(void);
 //		##### Ft_cd.c #####
 void	ft_cd(t_minishell *ms, char **paths);
 
+//		##### Ft_unset.c #####
+void	ft_unset(char **env, char **option);
+
 //		----- UTILS DIRECTORY -----
-//
+
 //		##### Ft_Memory_Allocation.c #####
-// void	*ft_calloc(size_t nbyte, size_t size);
 void	ft_freesplit(char **strs);
 
-//		##### Ft_Split.c #####
-// char	**ft_split(char *str, char c);
 
 //		##### Ft_Utils_List.c #####
 t_list_cmd		*ft_lstnew_cmd(t_cmd *cmd);
@@ -149,11 +149,6 @@ void			ft_lstadd_back_cmd(t_list_cmd **lst, t_list_cmd *nw);
 void			ft_lstadd_back_token(t_list_token **lst, t_list_token *nw);
 
 //		##### Utils.c #####
-// size_t	ft_strlen(char *str);
-// void	*ft_memset(void *b, int c, size_t len);
-// char	*ft_substr(char *str, size_t start, size_t len);
-// int		ft_strcmp(const char *s1, const char *s2);
-// int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 //		----- VARIABLE_ENV DIRECTORY -----
 //
