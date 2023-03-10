@@ -1,13 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/08 14:48:42 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/10 12:49:15 by thomas           ###   ########.fr       */
+/*   Created: 2022/10/24 18:12:36 by thfavre           #+#    #+#             */
+/*   Updated: 2022/10/27 17:37:27 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
+
+char	*ft_strrchr(const char *s, int c)
+{
+	char	*save;
+
+	save = NULL;
+	while (*s != '\0')
+	{
+		if (*s == (char)c)
+			save = (char *)(s);
+		s++;
+	}
+	if ((char)c == '\0')
+		save = (char *)(s);
+	return (save);
+}

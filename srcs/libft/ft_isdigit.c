@@ -1,13 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/08 14:48:42 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/10 12:49:15 by thomas           ###   ########.fr       */
+/*   Created: 2022/10/24 14:30:11 by thfavre           #+#    #+#             */
+/*   Updated: 2022/10/27 13:16:21 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+int	ft_isdigit(int c)
+{
+	return (c >= '0' && c <= '9');
+}
+
+// #include <stdio.h>
+// int main() { printf("%d\n", ft_isdigit('o')); }
