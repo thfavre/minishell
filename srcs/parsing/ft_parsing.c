@@ -4,11 +4,12 @@
 void	ft_parsing(t_minishell *ms, char *str_prompt)
 {
 	t_list_token	*test;
-	char			*prompt;
 
-	prompt = str_prompt;
+	// TODO skip the first token if it's a (or more) space ?
+	// while (str_prompt && *str_prompt == ' ')
+	// 	str_prompt++;
+
 	ft_tokenizing_prompt(ms, str_prompt);
-	free(prompt);
 	ft_parse_varenv(ms);
 	test = ms->token;
 	printf("####################\n");

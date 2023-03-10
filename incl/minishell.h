@@ -19,6 +19,8 @@
 # include <readline/history.h>
 # include <signal.h>
 # include <errno.h>
+# include <stdbool.h>
+
 
 # include "libft.h"
 # include "struct.h"
@@ -149,6 +151,8 @@ void			ft_lstadd_back_cmd(t_list_cmd **lst, t_list_cmd *nw);
 void			ft_lstadd_back_token(t_list_token **lst, t_list_token *nw);
 
 //		##### Utils.c #####
+bool ft_isspace(char c);
+bool ft_isspace_only(char *str);
 
 //		----- VARIABLE_ENV DIRECTORY -----
 //

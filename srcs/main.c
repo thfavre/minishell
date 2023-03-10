@@ -3,6 +3,11 @@
 
 char	*ft_prompt(void);
 
+/*TODO LIST
+-> crash when cd in pipes
+
+*/
+
 int main(int ac, char **av, char **env)
 {
 	t_minishell	ms;
@@ -12,21 +17,20 @@ int main(int ac, char **av, char **env)
 	(void)av;
 	ft_init_minishell(&ms, env); // TODO? make a function init that will init the minishell and signals..?
 	ft_init_signals();
-	while (1)
+	prompt_output = "ON!";
+	while (prompt_output != NULL)
 	{
 		prompt_output = ft_prompt();
-		if (prompt_output == NULL)
-			break;
-		if (prompt_output[0] == '\0')
-			continue;
-		add_history(prompt_output);
-		ft_parsing(&ms, prompt_output);
-		ft_execute(&ms);
-		ft_free_token(&ms);
-		ft_free_pars(&ms);
+		if (prompt_output && !ft_isspace_only(prompt_output))
+		{
+			add_history(prompt_output);
+			ft_parsing(&ms, prompt_output);
+			ft_execute(&ms);
+			ft_free_token(&ms);
+			ft_free_pars(&ms);
+		}
+		free(prompt_output);
 	}
-	rl_clear_history(); // TODO: make it works and put in ft_exit?
-	free(prompt_output);
 	ft_exit(&ms);
 	return (0);
 }
@@ -58,7 +62,7 @@ char	*ft_prompt(void)
 	prompt_text = ft_get_prompt();
 	prompt_output = readline(prompt_text);
 	free(prompt_text);
-	while(prompt_output && *prompt_output == ' ')
-		prompt_output++;
+	// while(prompt_output && *prompt_output == ' ')
+	// 	prompt_output++;
 	return (prompt_output);
 }

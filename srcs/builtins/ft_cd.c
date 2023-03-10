@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:00 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/09 13:45:31 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/03/10 18:07:32 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void ft_cd(t_minishell *ms, char **paths)
 	// TODO check errors of this function
 
 	if (getcwd(old_cwd, sizeof(old_cwd)) == NULL)
-			return perror("getcwd() error");
+		return perror("getcwd() error");
 	dest = paths[1];
 	if (dest == NULL)
 	{
