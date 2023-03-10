@@ -160,6 +160,7 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_parse_varenv(t_minishell *ms);
 char	*ft_get_name_varenv(char *str);
 int		ft_token_got_varenv(char *str);
+int		ft_nbr_varenv(char *str);
 
 //		##### Ft_Add_Varenv_In_Token.c #####
 void	ft_add_varenv_in_token(t_list_token *token, char **env);

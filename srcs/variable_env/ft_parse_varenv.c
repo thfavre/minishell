@@ -66,3 +66,19 @@ int	ft_token_got_varenv(char *str)
 	}
 	return (0);
 }
+
+int	ft_nbr_varenv(char *str)
+{
+	int	i;
+	int	count;
+
+	count = 0;
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '$')
+			count++;
+		i++;
+	}
+	return (count);
+}
