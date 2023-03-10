@@ -26,9 +26,9 @@ ENV_FILES	= ft_initenv.c\
 			  ft_getenv.c\
 			  ft_unsetenv.c
 
-	# EXIT
+	# CLOSE
 
-EXIT_FILES	= ft_exit.c\
+CLOSE_FILES	= ft_close.c\
 			  ft_free_allocation.c
 
 	# INIT_DATA
@@ -65,7 +65,9 @@ EXEC_FILES	= ft_execute.c\
 BUILT_FILES	= ft_cd.c\
 			  ft_env.c\
 			  ft_pwd.c\
-			  ft_unset.c
+			  ft_echo.c\
+			  ft_unset.c\
+			  ft_exit.c
 
 	# UTILS
 
@@ -92,7 +94,7 @@ LIBFT_FILES	= ft_isalnum.c ft_isprint.c ft_memcmp.c ft_memchr.c\
 
 FILES		= $(SOURCES)\
 			  $(ENV_FILES)\
-			  $(EXIT_FILES)\
+			  $(CLOSE_FILES)\
 			  $(INIT_FILES)\
 			  $(UTILS_FILES)\
 			  $(PARS_FILES)\
@@ -105,7 +107,7 @@ FILES		= $(SOURCES)\
 	### OBJECTS ###
 
 ENV_FILES	:= $(addprefix environment/, $(ENV_FILES))
-EXIT_FILES	:= $(addprefix exit/, $(EXIT_FILES))
+CLOSE_FILES	:= $(addprefix close/, $(CLOSE_FILES))
 INIT_FILES	:= $(addprefix init_minishell/, $(INIT_FILES))
 PARS_FILES	:= $(addprefix parsing/, $(PARS_FILES))
 UTILS_FILES	:= $(addprefix utils/, $(UTILS_FILES))

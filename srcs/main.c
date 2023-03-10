@@ -17,6 +17,8 @@ int main(int ac, char **av, char **env)
 	(void)av;
 	ft_init_minishell(&ms, env); // TODO? make a function init that will init the minishell and signals..?
 	ft_init_signals();
+	//ft_setenv(&ms, "OLDPWD", ft_getenv(ms.env, "PWD"), 1);
+	// ft_setenv(&ms, "TEST", "TEAST", 1);
 	prompt_output = "ON!";
 	while (prompt_output != NULL)
 	{

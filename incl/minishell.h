@@ -44,10 +44,10 @@ char	*ft_getenv(char **env, char *key);
 char	**ft_get_path(t_minishell *ms);
 char **ft_getsplitedpath(char **env);
 
-//		----- EXIT DIRECTORY -----
+//		----- CLOSE DIRECTORY -----
 //
-//		##### Ft_Exit.c #####
-void	ft_exit(t_minishell *ms);
+//		##### Ft_close.c #####
+void	ft_close(t_minishell *ms);
 
 //		##### Ft_Free_Allocation.c #####
 void	*ft_free_env(char **env);
@@ -137,6 +137,12 @@ void	ft_cd(t_minishell *ms, char **paths);
 
 //		##### Ft_unset.c #####
 void	ft_unset(char **env, char **option);
+
+//		##### Ft_echo.c #####
+void ft_echo(char **option);
+
+//		##### Ft_exit.c #####
+void ft_exit(t_minishell *ms);
 
 //		----- UTILS DIRECTORY -----
 
