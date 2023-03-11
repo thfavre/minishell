@@ -7,7 +7,7 @@ void	*ft_free_env(char **env)
 
 	i = 0;
 	while (env[i] != NULL)
-		free(env[i++]);
+			free(env[i++]);
 	free(env);
 	return (NULL);
 }

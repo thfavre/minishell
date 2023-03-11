@@ -37,12 +37,15 @@ int		ft_setenv(t_minishell *ms, char *key, char *value, int overwrite);
 //		##### Ft_unsetenv.c #####
 int		ft_unsetenv(char **env, char *key);
 
+//		##### Ft_putenv.c #####
+char	**ft_putenv(char **env, char *string);
+
 //		##### Ft_getenv.c #####
 char	*ft_getenv(char **env, char *key);
 
 //		##### Ft_Get_Path.c #####
 char	**ft_get_path(t_minishell *ms);
-char **ft_getsplitedpath(char **env);
+char	**ft_getsplitedpath(char **env);
 
 //		----- CLOSE DIRECTORY -----
 //
@@ -143,6 +146,10 @@ void ft_echo(char **option);
 
 //		##### Ft_exit.c #####
 void ft_exit(t_minishell *ms);
+
+//		##### Ft_export.c #####
+void ft_export(t_minishell *ms, char **option);
+
 
 //		----- UTILS DIRECTORY -----
 

@@ -4,8 +4,9 @@
 char	*ft_prompt(void);
 
 /*TODO LIST
--> crash when cd in pipes
+-> ls >|	should not create the file (-bash: syntax error near unexpected token `newline')
 
+Bonus : cd -
 */
 
 int main(int ac, char **av, char **env)
@@ -17,8 +18,7 @@ int main(int ac, char **av, char **env)
 	(void)av;
 	ft_init_minishell(&ms, env); // TODO? make a function init that will init the minishell and signals..?
 	ft_init_signals();
-	//ft_setenv(&ms, "OLDPWD", ft_getenv(ms.env, "PWD"), 1);
-	// ft_setenv(&ms, "TEST", "TEAST", 1);
+	// ft_unsetenv(ms.env, "OLDPWD");
 	prompt_output = "ON!";
 	while (prompt_output != NULL)
 	{
@@ -64,7 +64,5 @@ char	*ft_prompt(void)
 	prompt_text = ft_get_prompt();
 	prompt_output = readline(prompt_text);
 	free(prompt_text);
-	// while(prompt_output && *prompt_output == ' ')
-	// 	prompt_output++;
 	return (prompt_output);
 }

@@ -67,7 +67,8 @@ BUILT_FILES	= ft_cd.c\
 			  ft_pwd.c\
 			  ft_echo.c\
 			  ft_unset.c\
-			  ft_exit.c
+			  ft_exit.c\
+			  ft_export.c
 
 	# UTILS
 
