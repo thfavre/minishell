@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unset.c                                         :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 00:39:31 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/11 00:40:34 by thomas           ###   ########.fr       */
+/*   Created: 2022/10/27 14:05:32 by thfavre           #+#    #+#             */
+/*   Updated: 2022/10/27 17:36:41 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	ft_unset(char **env, char **option)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	option++; // skip the command name
-	while (*option)
+	size_t	i;
+
+	i = 0;
+	if (dstsize > 0)
 	{
-		if (strchr(*option, '-') != NULL || ft_unsetenv(env, *option) == -1)
+		while (src[i] && i < dstsize - 1)
 		{
-			ft_putstr_fd("unset: not a valid identifier: \n", 2);
+			dst[i] = src[i];
+			i++;
 		}
-		option++;
+		dst[i] = 0;
 	}
+	while (src[i])
+		i++;
+	return (i);
 }

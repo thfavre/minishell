@@ -6,7 +6,7 @@
 
 typedef struct s_minishell {
 	char				**env;
-	char				**path;
+	// char				**path;
 	int					fd_pipe[2];
 	int					fd_tmp_pipe;
 	struct s_list_token	*token;

@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/08 14:48:42 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/10 18:02:44 by thomas           ###   ########.fr       */
+/*   Created: 2023/03/10 12:30:29 by thomas            #+#    #+#             */
+/*   Updated: 2023/03/10 12:30:31 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-bool ft_isspace(char c)
+int	ft_strcmp(char *s1, char *s2)
 {
-	if (c == ' ' || c == '\t' || c == '\n'|| c == '\v' \
-		|| c == '\f' || c == '\r')
-		return (true);
-	return (false);
-}
+	int	i;
 
-bool ft_isspace_only(char *str)
-{
-	while (*str)
-	{
-		if (!ft_isspace(*str))
-			return (false);
-		str++;
-	}
-	return (true);
+	i = 0;
+	while (s1[i] && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
 }

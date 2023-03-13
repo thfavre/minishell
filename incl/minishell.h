@@ -19,7 +19,10 @@
 # include <readline/history.h>
 # include <signal.h>
 # include <errno.h>
+# include <stdbool.h>
 
+
+# include "libft.h"
 # include "struct.h"
 # include "define.h"
 
@@ -34,17 +37,20 @@ int		ft_setenv(t_minishell *ms, char *key, char *value, int overwrite);
 //		##### Ft_unsetenv.c #####
 int		ft_unsetenv(char **env, char *key);
 
+//		##### Ft_putenv.c #####
+char	**ft_putenv(char **env, char *string);
+
 //		##### Ft_getenv.c #####
 char	*ft_getenv(char **env, char *key);
 
 //		##### Ft_Get_Path.c #####
 char	**ft_get_path(t_minishell *ms);
-char **ft_getsplitedpath(char **env);
+char	**ft_getsplitedpath(char **env);
 
-//		----- EXIT DIRECTORY -----
+//		----- CLOSE DIRECTORY -----
 //
-//		##### Ft_Exit.c #####
-void	ft_exit(t_minishell *ms);
+//		##### Ft_close.c #####
+void	ft_close(t_minishell *ms);
 
 //		##### Ft_Free_Allocation.c #####
 void	*ft_free_env(char **env);
@@ -132,14 +138,24 @@ void	ft_pwd(void);
 //		##### Ft_cd.c #####
 void	ft_cd(t_minishell *ms, char **paths);
 
+//		##### Ft_unset.c #####
+void	ft_unset(char **env, char **option);
+
+//		##### Ft_echo.c #####
+void ft_echo(char **option);
+
+//		##### Ft_exit.c #####
+void ft_exit(t_minishell *ms);
+
+//		##### Ft_export.c #####
+void ft_export(t_minishell *ms, char **option);
+
+
 //		----- UTILS DIRECTORY -----
-//
+
 //		##### Ft_Memory_Allocation.c #####
-void	*ft_calloc(size_t nbyte, size_t size);
 void	ft_freesplit(char **strs);
 
-//		##### Ft_Split.c #####
-char	**ft_split(char *str, char c);
 
 //		##### Ft_Utils_List.c #####
 t_list_cmd		*ft_lstnew_cmd(t_cmd *cmd);
@@ -148,11 +164,8 @@ void			ft_lstadd_back_cmd(t_list_cmd **lst, t_list_cmd *nw);
 void			ft_lstadd_back_token(t_list_token **lst, t_list_token *nw);
 
 //		##### Utils.c #####
-size_t	ft_strlen(char *str);
-void	*ft_memset(void *b, int c, size_t len);
-char	*ft_substr(char *str, size_t start, size_t len);
-int		ft_strcmp(const char *s1, const char *s2);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
+bool ft_isspace(char c);
+bool ft_isspace_only(char *str);
 
 //		----- VARIABLE_ENV DIRECTORY -----
 //

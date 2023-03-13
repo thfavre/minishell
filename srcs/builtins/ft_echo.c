@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/08 14:48:42 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/10 18:02:44 by thomas           ###   ########.fr       */
+/*   Created: 2023/03/07 00:39:00 by thomas            #+#    #+#             */
+/*   Updated: 2023/03/11 00:49:45 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool ft_isspace(char c)
+void ft_echo(char **option)
 {
-	if (c == ' ' || c == '\t' || c == '\n'|| c == '\v' \
-		|| c == '\f' || c == '\r')
-		return (true);
-	return (false);
-}
+	bool	newline;
 
-bool ft_isspace_only(char *str)
-{
-	while (*str)
+	option++; // skip the command name
+	newline = true;
+	if (*option && ft_strcmp(*option, "-n") == 0)
 	{
-		if (!ft_isspace(*str))
-			return (false);
-		str++;
+		newline = false;
+		option++;
 	}
-	return (true);
+	while (*option)
+	{
+		ft_putstr_fd(*option, 1);
+		if (*(option + 1))
+			ft_putchar_fd(' ', 1);
+		option++;
+	}
+	if (newline)
+		ft_putchar_fd('\n', 1);
+
 }

@@ -26,9 +26,9 @@ ENV_FILES	= ft_initenv.c\
 			  ft_getenv.c\
 			  ft_unsetenv.c
 
-	# EXIT
+	# CLOSE
 
-EXIT_FILES	= ft_exit.c\
+CLOSE_FILES	= ft_close.c\
 			  ft_free_allocation.c
 
 	# INIT_DATA
@@ -65,12 +65,14 @@ EXEC_FILES	= ft_execute.c\
 BUILT_FILES	= ft_cd.c\
 			  ft_env.c\
 			  ft_pwd.c\
-			  ft_unset.c
+			  ft_echo.c\
+			  ft_unset.c\
+			  ft_exit.c\
+			  ft_export.c
 
 	# UTILS
 
 UTILS_FILES	= ft_memory_allocation.c\
-			  ft_split.c\
 			  ft_utils_list.c\
 			  utils.c
 
@@ -78,23 +80,35 @@ VENV_FILES	= ft_parse_varenv.c\
 			  ft_replace_varenv.c\
 			  ft_add_varenv_in_token.c
 
+	# LIBFT
+
+LIBFT_FILES	= ft_isalnum.c ft_isprint.c ft_memcmp.c ft_memchr.c\
+			ft_strncmp.c ft_isalpha.c ft_toupper.c ft_isdigit.c \
+			ft_memcpy.c  ft_strchr.c ft_strlcpy.c ft_strlcat.c ft_calloc.c\
+			ft_strnstr.c ft_tolower.c ft_bzero.c   ft_isascii.c ft_atoi.c\
+			ft_memmove.c  ft_strdup.c  ft_strlen.c  ft_strrchr.c ft_memset.c\
+			ft_strjoin.c ft_substr.c ft_strtrim.c ft_split.c ft_itoa.c \
+			ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c\
+			ft_putendl_fd.c ft_putnbr_fd.c ft_strcmp.c\
+
 	# ALL FILES
 
 FILES		= $(SOURCES)\
 			  $(ENV_FILES)\
-			  $(EXIT_FILES)\
+			  $(CLOSE_FILES)\
 			  $(INIT_FILES)\
 			  $(UTILS_FILES)\
 			  $(PARS_FILES)\
 			  $(SIGN_FILES)\
 			  $(EXEC_FILES)\
 			  $(BUILT_FILES)\
-			  $(VENV_FILES)
+			  $(VENV_FILES)\
+			  $(LIBFT_FILES)
 
 	### OBJECTS ###
 
 ENV_FILES	:= $(addprefix environment/, $(ENV_FILES))
-EXIT_FILES	:= $(addprefix exit/, $(EXIT_FILES))
+CLOSE_FILES	:= $(addprefix close/, $(CLOSE_FILES))
 INIT_FILES	:= $(addprefix init_minishell/, $(INIT_FILES))
 PARS_FILES	:= $(addprefix parsing/, $(PARS_FILES))
 UTILS_FILES	:= $(addprefix utils/, $(UTILS_FILES))
@@ -102,6 +116,7 @@ SIGN_FILES	:= $(addprefix signals/, $(SIGN_FILES))
 EXEC_FILES	:= $(addprefix execute/, $(EXEC_FILES))
 BUILT_FILES	:= $(addprefix builtins/, $(BUILT_FILES))
 VENV_FILES	:= $(addprefix variable_env/, $(VENV_FILES))
+LIBFT_FILES	:= $(addprefix libft/, $(LIBFT_FILES))
 
 SRCS		= $(addprefix $(SRCS_PATH)/, $(FILES))
 OBJS		= $(addprefix $(OBJS_PATH)/, $(FILES:.c=.o))
