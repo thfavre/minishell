@@ -135,6 +135,7 @@ VIOLET		= \033[1;35m
 CYAN		= \033[1;36m
 NOC			= \033[0m
 WHITE		= \033[1;37m
+RESET		= \033[0m
 
 	### READLINE PATH ###
 
@@ -148,12 +149,12 @@ endif
 all:		tmp $(NAME)
 
 $(NAME):	$(OBJS)
-			@echo "$(BLUE)##### Compiling Project #####$(WHITE)"
+			@echo "$(BLUE)##### Compiling Project #####$(RESET)"
 			$(CC) $(FLAGS) $(LIBS_PATH) $(LIBS) -o $@ $^
-			@echo "$(GREEN)##### Project Compilated #####$(WHITE)"
+			@echo "$(GREEN)##### Project Compilated #####$(RESET)"
 
 tmp:
-			@echo "$(CYAN)##### Compiling SRCS in OBJS #####$(WHITE)"
+			@echo "$(CYAN)##### Compiling SRCS in OBJS #####$(RESET)"
 			@mkdir -p objs
 
 $(OBJS_PATH)/%.o:	$(SRCS_PATH)/%.c

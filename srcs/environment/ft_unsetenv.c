@@ -15,7 +15,7 @@ int	ft_unsetenv(char **env, char *key)
 	i = 0;
 	while (env[i] != NULL)
 	{
-		if (ft_strncmp(env[i], key, len) == 0 && env[i][len] == '=')
+		if (ft_strncmp(env[i], key, len) == 0 && (env[i][len] == '=' || env[i][len] == '\0'))
 		{
 			j = i;
 			while (env[j] != NULL)

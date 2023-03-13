@@ -5,7 +5,7 @@ void	ft_tokenizing_prompt(t_minishell *ms, char *str)
 {
 	t_list_token	*token;
 
-	while (*str == ' ' && *str == '\t')
+	while (*str == ' ' && *str == '\t') // TODO or NOT
 		str++;
 	token = ft_lstnew_token(ft_get_token(&str));
 	ms->token = token;

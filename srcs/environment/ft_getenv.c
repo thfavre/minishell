@@ -10,7 +10,7 @@ char	*ft_getenv(char **env, char *key)
 	while (env[i])
 	{
 		key_end_index = 0;
-		while (env[i][key_end_index] != '=')
+		while (env[i][key_end_index] && env[i][key_end_index] != '=')
 			key_end_index++;
 		if (ft_strncmp(env[i], key, key_end_index) == 0)
 			return (env[i] + key_end_index + 1);

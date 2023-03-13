@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:45:16 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/09 00:26:24 by thomas           ###   ########.fr       */
+/*   Updated: 2023/03/13 14:32:35 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ void	ft_env(char **env)
 	// if (!env)
 	// 	return;
 	i = 0;
-	while (env[i])
-		printf("%s\n", env[i++]);
+	while (env && env[i]) // TODO if '=' in line
+	{
+		if (ft_strchr(env[i], '=') != NULL)
+			printf("%s\n", env[i]);
+		i++;
+	}
 }

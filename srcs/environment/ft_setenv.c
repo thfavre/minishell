@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_setenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 01:08:03 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/11 01:43:49 by thomas           ###   ########.fr       */
+/*   Updated: 2023/03/13 15:54:38 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,14 @@ int	ft_setenv(t_minishell *ms, char *key, char *value, int overwrite)
 	if (new_element == NULL)
 		return -1;
 	strcpy(new_element, key); // TODO repalce with ft version
-	strcat(new_element, "="); // TODO repalce with ft version
+	if (value[0] != '\0')
+		strcat(new_element, "="); // TODO repalce with ft version
 	strcat(new_element, value); // TODO repalce with ft version
 	new_env = ft_putenv(ms->env, new_element);
 	ft_free_env(ms->env);
 	ms->env = new_env;
 	free(new_element);
-	if (new_env != NULL)
-		return (0);
-	return (1);
+	return (new_env != NULL);
 }
 
 /* Add a string to the env.
