@@ -2,7 +2,6 @@
 #include "minishell.h"
 
 char	*ft_get_prompt(void);
-
 int main(int ac, char **av, char **env)
 {
 	t_minishell ms;
