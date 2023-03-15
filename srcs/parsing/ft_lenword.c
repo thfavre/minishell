@@ -42,14 +42,25 @@ int	ft_lenword_space(char *str)
 
 int	ft_lenword(char *str)
 {
-	int	len;
+	int		len;
+	char	c;
 
 	len = 0;
+	c = 0;
 	while (str[len] != '\0')
 	{
-		if (str[len] == ' ' || str[len] == '\'' || str[len] == '"')
-			break ;
-		else if (str[len] == '<' || str[len] == '>' || str[len] == '|')
+		if (str[len] == '"' || str[len] == '\'')
+		{
+			c = str[len];
+			while (str[len] != '\0')
+			{
+				len++;
+				if (str[len] == c)
+					break ;
+			}
+		}
+		else if (str[len] == '<' || str[len] == '>' || \
+		   	str[len] == '|' || str[len] == ' ')
 			break ;
 		len++;
 	}

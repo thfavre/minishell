@@ -72,13 +72,12 @@ int		ft_get_outfile(t_list_token **pars);
 
 //		----- Ft_Getword.c -----
 char	*ft_getword_redirection(char **str, char c);
-char	*ft_getword_quote(char **str, char c);
 char	*ft_getword_space(char **str);
 char	*ft_getword(char **str);
+void	ft_getword_in_quote(char **str, char *word, int *i, char c);
 
 //		----- Ft_Lenword.c -----
 int		ft_lenword_redirection(char *str, char c);
-int		ft_lenword_quote(char *str, char c);
 int		ft_lenword_space(char *str);
 int		ft_lenword(char *str);
 
