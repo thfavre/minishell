@@ -33,7 +33,6 @@ char	*ft_getword_space(char **str)
 	return (word);
 }
 
-void	ft_getword_in_quote(char **str, char *word, int *i, char c);
 char	*ft_getword(char **str)
 {
 	char	*word;
