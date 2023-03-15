@@ -1,19 +1,25 @@
+# === TODO ===
+- \>>
+- <<
+- &&
+- comamnd au path relatif et absolu
+- syntax erors
 
-=== $ Bug ===
+# === $ Bug ===
 
-# fix $alone
-# fix $ with wrong name venv
-# fix $ with special char -> "+=-^%$#@![]{},./?\|" and all numbers
+- fix $alone
+- fix $ with wrong name venv
+- fix $ with special char -> "+=-^%$#@![]{},./?\|" and all numbers
 
-=== Syntax Error Bug ===
+# === Syntax Error Bug ===
 
-# > with no file should return syntax error
-# parentheses not close should return syntax error
-# quote and single quote not close should return syntax error
+- > with no file should return syntax error
+- parentheses not close should return syntax error
+- quote and single quote not close should return syntax error
 
-=== Bug redirection ===
+# === Bug redirection ===
 
-Crashes :
+## Crashes :
 	>
 	<
 	>test
