@@ -18,9 +18,7 @@ char	*ft_get_token(char **str)
 	char	*word;
 
 	word = NULL;
-	if (**str == '\'' || **str == '"')
-		word = ft_getword_quote(str, (char)**str);
-	else if (**str == '<' || **str == '>' || **str == '|')
+	if (**str == '<' || **str == '>' || **str == '|')
 		word = ft_getword_redirection(str, (char)**str);
 	else if (**str == ' ')
 		word = ft_getword_space(str);
@@ -31,8 +29,6 @@ char	*ft_get_token(char **str)
 
 int	ft_get_token_type(char *str)
 {
-	// if (ft_is_builtins(str) == 1)
-	// 	return (E_BUILTINS);
 	if (ft_is_redirection(str) == 1)
 		return (E_REDIRECTION);
 	else if (ft_is_pipe(str) == 1)
