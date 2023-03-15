@@ -43,6 +43,12 @@ void	ft_add_varenv_in_list(t_list_token *token, char **venv)
 	add_in = init;
 	free(token->word);
 	token->word = init->word;
+	t_list_venv	*test = init;
+	while (test != NULL)
+	{
+		printf("[%s] <-- test->word\n", test->word);
+		test = test->next;
+	}
 	if (add_in->next != NULL)
 	{
 		while (add_in != NULL)
@@ -80,6 +86,8 @@ char	*ft_getword_nodollars(char **str)
 
 	i = 0;
 	word = ft_calloc(sizeof(char), ft_lenword_nodollars(*str) + 1);
+	if (!word)
+		return (NULL);
 	while (**str != '\0')
 	{
 		word[i] = (**str);
@@ -112,6 +120,8 @@ char	*ft_getword_dollars(char **str, char ***venv)
 
 	i = 0;
 	word = ft_calloc(sizeof(char), ft_strlen(**venv) + 1);
+	if (!word)
+		return (NULL);
 	while (***venv != '\0')
 	{
 		word[i] = ***venv;
