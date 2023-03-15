@@ -1,23 +1,14 @@
 
 #include "minishell.h"
-char	*ft_get_new_word(char *word, char **var_env);
-int	ft_len_new_word(char *word, char **var_env);
 
 void	ft_replace_varenv(t_list_token *token, char **env)
 {
 	size_t	i;
-	size_t	nb_venv = 0;
+	size_t	nb_venv;
 	char	*name_venv;
 	char	**var_env;
 
-	i = 0;
-	while (token->word[i] != '\0')
-	{
-		if (token->word[i] == '$')
-			nb_venv++;
-		i++;
-	}
-	var_env = ft_calloc(sizeof(char *), nb_venv + 1);
+	var_env = ft_calloc(sizeof(char *), ft_nbr_varenv(token->word) + 1);
 	// TODO check error malloc
 	i = 0;
 	nb_venv = 0;
@@ -98,7 +89,8 @@ int	ft_len_new_word(char *word, char **var_env)
 				count += ft_strlen(var_env[j]);
 			j++;
 			i++;
-			while (word[i] != '"' && word[i] != ' ' && word[i] != '$')
+			while (word[i] != '"' && word[i] != ' ' \
+					&& word[i] != '$' && word[i] != '\0')
 				i++;
 		}
 		else
