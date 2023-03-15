@@ -39,7 +39,7 @@ char	*ft_getenv(char **env, char *key);
 
 //		##### Ft_Get_Path.c #####
 char	**ft_get_path(t_minishell *ms);
-char **ft_getsplitedpath(char **env);
+char 	**ft_getsplitedpath(char **env);
 
 //		----- EXIT DIRECTORY -----
 //
@@ -164,8 +164,18 @@ int		ft_nbr_varenv(char *str);
 
 //		##### Ft_Add_Varenv_In_Token.c #####
 void	ft_add_varenv_in_token(t_list_token *token, char **env);
+void	ft_add_varenv_in_list(t_list_token *token, char **venv);
+char	*ft_getword_venv(char **str, char ***venv);
+char	*ft_getword_nodollars(char **str);
+int		ft_lenword_nodollars(char *str);
+char	*ft_getword_dollars(char **str, char ***venv);
+t_list_venv	*ft_lstnew_venv(char *word);
+void	ft_lstadd_back_venv(t_list_venv **lst, t_list_venv *nw);
+void	ft_lastadd_middle_token(t_list_token *lst, t_list_token *nw);
 
 //		##### Ft_Replace_Varenv.c #####
 void	ft_replace_varenv(t_list_token *token, char **env);
+char	*ft_get_new_word(char *word, char **var_env);
+int		ft_len_new_word(char *word, char **var_env);
 
 #endif

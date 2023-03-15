@@ -1,7 +1,5 @@
 
 #include "minishell.h"
-char	*ft_get_new_word(char *word, char **var_env);
-int	ft_len_new_word(char *word, char **var_env);
 
 void	ft_replace_varenv(t_list_token *token, char **env)
 {
@@ -20,7 +18,6 @@ void	ft_replace_varenv(t_list_token *token, char **env)
 		{
 			i++;
 			name_venv = ft_get_name_varenv(&token->word[i]);
-			printf("%s<---\n", name_venv);
 			var_env[nb_venv] = ft_getenv(env, name_venv);
 			nb_venv++;
 			free(name_venv);
@@ -92,7 +89,8 @@ int	ft_len_new_word(char *word, char **var_env)
 				count += ft_strlen(var_env[j]);
 			j++;
 			i++;
-			while (word[i] != '"' && word[i] != ' ' && word[i] != '$')
+			while (word[i] != '"' && word[i] != ' ' \
+					&& word[i] != '$' && word[i] != '\0')
 				i++;
 		}
 		else

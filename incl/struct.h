@@ -22,6 +22,14 @@ typedef struct s_list_token {
 	struct s_list_token	*next;
 }						t_list_token;
 
+//		### Chain List Var_env ####
+
+typedef struct s_list_venv {
+	char	*word;
+	struct s_list_venv	*next;
+	struct s_list_venv	*previous;
+}						t_list_venv;
+
 //		### Chain List Cmd ###
 
 typedef struct s_list_cmd {
