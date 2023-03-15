@@ -4,6 +4,8 @@
 # fix $alone
 # fix $ with wrong name venv
 # fix $ with special char -> "+=-^%$#@![]{},./?\|" and all numbers
+# $a="ls -la" token should not be -> "ls -la" but ->"ls" " " "-la" in 3 tokens
+# line 60 ft_add_varenv_in_token.c need to free a variable
 
 === Syntax Error Bug ===
 
