@@ -57,6 +57,7 @@ void	ft_add_varenv_in_list(t_list_token *token, char **venv)
 			add_in = add_in->previous;
 		}
 	}
+	//free(init) and his word
 }
 
 char	*ft_getword_venv(char **str, char ***venv)
