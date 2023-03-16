@@ -32,13 +32,18 @@ void	ft_add_varenv_in_token(t_list_token *token, char **env)
 			i++;
 			name_venv = ft_get_name_varenv(&token->word[i]);
 			var_env[nb_venv] = ft_getenv(env, name_venv);
+			if (var_env[nb_venv] == NULL)
+				break ;
 			nb_venv++;
 			free(name_venv);
 		}
 		i++;
 	}
-	ft_add_varenv_in_list(token, var_env);
-	free(var_env);
+	if (var_env[0] != NULL)
+	{
+		ft_add_varenv_in_list(token, var_env);
+		free(var_env);
+	}
 }
 
 void	ft_add_varenv_in_list(t_list_token *token, char **venv)
