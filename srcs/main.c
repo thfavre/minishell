@@ -35,7 +35,8 @@ int main(int ac, char **av, char **env)
 		{
 			add_history(prompt_output);
 			ft_parsing(&ms, prompt_output);
-			ft_execute(&ms);
+			if (ft_check_syntax(&ms) == E_OK)
+				ft_execute(&ms);
 			ft_free_token(&ms);
 			ft_free_pars(&ms);
 		}

@@ -31,7 +31,7 @@ ENV_FILES	= ft_initenv.c\
 CLOSE_FILES	= ft_close.c\
 			  ft_free_allocation.c
 
-	# INIT_DATA
+	# INIT_MINISHELL
 
 INIT_FILES	= ft_init_minishell.c\
 			  ft_init_cmd.c
@@ -52,7 +52,11 @@ PARS_FILES	= ft_getword.c\
 SIGN_FILES	= ft_init_signals.c\
 			  ft_handle_signals.c
 
-	# SIGNALS
+	# SYNTAX
+	
+STAX_FILES	= ft_check_syntax.c
+
+	# EXECUTE
 
 EXEC_FILES	= ft_execute.c\
 			  ft_execute_cmds.c\
@@ -76,6 +80,8 @@ BUILT_FILES	= ft_cd.c\
 UTILS_FILES	= ft_memory_allocation.c\
 			  ft_utils_list.c\
 			  utils.c
+
+	# VARIABLE_ENV
 
 VENV_FILES	= ft_parse_varenv.c\
 			  ft_replace_varenv.c\
@@ -101,6 +107,7 @@ FILES		= $(SOURCES)\
 			  $(UTILS_FILES)\
 			  $(PARS_FILES)\
 			  $(SIGN_FILES)\
+			  $(STAX_FILES)\
 			  $(EXEC_FILES)\
 			  $(BUILT_FILES)\
 			  $(VENV_FILES)\
@@ -114,6 +121,7 @@ INIT_FILES	:= $(addprefix init_minishell/, $(INIT_FILES))
 PARS_FILES	:= $(addprefix parsing/, $(PARS_FILES))
 UTILS_FILES	:= $(addprefix utils/, $(UTILS_FILES))
 SIGN_FILES	:= $(addprefix signals/, $(SIGN_FILES))
+STAX_FILES	:= $(addprefix syntax/, $(STAX_FILES))
 EXEC_FILES	:= $(addprefix execute/, $(EXEC_FILES))
 BUILT_FILES	:= $(addprefix builtins/, $(BUILT_FILES))
 VENV_FILES	:= $(addprefix variable_env/, $(VENV_FILES))
