@@ -95,6 +95,7 @@ int		ft_token_is_quoted(char *str);
 
 //		----- Ft_Trim_Quote -----
 void	ft_trim_quote(t_minishell *ms);
+char	*ft_remove_quote(char **str);
 
 //		===== SIGNAL DIRECTORY ======
 //
@@ -103,6 +104,11 @@ void	ft_handle_signals(int signo);
 
 //		----- Ft_init_signals.c -----
 void	ft_init_signals(void);
+
+//		===== SYNTAX DIRECTORY =====
+//
+//		----- Ft_Check_Syntax.c -----
+int		ft_check_syntax(t_minishell *ms);
 
 //		===== EXECUTE DIRECTORY =====
 //
@@ -171,14 +177,6 @@ int		ft_nbr_varenv(char *str);
 
 //		----- Ft_Add_Varenv_In_Token.c -----
 void	ft_add_varenv_in_token(t_list_token *token, char **env);
-void	ft_add_varenv_in_list(t_list_token *token, char **venv);
-char	*ft_getword_venv(char **str, char ***venv);
-char	*ft_getword_nodollars(char **str);
-int		ft_lenword_nodollars(char *str);
-char	*ft_getword_dollars(char **str, char ***venv);
-t_list_venv	*ft_lstnew_venv(char *word);
-void	ft_lstadd_back_venv(t_list_venv **lst, t_list_venv *nw);
-void	ft_lastadd_middle_token(t_list_token *lst, t_list_token *nw);
 
 //		----- Ft_Replace_Varenv.c -----
 void	ft_replace_varenv(t_list_token *token, char **env);

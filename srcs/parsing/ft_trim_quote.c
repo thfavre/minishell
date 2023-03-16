@@ -18,23 +18,30 @@ void	ft_trim_quote(t_minishell *ms)
 char	*ft_remove_quote(char **str)
 {
 	char	*trim;
-	char	*cpy;
+	char	c;
 	size_t	i;
 	size_t	j;
 
 	i = 0;
 	j = 0;
-	cpy = (*str);
-	trim = ft_calloc(sizeof(char), ft_strlen((*str)) - 2 + 1);
-	if (!trim)
-		return (NULL);
-	while (cpy[i] != '\0')
+	trim = ft_calloc(sizeof(char), ft_strlen(*str) + 1);
+	while (str[0][i] != '\0')
 	{
-		if (cpy[i] == '\'' || cpy[i] == '"')
+		if (str[0][i] == '"' || str[0][i] == '\'')
+		{
+			c = str[0][i];
 			i++;
+			while (str[0][i] != '\0' && str[0][i] != c)
+			{
+				trim[j] = str[0][i];
+				i++;
+				j++;
+			}
+			i++;
+		}
 		else
 		{
-			trim[j] = cpy[i];
+			trim[j] = str[0][i];
 			i++;
 			j++;
 		}
@@ -42,4 +49,3 @@ char	*ft_remove_quote(char **str)
 	free(*str);
 	return (trim);
 }
-
