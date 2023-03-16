@@ -7,9 +7,16 @@
 
 # === $ Bug ===
 
-- fix $alone
-- fix $ with wrong name venv
 - fix $ with special char -> "+=-^%$#@![]{},./?\|" and all numbers
+- line 60 ft\_add\_varenv\_in\_token.c need to free a variable
+
+
+# === Trim quote ===
+
+- need rework if $a is in a venv or not
+- ""$HOME'"'"'"	after expand -> ""/Users/mjulliat[']"'"'" [']\<missing
+- "'$a'" 		after expand -> "'ls -la[']" ["]<missing
+
 
 # === Syntax Error Bug ===
 
