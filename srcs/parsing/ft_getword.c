@@ -42,9 +42,9 @@ char	*ft_getword(char **str)
 	word = ft_calloc(sizeof(char), ft_lenword(*str) + 1);
 	while (**str != '\0')
 	{
-		if (**str == '\'' || **str == '"')
-			ft_getword_in_quote(str, word, &i ,**str);
-		else if (**str == '<' || **str == '>' || **str == '|' || **str == ' ')
+		if (**str == '<' || **str == '>' || **str == '|' || **str == ' ')
+			break ;
+		else if (**str == '\'' || **str == '"')
 			break ;
 		else 
 		{
@@ -56,19 +56,25 @@ char	*ft_getword(char **str)
 	return (word);
 }
 
-void	ft_getword_in_quote(char **str, char *word, int *i, char c)
+char	*ft_getword_quote(char **str, char c)
 {
+	char	*word;
+	int		i;
+
+	i = 0;
+	word = ft_calloc(sizeof(char), ft_lenword_quote(*str, c) + 1);
+	word[i] = (**str);
+	i++;
+	(*str)++;
 	while (**str != '\0')
 	{
-		word[*i] = **str;
-		(*str)++;
-		(*i)++;
+		word[i] = (**str);
 		if (**str == c)
-		{
-			word[*i] = **str;
-			(*str)++;
-			(*i)++;
 			break ;
-		}
+		i++;
+		(*str)++;
 	}
+	if (**str == c)
+		(*str)++;
+	return (word);
 }

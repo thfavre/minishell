@@ -20,6 +20,8 @@ char	*ft_get_token(char **str)
 	word = NULL;
 	if (**str == '<' || **str == '>' || **str == '|')
 		word = ft_getword_redirection(str, (char)**str);
+	else if (**str == '\'' || **str == '"')
+		word = ft_getword_quote(str, **str);
 	else if (**str == ' ')
 		word = ft_getword_space(str);
 	else if (**str != ' ')
@@ -38,39 +40,12 @@ int	ft_get_token_type(char *str)
 	else
 		return (E_STRING);
 }
-int	ft_find_next_quote(char *str, char c, size_t *i);
 
 int	ft_token_is_quoted(char *str)
 {
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == '\'')
-		{
-			if (ft_find_next_quote(str, '\'', &i) == 1)
-				return (E_SINGLE);
-		}
-		else if (str[i] == '"')
-		{
-			if (ft_find_next_quote(str, '"', &i) == 1)
-				return (E_DOUBLE);
-		}
-		i++;
-	}
+	if (str[0] == '\'')
+		return (E_SINGLE);
+	else if (str[0] == '"')
+		return (E_DOUBLE);
 	return (E_NONE);
-}
-
-int	ft_find_next_quote(char *str, char c, size_t *i)
-{
-	if (str[*i] == c)
-		(*i)++;
-	while (str[*i] != '\0' && str[*i] != c)
-	{
-		if (str[*i] == '$')
-			return (1);
-		(*i)++;
-	}
-	return (0);
 }

@@ -23,7 +23,6 @@ char	*ft_remove_quote(char **str)
 
 	i = 0;
 	j = 0;
-	printf("[%s] <-- *str\n", *str);
 	trim = ft_calloc(sizeof(char), ft_strlen(*str) + 1);
 	while (str[0][i] != '\0')
 	{

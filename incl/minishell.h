@@ -74,12 +74,16 @@ int		ft_get_outfile(t_list_token **pars);
 char	*ft_getword_redirection(char **str, char c);
 char	*ft_getword_space(char **str);
 char	*ft_getword(char **str);
-void	ft_getword_in_quote(char **str, char *word, int *i, char c);
+char	*ft_getword_quote(char **str, char c);
 
 //		----- Ft_Lenword.c -----
 int		ft_lenword_redirection(char *str, char c);
 int		ft_lenword_space(char *str);
 int		ft_lenword(char *str);
+int		ft_lenword_quote(char *str, char c);
+
+//		----- Ft_Join_Token.c -----
+void	ft_join_token(t_list_token *lst);
 
 //		----- Ft_Token_Type.c -----
 int		ft_is_redirection(char *str);
@@ -92,7 +96,6 @@ void	ft_tokenizing_prompt(t_minishell *ms, char *str);
 char	*ft_get_token(char **str);
 int		ft_get_token_type(char *str);
 int		ft_token_is_quoted(char *str);
-int		ft_find_next_quote(char *str, char c, size_t *i);
 
 //		----- Ft_Trim_Quote -----
 void	ft_trim_quote(t_minishell *ms);

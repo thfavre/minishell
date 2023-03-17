@@ -45,7 +45,8 @@ PARS_FILES	= ft_getword.c\
 			  ft_redirection.c\
 			  ft_token_type.c\
 			  ft_tokenizing_prompt.c\
-			  ft_trim_quote.c
+			  ft_trim_quote.c\
+			  ft_join_token.c
 
 	# SIGNALS
 
