@@ -92,6 +92,7 @@ void	ft_tokenizing_prompt(t_minishell *ms, char *str);
 char	*ft_get_token(char **str);
 int		ft_get_token_type(char *str);
 int		ft_token_is_quoted(char *str);
+int		ft_find_next_quote(char *str, char c, size_t *i);
 
 //		----- Ft_Trim_Quote -----
 void	ft_trim_quote(t_minishell *ms);
@@ -142,13 +143,13 @@ void	ft_cd(t_minishell *ms, char **paths);
 void	ft_unset(char **env, char **option);
 
 //		----- Ft_echo.c -----
-void ft_echo(char **option);
+void 	ft_echo(char **option);
 
 //		----- Ft_exit.c -----
-void ft_exit(t_minishell *ms);
+void 	ft_exit(t_minishell *ms);
 
 //		----- Ft_export.c -----
-void ft_export(t_minishell *ms, char **option);
+void 	ft_export(t_minishell *ms, char **option);
 
 
 //		===== UTILS DIRECTORY =====
@@ -164,8 +165,8 @@ void			ft_lstadd_back_cmd(t_list_cmd **lst, t_list_cmd *nw);
 void			ft_lstadd_back_token(t_list_token **lst, t_list_token *nw);
 
 //		----- Utils.c -----
-bool ft_isspace(char c);
-bool ft_isspace_only(char *str);
+bool 	ft_isspace(char c);
+bool 	ft_isspace_only(char *str);
 
 //		===== VARIABLE_ENV DIRECTORY =====
 //

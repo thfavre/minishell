@@ -9,8 +9,7 @@ void	ft_trim_quote(t_minishell *ms)
 	trim_quote = ms->token;
 	while (trim_quote != NULL)
 	{
-		if (trim_quote->quote == E_SINGLE || trim_quote->quote == E_DOUBLE)
-			trim_quote->word = ft_remove_quote(&trim_quote->word);
+		trim_quote->word = ft_remove_quote(&trim_quote->word);
 		trim_quote = trim_quote->next;
 	}
 }
@@ -24,6 +23,7 @@ char	*ft_remove_quote(char **str)
 
 	i = 0;
 	j = 0;
+	printf("[%s] <-- *str\n", *str);
 	trim = ft_calloc(sizeof(char), ft_strlen(*str) + 1);
 	while (str[0][i] != '\0')
 	{

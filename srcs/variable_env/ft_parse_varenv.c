@@ -18,11 +18,15 @@ void	ft_parse_varenv(t_minishell *ms)
 			if (ft_token_got_varenv(ms->token->word) == 1)
 				ft_replace_varenv(ms->token, ms->env);
 		}
+		else if (ms->token->type == E_STRING && ms->token->quote == E_SINGLE)
+		{
+			if (ft_token_got_varenv(ms->token->word) == 1)
+				ft_expand_single_quote(ms->token, ms->env);
+		}
 		ms->token = ms->token->next;
 	}
 	ms->token = start;
 }
-
 
 char	*ft_get_name_varenv(char *str)
 {
@@ -34,7 +38,7 @@ char	*ft_get_name_varenv(char *str)
 	len = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == '"' || str[i] == '$' || str[i] == ' ')
+		if (str[i] == '"' || str[i] == '$' || str[i] == ' ' || str[i] == '\'')
 			break ;
 		len++;
 		i++;

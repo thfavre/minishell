@@ -12,7 +12,7 @@ void	ft_parsing(t_minishell *ms, char *str_prompt)
 	ft_tokenizing_prompt(ms, str_prompt);
 	ft_parse_varenv(ms);
 	ft_trim_quote(ms);
-	test = ms->token;
+	test = ms->token;	
 	printf("####################\n");
 	printf("PROMPT TOKENIZED ->\n");
 	while (test != NULL)
@@ -20,6 +20,7 @@ void	ft_parsing(t_minishell *ms, char *str_prompt)
 		printf("-----\n");
 		printf("[%s] <- token\n", test->word);
 		printf("{%d} <- type\n", test->type);
+		printf("{%d} <- quote\n", test->quote);
 		test = test->next;
 	}
 	ft_parse_token(ms);

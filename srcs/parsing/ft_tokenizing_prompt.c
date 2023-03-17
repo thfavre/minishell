@@ -38,6 +38,7 @@ int	ft_get_token_type(char *str)
 	else
 		return (E_STRING);
 }
+int	ft_find_next_quote(char *str, char c, size_t *i);
 
 int	ft_token_is_quoted(char *str)
 {
@@ -47,10 +48,29 @@ int	ft_token_is_quoted(char *str)
 	while (str[i] != '\0')
 	{
 		if (str[i] == '\'')
-			return (E_SINGLE);
+		{
+			if (ft_find_next_quote(str, '\'', &i) == 1)
+				return (E_SINGLE);
+		}
 		else if (str[i] == '"')
-			return (E_DOUBLE);
+		{
+			if (ft_find_next_quote(str, '"', &i) == 1)
+				return (E_DOUBLE);
+		}
 		i++;
 	}
 	return (E_NONE);
+}
+
+int	ft_find_next_quote(char *str, char c, size_t *i)
+{
+	if (str[*i] == c)
+		(*i)++;
+	while (str[*i] != '\0' && str[*i] != c)
+	{
+		if (str[*i] == '$')
+			return (1);
+		(*i)++;
+	}
+	return (0);
 }
