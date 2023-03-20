@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:00 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/13 15:55:42 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/03/15 15:26:28 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void ft_export(t_minishell *ms, char **option)
 				continue;
 			key[ft_strlen(*option) - ft_strlen(ft_strchr(*option, '='))] = '\0';
 			value = ft_strchr(*option, '=') + 1;
-			printf("key : %s\n", key);
-			printf("value : %s\n", value);
+			printf("key : {%s}\n", key);
+			printf("value : {%s}\n", value);
 			ft_setenv(ms, key, value, 1);
 			// if (new_env != NULL)
 			// {
