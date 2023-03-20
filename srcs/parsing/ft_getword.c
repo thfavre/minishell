@@ -17,33 +17,6 @@ char	*ft_getword_redirection(char **str, char c)
 	return (word);
 }
 
-char	*ft_getword_quote(char **str, char c)
-{
-	char	*word;
-	int		i;
-
-	i = 0;
-	word = ft_calloc(sizeof(char), ft_lenword_quote(*str, c) + 1);
-	if (**str == c)
-	{
-		word[i] = (**str);
-		(*str)++;
-		i++;
-	}
-	while (**str != '\0' && **str != c)
-	{
-		word[i] = (**str);
-		i++;
-		(*str)++;
-	}
-	if (**str == c)
-	{
-		word[i] = (**str);
-		(*str)++;
-	}
-	return (word);
-}
-
 char	*ft_getword_space(char **str)
 {
 	char	*word;
@@ -69,13 +42,33 @@ char	*ft_getword(char **str)
 	word = ft_calloc(sizeof(char), ft_lenword(*str) + 1);
 	while (**str != '\0')
 	{
-		word[i] = (**str);
-		i++;
-		(*str)++;
-		if (**str == '\'' || **str == '"' || **str == ' ')
+		if (**str == '\'' || **str == '"')
+			ft_getword_in_quote(str, word, &i ,**str);
+		else if (**str == '<' || **str == '>' || **str == '|' || **str == ' ')
 			break ;
-		else if (**str == '<' || **str == '>' || **str == '|')
-			break ;
+		else 
+		{
+			word[i] = (**str);
+			(*str)++;
+			i++;
+		}
 	}
 	return (word);
+}
+
+void	ft_getword_in_quote(char **str, char *word, int *i, char c)
+{
+	while (**str != '\0')
+	{
+		word[*i] = **str;
+		(*str)++;
+		(*i)++;
+		if (**str == c)
+		{
+			word[*i] = **str;
+			(*str)++;
+			(*i)++;
+			break ;
+		}
+	}
 }

@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:00 by thomas            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/03/15 15:26:28 by thfavre          ###   ########.fr       */
+=======
+/*   Updated: 2023/03/15 22:40:43 by thomas           ###   ########.fr       */
+>>>>>>> 03714c2434a60e590826c8321764bb191ce060fd
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +35,13 @@ void ft_export(t_minishell *ms, char **option)
 				continue;
 			key[ft_strlen(*option) - ft_strlen(ft_strchr(*option, '='))] = '\0';
 			value = ft_strchr(*option, '=') + 1;
+<<<<<<< HEAD
 			printf("key : {%s}\n", key);
 			printf("value : {%s}\n", value);
+=======
+			// printf("key : %s\n", key);
+			// printf("value : %s\n", value);
+>>>>>>> 03714c2434a60e590826c8321764bb191ce060fd
 			ft_setenv(ms, key, value, 1);
 			// if (new_env != NULL)
 			// {
@@ -94,9 +103,21 @@ void print_sorted(char **arr, int n) {
 
 	sorted_arr = sort_strings(copy_arr, n);
 
+	int equal_pos;
+
 	for (i = 0; i < n; i++) {
+		equal_pos = 0;
+		if (ft_strchr(sorted_arr[i], '='))
+			equal_pos = ft_strchr(sorted_arr[i], '=') - sorted_arr[i];
 		printf("declare -x ");
-		printf("%s\n", sorted_arr[i]);
+		if (equal_pos != 0)
+		{
+			printf("%.*s", equal_pos+1, sorted_arr[i]);
+			printf("\"");
+			printf("%s\"\n", sorted_arr[i] + equal_pos + 1);
+		}
+		else
+			printf("%s\n", sorted_arr[i]);
 	}
 
 	ft_free_env(copy_arr);

@@ -62,4 +62,11 @@ enum e_token_quoted {
 	E_DOUBLE = 3
 };
 
+//		### ENUM FALSE OR TRUE ###
+
+enum e_state {
+	E_OK = 0,
+	E_KO = 1
+};
+
 #endif

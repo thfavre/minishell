@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:00 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/13 10:23:07 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/03/16 17:42:18 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ void ft_cd(t_minishell *ms, char **paths)
 	if (getcwd(old_cwd, sizeof(old_cwd)) == NULL)
 		return perror("getcwd() error");
 	dest = paths[1];
+	if (dest && paths[2] != NULL)
+	{
+		ft_putstr_fd("cd: too many arguments\n", 2);
+		return ;
+	}
+
 	if (dest == NULL)
 	{
 		dest = ft_getenv(ms->env, "HOME");

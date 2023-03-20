@@ -23,4 +23,5 @@ void	ft_parsing(t_minishell *ms, char *str_prompt)
 		test = test->next;
 	}
 	ft_parse_token(ms);
+	// Bonus : Expand the wildcard pattern
 }
