@@ -12,6 +12,7 @@
 - fix $ with special char -> "+=-^%$#@![]{},./?\|" and all numbers
 - line 60 ft\_add\_varenv\_in\_token.c need to free a variable
 - cat "" and then CTRL-C should not display the prompt twice
+- ./minshell and then CTRL-C should not print two lines
 
 # === Trim quote ===
 
