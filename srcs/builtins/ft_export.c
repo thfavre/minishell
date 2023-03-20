@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:00 by thomas            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/03/15 15:26:28 by thfavre          ###   ########.fr       */
-=======
-/*   Updated: 2023/03/15 22:40:43 by thomas           ###   ########.fr       */
->>>>>>> 03714c2434a60e590826c8321764bb191ce060fd
+/*   Updated: 2023/03/20 16:31:52 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +31,8 @@ void ft_export(t_minishell *ms, char **option)
 				continue;
 			key[ft_strlen(*option) - ft_strlen(ft_strchr(*option, '='))] = '\0';
 			value = ft_strchr(*option, '=') + 1;
-<<<<<<< HEAD
-			printf("key : {%s}\n", key);
-			printf("value : {%s}\n", value);
-=======
 			// printf("key : %s\n", key);
 			// printf("value : %s\n", value);
->>>>>>> 03714c2434a60e590826c8321764bb191ce060fd
 			ft_setenv(ms, key, value, 1);
 			// if (new_env != NULL)
 			// {
