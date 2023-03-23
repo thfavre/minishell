@@ -2,8 +2,9 @@
 - \>>
 - <<
 - &&
-- comamnd au path relatif et absolu
+<!-- - comamnd au path relatif et absolu -->
 - syntax erors
+- $?
 
 # === $ Bug ===
 

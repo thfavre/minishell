@@ -6,13 +6,13 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 20:45:16 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/13 14:32:35 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/03/23 15:58:00 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_env(char **env)
+int	ft_env(char **env)
 {
 	int	i;
 
@@ -25,4 +25,5 @@ void	ft_env(char **env)
 			printf("%s\n", env[i]);
 		i++;
 	}
+	return (EXIT_SUCCESS);
 }

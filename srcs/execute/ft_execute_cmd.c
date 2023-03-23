@@ -4,6 +4,7 @@
 void	ft_execute_cmd(t_minishell *ms)
 {
 	pid_t fork_pid;
+	printf("--->%s\n", ms->cmd->cmd);
 
 	if (ft_is_builtins(ms->cmd->cmd))
 	{

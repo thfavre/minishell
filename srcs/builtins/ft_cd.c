@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:00 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/16 17:42:18 by thomas           ###   ########.fr       */
+/*   Updated: 2023/03/23 15:55:42 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void ft_cd(t_minishell *ms, char **paths)
+void	ft_cd(t_minishell *ms, char **paths)
 {
 	char	*dest;
 	char	old_cwd[1024];
