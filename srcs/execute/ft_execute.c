@@ -8,7 +8,6 @@ void ft_execute(t_minishell *ms)
 		ft_execute_cmd(ms);
 	else
 		ft_execute_cmds(ms);
-	printf("exit status : %d\n", last_exit_status);
 }
 
 
