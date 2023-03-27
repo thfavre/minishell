@@ -37,6 +37,7 @@ int main(int ac, char **av, char **env)
 			ft_parsing(&ms, prompt_output);
 			if (ms.syntax == 0)
 				ft_execute(&ms);
+			printf("[%d] <- exit_code\n", last_exit_status);
 			ft_free_token(&ms);
 			ft_free_pars(&ms);
 		}
