@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:09:27 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/27 14:37:38 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/27 17:57:53 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,9 @@ int	ft_check_syntax(t_list_token *syntax)
 	return (0);
 }
 
-int	ft_redirection_check(t_list_token *syntax)
-{
-	if (syntax->next != NULL)
-	{
-		if (syntax->type == E_REDIRECTION && syntax->next->type != E_STRING)
-			return (1);
-	}
-	if (syntax->type == E_REDIRECTION && syntax->next == NULL)
-		return (1);
-	return (0);
-}
-
 void	ft_display_error_syntax(int code_error)
 {
+	last_exit_status = 258;
 	if (code_error == 1)
 		printf("minishell: syntax error quote not closed\n");
 	else if (code_error == 2)

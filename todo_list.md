@@ -9,3 +9,5 @@
 # ===Crashes ===
 
 - cat | cat | ls
+- < test
+- > test

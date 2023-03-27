@@ -6,11 +6,12 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:18:31 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/27 15:27:44 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/27 18:02:09 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+void	ft_open_files_redirection(t_list_token **pars, t_cmd *cmd);
 
 t_cmd	*ft_init_cmd(t_list_token **pars)
 {
@@ -29,6 +30,7 @@ t_cmd	*ft_init_cmd(t_list_token **pars)
 	{
 		if ((*pars)->type == E_REDIRECTION)
 		{
+		//	ft_open_files_redirection(pars, cmd);
 			if (ft_strcmp((*pars)->word, D_INFILE) == 0)
 			{
 				cmd->read = ft_get_infile(pars);
@@ -83,7 +85,7 @@ t_cmd	*ft_init_cmd(t_list_token **pars)
 	}
 	return (cmd);
 }
-/*
+
 void	ft_open_files_redirection(t_list_token **pars, t_cmd *cmd)
 {
 	if (ft_strcmp((*pars)->word, D_INFILE) == 0)
@@ -92,4 +94,10 @@ void	ft_open_files_redirection(t_list_token **pars, t_cmd *cmd)
 		if ((*pars) != NULL)
 			(*pars) = (*pars)->next;
 	}
-}*/
+	else if (ft_strcmp((*pars)->word, D_OUTFILE) == 0)
+	{
+		cmd->write = ft_get_outfile(pars);
+		if ((*pars) != NULL)
+			(*pars) = (*pars)->next;
+	}
+}

@@ -206,10 +206,12 @@ int		ft_pipe_error(t_list_token *syntax);
 int		ft_quote_closed(char *str);
 int		ft_quote_is_open(char *str, char c, size_t *i);
 
+//		----- Ft_Redirection_Check.c -----
+int		ft_redirection_check(t_list_token *syntax);
+
 //		----- Ft_Syntax.c -----
 int		ft_syntax(t_minishell *ms);
 int		ft_check_syntax(t_list_token *syntax);
-int		ft_redirection_check(t_list_token *syntax);
 void	ft_display_error_syntax(int code_error);
 
 //###########################################//

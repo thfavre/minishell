@@ -7,6 +7,8 @@ char	*ft_getenv(char **env, char *key)
 	size_t	key_end_index;
 
 	i = 0;
+	if (ft_strcmp(key, "?") == 0)
+		return (ft_itoa(last_exit_status));
 	while (env[i])
 	{
 		key_end_index = 0;

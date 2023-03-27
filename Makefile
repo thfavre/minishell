@@ -93,7 +93,8 @@ SIGN_FILES	= ft_init_signals.c\
 
 STAX_FILES	= ft_syntax.c\
 			  ft_pipe_check.c\
-			  ft_quote_closed.c
+			  ft_quote_closed.c\
+			  ft_redirection_check.c
 
 	# UTILS
 

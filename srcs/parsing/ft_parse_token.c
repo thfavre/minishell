@@ -1,26 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parse_token.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/27 17:28:16 by mjulliat          #+#    #+#             */
+/*   Updated: 2023/03/27 18:01:37 by mjulliat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_parse_token(t_minishell *ms)
+void	ft_print_list_cmd(t_list_cmd *cmd)
 {
-	t_list_token	*pars;
-	t_list_cmd		*test;
-	t_list_token	*start;
+	t_list_cmd	*test;
+	int			i;
+	int			j;
 
-	start = ms->token;
-	pars = ms->token;
-	printf("####################\n");
-	printf("parsing token ->\n");
-	while (pars != NULL)
-	{
-		if (!ms->cmd)
-			ms->cmd = ft_lstnew_cmd(ft_init_cmd(&pars));
-		else
-			ft_lstadd_back_cmd(&ms->cmd, ft_lstnew_cmd(ft_init_cmd(&pars)));
-	}
-	test = ms->cmd;
-	int	j = 0;
-	int	i = 0;
+	i = 0;
+	j = 0;
+	test = cmd;
+	printf("###\nPARSING TOKEN\n");
 	while (test != NULL)
 	{
 		printf(" --- cmd[%d] ---\n", j);
@@ -36,5 +37,22 @@ void	ft_parse_token(t_minishell *ms)
 		j++;
 		test = test->next;
 	}
+}
+
+void	ft_parse_token(t_minishell *ms)
+{
+	t_list_token	*pars;
+	t_list_token	*start;
+
+	start = ms->token;
+	pars = ms->token;
+	while (pars != NULL)
+	{
+		if (!ms->cmd)
+			ms->cmd = ft_lstnew_cmd(ft_init_cmd(&pars));
+		else
+			ft_lstadd_back_cmd(&ms->cmd, ft_lstnew_cmd(ft_init_cmd(&pars)));
+	}
 	ms->token = start;
+	ft_print_list_cmd(ms->cmd);
 }
