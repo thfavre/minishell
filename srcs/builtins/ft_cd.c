@@ -6,34 +6,31 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:00 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/23 15:55:42 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/03/27 14:21:37 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_cd(t_minishell *ms, char **paths)
+int	ft_cd(t_minishell *ms, char **paths)
 {
 	char	*dest;
 	char	old_cwd[1024];
 	// TODO check errors of this function
 
 	if (getcwd(old_cwd, sizeof(old_cwd)) == NULL)
-		return perror("getcwd() error");
-	dest = paths[1];
-	if (dest && paths[2] != NULL)
 	{
-		ft_putstr_fd("cd: too many arguments\n", 2);
-		return ;
+		perror("getcwd() error");
+		return (errno);
 	}
-
+	dest = paths[1];
 	if (dest == NULL)
 	{
 		dest = ft_getenv(ms->env, "HOME");
 		if (dest == NULL)
 		{
-			write(2, "cd: HOME not set\n", 18);
-			return ;
+			ft_putstr_fd("cd: HOME not set\n", 2);
+			return (EXIT_FAILURE);
 		}
 	}
 	else if (ft_strcmp(dest, "-") == 0)
@@ -41,14 +38,22 @@ void	ft_cd(t_minishell *ms, char **paths)
 		dest = ft_getenv(ms->env, "OLDPWD"); // TODO free
 		if (dest == NULL)
 		{
-			write(2, "cd: OLDPWD not set\n", 20);
-			return ;
+			ft_putstr_fd("cd: OLDPWD not set\n", 2);
+			return (EXIT_FAILURE);
+
 		}
 	}
 	if (chdir(dest) != 0)
-		printf("cd: %s: %s ()\n", paths[1], strerror(errno)); // TODO do in on STDERROR fd...
+	{
+		ft_putstr_fd("cd: ", 2);
+		ft_putstr_fd(dest, 2);
+		ft_putstr_fd(": No such file or directory\n", 2); // should write (strerror(errno) but it takes too much lines...)
+		return (errno);
+		// printf("cd: %s: %s ()\n", paths[1], strerror(errno)); // TODO do in on STDERROR fd...
+	}
 	else
 	{
 		ft_setenv(ms, "OLDPWD", old_cwd, 1); // WHY LEAKS?!!!
 	}
+	return (EXIT_SUCCESS);
 }

@@ -127,30 +127,30 @@ void	ft_execute_cmd(t_minishell *ms);
 void	ft_execute_cmds(t_minishell *ms);
 
 //		----- Ft_execute_external.c -----
-void	ft_execute_builtin(t_minishell *ms, struct s_list_cmd *cmd);
+int		ft_execute_builtin(t_minishell *ms, struct s_list_cmd *cmd);
 
 //		===== BUILTINS DIRECTORY =====
 //
 //		----- Ft_env.c -----
-void	ft_env(char **env);
+int	ft_env(char **env);
 
 //		----- Ft_pwd.c -----
-void	ft_pwd(void);
+int	ft_pwd(void);
 
 //		----- Ft_cd.c -----
-void	ft_cd(t_minishell *ms, char **paths);
+int	ft_cd(t_minishell *ms, char **paths);
 
 //		----- Ft_unset.c -----
-void	ft_unset(char **env, char **option);
+int	ft_unset(char **env, char **option);
 
 //		----- Ft_echo.c -----
-void ft_echo(char **option);
+int	ft_echo(char **option);
 
 //		----- Ft_exit.c -----
-void ft_exit(t_minishell *ms);
+void	ft_exit(t_minishell *ms, char **option);
 
 //		----- Ft_export.c -----
-void ft_export(t_minishell *ms, char **option);
+int	ft_export(t_minishell *ms, char **option);
 
 
 //		===== UTILS DIRECTORY =====

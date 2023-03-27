@@ -2,6 +2,9 @@
 #ifndef STRUCT_H
 # define STRUCT_H
 
+// global variable
+int					last_exit_status;
+
 //		### All Data ###
 
 typedef struct s_minishell {
@@ -11,7 +14,7 @@ typedef struct s_minishell {
 	int					fd_tmp_pipe;
 	struct s_list_token	*token;
 	struct s_list_cmd	*cmd;
-	int					last_status;
+	// int					last_exit_status;
 }						t_minishell;
 
 //		### Chain List Token ###
