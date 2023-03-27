@@ -31,7 +31,4 @@
 # === Bug redirection ===
 
 ## Crashes :
-	>
-	<
-	>test
-	<test
+	cat | cat | ls

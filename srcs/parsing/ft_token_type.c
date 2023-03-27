@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_token_type.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/27 12:51:35 by mjulliat          #+#    #+#             */
+/*   Updated: 2023/03/27 12:52:50 by mjulliat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_is_builtins(char *str) // (Do not erase, I need this function for the execution)
+// (Do not erase, I need this function for the execution)
+int	ft_is_builtins(char *str)
 {
 	if (ft_strcmp(str, D_ECHO) == 0)
 		return (1);

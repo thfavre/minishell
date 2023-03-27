@@ -21,5 +21,5 @@ char	*ft_getenv(char **env, char *key)
 			return (env[i] + key_end_index + 1);
 		i++;
 	}
-	return (NULL);
+	return (ft_calloc(1,1));
 }
