@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_utils_list.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/27 14:36:04 by mjulliat          #+#    #+#             */
+/*   Updated: 2023/03/27 14:36:11 by mjulliat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -28,6 +39,7 @@ t_list_token	*ft_lstnew_token(char *word)
 	new->type = ft_get_token_type(word);
 	new->quote = ft_token_is_quoted(word);
 	new->next = NULL;
+	new->previous = NULL;
 	return (new);
 }
 
@@ -58,5 +70,6 @@ void	ft_lstadd_back_token(t_list_token **lst, t_list_token *nw)
 		while (node->next != NULL)
 			node = node->next;
 		node->next = nw;
+		nw->previous = node;
 	}
 }

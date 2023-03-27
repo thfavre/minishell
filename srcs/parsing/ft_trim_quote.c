@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_trim_quote.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/27 12:50:58 by mjulliat          #+#    #+#             */
+/*   Updated: 2023/03/27 12:51:02 by mjulliat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
-char	*ft_remove_quote(char **str);
 
 void	ft_trim_quote(t_minishell *ms)
 {
@@ -31,20 +41,19 @@ char	*ft_remove_quote(char **str)
 			c = str[0][i];
 			i++;
 			while (str[0][i] != '\0' && str[0][i] != c)
-			{
-				trim[j] = str[0][i];
-				i++;
-				j++;
-			}
+				ft_strcat_trim_quote(trim, *str, &i, &j);
 			i++;
 		}
 		else
-		{
-			trim[j] = str[0][i];
-			i++;
-			j++;
-		}
+			ft_strcat_trim_quote(trim, *str, &i, &j);
 	}
 	free(*str);
 	return (trim);
+}
+
+void	ft_strcat_trim_quote(char *s1, char *s2, size_t *i, size_t *j)
+{
+	s1[*j] = s2[*i];
+	(*i)++;
+	(*j)++;
 }

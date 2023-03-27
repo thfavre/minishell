@@ -2,7 +2,7 @@
 #include "minishell.h"
 
 void ft_execute(t_minishell *ms)
-{
+{	
 	// if only one command => No need of a fork for ONLY the builtins ^^
 	if (ms->cmd->next == NULL)
 		ft_execute_cmd(ms);

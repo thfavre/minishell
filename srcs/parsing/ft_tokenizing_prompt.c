@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_tokenizing_prompt.c                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/27 12:51:29 by mjulliat          #+#    #+#             */
+/*   Updated: 2023/03/27 12:51:32 by mjulliat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -5,7 +16,7 @@ void	ft_tokenizing_prompt(t_minishell *ms, char *str)
 {
 	t_list_token	*token;
 
-	while (*str == ' ' && *str == '\t') // TODO or NOT
+	while (ft_isspace(*str) == true)
 		str++;
 	token = ft_lstnew_token(ft_get_token(&str));
 	ms->token = token;
