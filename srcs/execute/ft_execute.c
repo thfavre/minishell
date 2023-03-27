@@ -4,7 +4,6 @@
 void ft_execute(t_minishell *ms)
 {	
 	// if only one command => No need of a fork for ONLY the builtins ^^
-	printf("{%s}\n", ms->cmd->option[1]);
 	if (ms->cmd->next == NULL)
 		ft_execute_cmd(ms);
 	else
