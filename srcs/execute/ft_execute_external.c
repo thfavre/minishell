@@ -31,4 +31,5 @@ void	ft_execute_external(char **env, struct s_list_cmd *cmd)
 
 	ft_putstr_fd(cmd->cmd, 2);
 	ft_putstr_fd(": command not found\n", 2);
+	exit(127);
 }

@@ -101,7 +101,7 @@ SIGN_FILES	= ft_init_signals.c\
 			  ft_handle_signals.c
 
 	# SYNTAX
-	
+
 STAX_FILES	= ft_syntax.c\
 			  ft_pipe_check.c\
 			  ft_quote_closed.c

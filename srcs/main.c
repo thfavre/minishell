@@ -42,8 +42,9 @@ int main(int ac, char **av, char **env)
 		}
 		free(prompt_output);
 	}
-	ft_exit(&ms);
-	return (0);
+	// ft_putstr_fd("exit\n", 1); // TODO in on STDERROR or STDOUT fd ?
+	ft_close(&ms);
+	return (EXIT_SUCCESS);
 }
 
 char	*ft_get_prompt(void)  // TODO put somewhere else (a folder ??) How to name this function ? Is it realy the prompt?

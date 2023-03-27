@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:00 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/11 00:49:45 by thomas           ###   ########.fr       */
+/*   Updated: 2023/03/23 15:56:49 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void ft_echo(char **option)
+int ft_echo(char **option)
 {
 	bool	newline;
 
@@ -32,5 +32,5 @@ void ft_echo(char **option)
 	}
 	if (newline)
 		ft_putchar_fd('\n', 1);
-
+	return (EXIT_SUCCESS);
 }

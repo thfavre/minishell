@@ -11,8 +11,11 @@ void ft_handle_signals(int signo)
 		rl_redisplay();
 		// Terminate any child processes that are currently running.
 		//kill(0, SIGTERM);
+		last_exit_status = EXIT_FAILURE;
 	}
-	// else if (signo == SIGQUIT) // to close the program using CTRL-D
-	// 	{printf("AAAA\n");
-	// 	kill(0, SIGTERM);}
+	else if (signo == SIGQUIT) // to do nothing with clr-backstlash
+	{
+		rl_on_new_line();
+		rl_redisplay();
+	}
 }

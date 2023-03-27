@@ -12,6 +12,8 @@
 # include <signal.h>
 # include <errno.h>
 # include <stdbool.h>
+# include <termios.h>
+
 
 # include "libft.h"
 # include "struct.h"

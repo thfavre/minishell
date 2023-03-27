@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:00 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/20 16:31:52 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/03/27 14:13:24 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 void	ft_print_all_exported_vars(char **env);
 
-void ft_export(t_minishell *ms, char **option)
+int	ft_export(t_minishell *ms, char **option)
 {
 	char	*key;
 	char	*value;
+	int		exit_status;
 
+	exit_status = EXIT_SUCCESS;
 	option++; // skip the command name
 	if (*option == NULL)
 		ft_print_all_exported_vars(ms->env);
@@ -59,6 +61,7 @@ void ft_export(t_minishell *ms, char **option)
 		// }
 		option++;
 	}
+	return (exit_status);
 }
 
 char **sort_strings(char **arr, int n) {
