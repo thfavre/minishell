@@ -127,7 +127,11 @@ int		ft_len_new_word(char *word, char **var_env);
 void	ft_init_minishell(t_minishell *ms, char **env);
 
 //		----- Ft_Init_Cmd.c -----
-t_cmd	*ft_init_cmd(t_list_token **pars, int *fd_pipe);
+t_cmd	*ft_init_cmd(t_list_token **pars);
+
+//		----- Ft_Redirection.c -----
+int		ft_get_infile(t_list_token **pars);
+int		ft_get_outfile(t_list_token **pars);
 
 //###########################################//
 //		===== PARSING DIRECTORY =====
@@ -156,10 +160,6 @@ void	ft_parse_token(t_minishell *ms);
 
 //		----- Ft_parsing.c -----
 void	ft_parsing(t_minishell *ms, char *str_prompt);
-
-//		----- Ft_Redirection.c -----
-int		ft_get_infile(t_list_token **pars);
-int		ft_get_outfile(t_list_token **pars);
 
 //		----- Ft_Token_Type.c -----
 int		ft_is_redirection(char *str);

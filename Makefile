@@ -59,7 +59,8 @@ EXP_FILES	= ft_expand.c\
 	# INIT_MINISHELL
 
 INIT_FILES	= ft_init_minishell.c\
-			  ft_init_cmd.c
+			  ft_init_cmd.c\
+			  ft_redirection.c
 
 	# LIBFT
 
@@ -78,7 +79,6 @@ PARS_FILES	= ft_getword.c\
 			  ft_lenword.c\
 			  ft_parse_token.c\
 			  ft_parsing.c\
-			  ft_redirection.c\
 			  ft_token_type.c\
 			  ft_tokenizing_prompt.c\
 			  ft_trim_quote.c\

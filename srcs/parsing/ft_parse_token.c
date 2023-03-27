@@ -14,9 +14,9 @@ void	ft_parse_token(t_minishell *ms)
 	while (pars != NULL)
 	{
 		if (!ms->cmd)
-			ms->cmd = ft_lstnew_cmd(ft_init_cmd(&pars, ms->fd_pipe));
+			ms->cmd = ft_lstnew_cmd(ft_init_cmd(&pars));
 		else
-			ft_lstadd_back_cmd(&ms->cmd, ft_lstnew_cmd(ft_init_cmd(&pars, ms->fd_pipe)));
+			ft_lstadd_back_cmd(&ms->cmd, ft_lstnew_cmd(ft_init_cmd(&pars)));
 	}
 	test = ms->cmd;
 	int	j = 0;
