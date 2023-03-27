@@ -1,18 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_init_cmd.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/27 15:18:31 by mjulliat          #+#    #+#             */
+/*   Updated: 2023/03/27 15:27:44 by mjulliat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
-t_cmd	*ft_init_cmd(t_list_token **pars, int *fd_pipe)
+t_cmd	*ft_init_cmd(t_list_token **pars)
 {
 	t_cmd	*cmd;
 	char	*option_tmp[1024];
 	int		i;
 
-	(void) fd_pipe;
 	cmd = malloc(sizeof(t_cmd));
 	if (!cmd)
 		return (NULL);
-	i = 1;	
-	*cmd = (t_cmd) {};
+	i = 1;
+	*cmd = (t_cmd){};
 	cmd->read = 0;
 	cmd->write = 1;
 	while ((*pars) != NULL)
@@ -73,3 +83,13 @@ t_cmd	*ft_init_cmd(t_list_token **pars, int *fd_pipe)
 	}
 	return (cmd);
 }
+/*
+void	ft_open_files_redirection(t_list_token **pars, t_cmd *cmd)
+{
+	if (ft_strcmp((*pars)->word, D_INFILE) == 0)
+	{
+		cmd->read = ft_get_infile(pars);
+		if ((*pars) != NULL)
+			(*pars) = (*pars)->next;
+	}
+}*/
