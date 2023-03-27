@@ -3,6 +3,7 @@
 - <<
 - &&
 - comamnd au path relatif et absolu
+<<<<<<< HEAD
 - syntax erors
 
 # === $ Bug ===
@@ -28,6 +29,8 @@
 - quote and single quote not close should return syntax error
 
 # === Bug redirection ===
+=======
+>>>>>>> syntax
 
 ## Crashes :
 	cat | cat | ls
