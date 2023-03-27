@@ -89,7 +89,6 @@ void	ft_execute(t_minishell *ms);
 
 //		----- Ft_execute_builtin.c -----
 void	ft_execute_external(char **env, struct s_list_cmd *cmd);
-<<<<<<< HEAD
 
 //		----- Ft_execute_cmd.c -----
 void	ft_execute_cmd(t_minishell *ms);
@@ -122,7 +121,6 @@ void	ft_replace_varenv(t_list_token *token, char **env);
 char	*ft_get_new_word(char *word, char **var_env);
 int		ft_len_new_word(char *word, char **var_env);
 
-=======
 
 //		----- Ft_execute_cmd.c -----
 void	ft_execute_cmd(t_minishell *ms);
@@ -155,7 +153,6 @@ void	ft_replace_varenv(t_list_token *token, char **env);
 char	*ft_get_new_word(char *word, char **var_env);
 int		ft_len_new_word(char *word, char **var_env);
 
->>>>>>> syntax
 //###########################################//
 //		===== INIT_MINISHELL DIRECTORY =====
 //###########################################//
@@ -164,15 +161,11 @@ int		ft_len_new_word(char *word, char **var_env);
 void	ft_init_minishell(t_minishell *ms, char **env);
 
 //		----- Ft_Init_Cmd.c -----
-<<<<<<< HEAD
-t_cmd	*ft_init_cmd(t_list_token **pars, int *fd_pipe);
-=======
 t_cmd	*ft_init_cmd(t_list_token **pars);
 
 //		----- Ft_Redirection.c -----
 int		ft_get_infile(t_list_token **pars);
 int		ft_get_outfile(t_list_token **pars);
->>>>>>> syntax
 
 //###########################################//
 //		===== PARSING DIRECTORY =====
@@ -201,13 +194,10 @@ void	ft_parse_token(t_minishell *ms);
 
 //		----- Ft_parsing.c -----
 void	ft_parsing(t_minishell *ms, char *str_prompt);
-<<<<<<< HEAD
 
 //		----- Ft_Redirection.c -----
 int		ft_get_infile(t_list_token **pars);
 int		ft_get_outfile(t_list_token **pars);
-=======
->>>>>>> syntax
 
 //		----- Ft_Token_Type.c -----
 int		ft_is_redirection(char *str);
