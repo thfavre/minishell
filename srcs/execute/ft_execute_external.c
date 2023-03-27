@@ -7,6 +7,8 @@ void	ft_execute_external(char **env, struct s_list_cmd *cmd)
 	char	**splited_path;
 	int		i;
 
+	if (access(cmd->cmd, X_OK) == 0)
+		execve(cmd->cmd, cmd->option, env);
 	splited_path = ft_getsplitedpath(env);
 	i = 0;
 	while (splited_path && splited_path[i] != NULL)
