@@ -9,6 +9,7 @@ typedef struct s_minishell {
 	// char				**path;
 	int					fd_pipe[2];
 	int					fd_tmp_pipe;
+	int					syntax;
 	struct s_list_token	*token;
 	struct s_list_cmd	*cmd;
 }						t_minishell;
@@ -20,6 +21,7 @@ typedef struct s_list_token {
 	int					type;
 	int					quote;
 	struct s_list_token	*next;
+	struct s_list_token	*previous;
 }						t_list_token;
 
 //		### Chain List Var_env ####

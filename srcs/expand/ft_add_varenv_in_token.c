@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_add_varenv_in_token.c                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/27 12:26:09 by mjulliat          #+#    #+#             */
+/*   Updated: 2023/03/27 12:26:22 by mjulliat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 void		ft_add_varenv_in_list(t_list_token *token, char **venv);
@@ -37,13 +48,11 @@ void	ft_add_varenv_in_token(t_list_token *token, char **env)
 			nb_venv++;
 			free(name_venv);
 		}
-		i++;
+		else
+			i++;
 	}
-	if (var_env[0] != NULL)
-	{
-		ft_add_varenv_in_list(token, var_env);
-		free(var_env);
-	}
+	ft_add_varenv_in_list(token, var_env);
+	free(var_env);
 }
 
 void	ft_add_varenv_in_list(t_list_token *token, char **venv)
@@ -99,22 +108,23 @@ void	ft_join_word_venv(t_list_venv *lst)
 	int			i;
 	int			j;
 
-	i = 0;
-	j = 0;
 	while (lst != NULL)
 	{
 		if (lst->next != NULL && *lst->word != ' ' && *lst->next->word != ' ')
 		{
+			i = 0;
+			j = 0;
 			new_word = ft_calloc(sizeof(char), \
 				ft_strlen(lst->word) + ft_strlen(lst->next->word) + 1);
-			while (lst->word[i] != '\0')
+			//	TODO check malloc error
+			while (lst->word[i] != '\0')	// TODO need to replace by strcat
 			{
 				new_word[j] = lst->word[i];
 				i++;
 				j++;
 			}
 			i = 0;
-			while (lst->next->word[i] != '\0')
+			while (lst->next->word[i] != '\0')	// TODO need to replace by strcat
 			{
 				new_word[j] = lst->next->word[i];
 				i++;
@@ -127,7 +137,8 @@ void	ft_join_word_venv(t_list_venv *lst)
 			free(tmp->word);
 			free(tmp);
 		}
-		lst = lst->next;
+		else
+			lst = lst->next;
 	}
 }
 

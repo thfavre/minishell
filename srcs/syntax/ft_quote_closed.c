@@ -1,20 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_minishell.c                                :+:      :+:    :+:   */
+/*   ft_quote_closed.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 14:35:11 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/27 14:35:41 by mjulliat         ###   ########.fr       */
+/*   Created: 2023/03/27 12:09:23 by mjulliat          #+#    #+#             */
+/*   Updated: 2023/03/27 12:17:34 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_init_minishell(t_minishell *ms, char **env)
+int	ft_quote_closed(char *str)
 {
-	*ms = (t_minishell){};
-	ms->env = ft_initenv(env);
-	ms->syntax = 0;
+	size_t	i;
+	int		open;
+
+	i = 0;
+	open = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == '\'' || str[i] == '"')
+			open = ft_quote_is_open(str, str[i], &i);
+		else
+			i++;
+	}
+	if (open == 1)
+		return (1);
+	return (0);
+}
+
+int	ft_quote_is_open(char *str, char c, size_t *i)
+{
+	(*i)++;
+	while (str[*i] != '\0')
+	{
+		if (str[*i] == c)
+		{
+			(*i)++;
+			return (0);
+		}
+		(*i)++;
+	}
+	return (1);
 }

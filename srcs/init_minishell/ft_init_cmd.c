@@ -22,12 +22,14 @@ t_cmd	*ft_init_cmd(t_list_token **pars, int *fd_pipe)
 			if (ft_strcmp((*pars)->word, D_INFILE) == 0)
 			{
 				cmd->read = ft_get_infile(pars);
-				(*pars) = (*pars)->next;
+				if ((*pars) != NULL)
+					(*pars) = (*pars)->next;
 			}
 			else if (ft_strcmp((*pars)->word, D_OUTFILE) == 0)
 			{
 				cmd->write = ft_get_outfile(pars);
-				(*pars) = (*pars)->next;
+				if ((*pars) != NULL)
+					(*pars) = (*pars)->next;
 			}
 		}
 		else if ((*pars)->type == E_STRING)

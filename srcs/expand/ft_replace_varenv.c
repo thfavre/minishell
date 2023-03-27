@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_replace_varenv.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/27 12:26:14 by mjulliat          #+#    #+#             */
+/*   Updated: 2023/03/27 12:26:16 by mjulliat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -24,14 +35,11 @@ void	ft_replace_varenv(t_list_token *token, char **env)
 			nb_venv++;
 			free(name_venv);
 		}
-		i++;
+		else
+			i++;
 	}
-	if (var_env[0] != NULL)
-	{
-		token->word = ft_get_new_word(token->word, var_env);
-		printf("[%s] <--token->word\n", token->word);
-		free(var_env);
-	}
+	token->word = ft_get_new_word(token->word, var_env);
+	free(var_env);
 }
 
 char	*ft_get_new_word(char *word, char **var_env)
@@ -64,10 +72,10 @@ char	*ft_get_new_word(char *word, char **var_env)
 			k++;
 			i = save;
 			i++;
-			while (word[i] != '"' && word[i] != ' ' && word[i] != '$')
+			while (word[i] != '"' && word[i] != ' ' && word[i] != '$' && word[i] != '\0')
 				i++;
 		}
-		else
+		else	// TODO need to replace by strcat
 		{
 			new_word[j] = word[i];
 			i++;
