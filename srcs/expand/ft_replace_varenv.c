@@ -6,12 +6,17 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:26:14 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/27 12:26:16 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/29 11:19:34 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/*
+ * ft_nbr_varnev(char *str) <- expand/ft_expand_utils.c
+ * ft_get_name_varenv(char *str) <- expand/ft_expand_utils.c
+ * ft_getenv(char **env, char *key) <- environment/ft_getenv.c 
+ */
 void	ft_replace_varenv(t_list_token *token, char **env)
 {
 	size_t	i;

@@ -1,21 +1,35 @@
 
 #include "minishell.h"
 
-char	*ft_prompt(void);
+char	*ft_get_prompt(void)  // TODO put somewhere else (a folder ??) How to name this function ? Is it realy the prompt?
+{
+	char	*cwd;
+	size_t alloc_size;
 
-/*TODO LIST
-Errors :
-	ls >|	should not create the file when file start with ., <, >, ...(-bash: syntax error near unexpected token `newline')
+	alloc_size  = sizeof(*cwd) * 1024;
+	cwd = malloc(alloc_size);
+	strcpy(cwd, PROMPT_COLOR);
+	// TODO what if malloc error ?
+	if (getcwd(cwd + ft_strlen(PROMPT_COLOR), alloc_size) == NULL)
+		perror("getcwd() error");
+	else
+	{
+		strcat(cwd, COLOR_RESET);
+		strcat(cwd, "$ ");
+	}
+	return (cwd);
+}
 
-Crashes :
-	>
-	<
-	>test
-	<test
+char	*ft_prompt(void)
+{
+	char	*prompt_text;
+	char	*prompt_output;
 
-Bonus :
-	cd -
-*/
+	prompt_text = ft_get_prompt();
+	prompt_output = readline(prompt_text);
+	free(prompt_text);
+	return (prompt_output);
+}
 
 int main(int ac, char **av, char **env)
 {
@@ -45,34 +59,4 @@ int main(int ac, char **av, char **env)
 	// ft_putstr_fd("exit\n", 1); // TODO in on STDERROR or STDOUT fd ?
 	ft_close(&ms);
 	return (EXIT_SUCCESS);
-}
-
-char	*ft_get_prompt(void)  // TODO put somewhere else (a folder ??) How to name this function ? Is it realy the prompt?
-{
-	char	*cwd;
-	size_t alloc_size;
-
-	alloc_size  = sizeof(*cwd) * 1024;
-	cwd = malloc(alloc_size);
-	strcpy(cwd, PROMPT_COLOR);
-	// TODO what if malloc error ?
-	if (getcwd(cwd + ft_strlen(PROMPT_COLOR), alloc_size) == NULL)
-		perror("getcwd() error");
-	else
-	{
-		strcat(cwd, COLOR_RESET);
-		strcat(cwd, "$ ");
-	}
-	return (cwd);
-}
-
-char	*ft_prompt(void)
-{
-	char	*prompt_text;
-	char	*prompt_output;
-
-	prompt_text = ft_get_prompt();
-	prompt_output = readline(prompt_text);
-	free(prompt_text);
-	return (prompt_output);
 }
