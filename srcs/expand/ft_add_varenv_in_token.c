@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:26:09 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/27 12:26:22 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/27 17:14:11 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ void	ft_add_varenv_in_token(t_list_token *token, char **env)
 		{
 			i++;
 			name_venv = ft_get_name_varenv(&token->word[i]);
+			printf("[%s] <- name_venv\n", name_venv);
 			var_env[nb_venv] = ft_getenv(env, name_venv);
+			printf("[%s] <- var_env[nb_venv]\n", var_env[nb_venv]);
 			if (var_env[nb_venv] == NULL)
 				break ;
 			nb_venv++;

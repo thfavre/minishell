@@ -36,6 +36,7 @@ int		ft_cd(t_minishell *ms, char **paths);
 int		ft_unset(char **env, char **option);
 
 //		----- Ft_echo.c -----
+<<<<<<< HEAD
 int 	ft_echo(char **option);
 
 //		----- Ft_exit.c -----
@@ -43,6 +44,15 @@ void 	ft_exit(t_minishell *ms, char **option);
 
 //		----- Ft_export.c -----
 int 	ft_export(t_minishell *ms, char **option);
+=======
+int		ft_echo(char **option);
+
+//		----- Ft_exit.c -----
+void	ft_exit(t_minishell *ms, char **option);
+
+//		----- Ft_export.c -----
+int		ft_export(t_minishell *ms, char **option);
+>>>>>>> 205d87d9df6d232a38589b6c004c42974e71d2ce
 
 //###########################################//
 //		===== CLOSE DIRECTORY =====
@@ -206,10 +216,12 @@ int		ft_pipe_error(t_list_token *syntax);
 int		ft_quote_closed(char *str);
 int		ft_quote_is_open(char *str, char c, size_t *i);
 
+//		----- Ft_Redirection_Check.c -----
+int		ft_redirection_check(t_list_token *syntax);
+
 //		----- Ft_Syntax.c -----
 int		ft_syntax(t_minishell *ms);
 int		ft_check_syntax(t_list_token *syntax);
-int		ft_redirection_check(t_list_token *syntax);
 void	ft_display_error_syntax(int code_error);
 
 //###########################################//

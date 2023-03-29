@@ -6,11 +6,13 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:28:22 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/27 12:29:07 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:59:48 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+int	ft_len_venv(char *str);
+int	ft_is_question_mark(char *str);
 
 char	*ft_get_name_varenv(char *str)
 {
@@ -19,26 +21,46 @@ char	*ft_get_name_varenv(char *str)
 	size_t	i;
 
 	i = 0;
-	len = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == '"' || str[i] == '$' || str[i] == ' ' || str[i] == '\'')
-			break ;
-		if (ft_isalpha(str[i]) == false)
-			break ;
-		len++;
-		i++;
-	}
+	if (ft_is_question_mark(str) == 1)
+		len = 1;
+	else
+		len = ft_len_venv(str);
 	var_env = ft_calloc(sizeof(char), len + 1);
 	if (!var_env)
 		return (NULL);
-	i = 0;
 	while (i < len)
 	{
 		var_env[i] = str[i];
 		i++;
 	}	
 	return (var_env);
+}
+
+int	ft_is_question_mark(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '?' && str[i + 1] == '\0')
+		return (1);
+	return (0);
+}
+
+int	ft_len_venv(char *str)
+{
+	size_t	len;
+
+	len = 0;
+	while (str[len] != '\0')
+	{
+		if (str[len] == '"' || str[len] == '$' || \
+				str[len] == ' ' || str[len] == '\'')
+			break ;
+		if (ft_isalpha(str[len]) == false)
+			break ;
+		len++;
+	}
+	return (len);
 }
 
 int	ft_token_got_varenv(char *str)
