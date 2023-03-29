@@ -36,10 +36,10 @@ CLOSE_FILES	= ft_close.c\
 	# ENVIRONMENT
 
 ENV_FILES	= ft_initenv.c\
-			  ft_get_path.c\
 			  ft_setenv.c\
 			  ft_getenv.c\
-			  ft_unsetenv.c
+			  ft_unsetenv.c\
+			  ft_getsplitedpath.c
 
 	# EXECUTE
 

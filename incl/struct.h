@@ -3,7 +3,7 @@
 # define STRUCT_H
 
 // global variable
-int					last_exit_status;
+int	last_exit_status;
 
 //		### All Data ###
 

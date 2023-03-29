@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:00 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/27 14:13:24 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/03/29 14:29:47 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,6 @@ void print_sorted(char **arr, int n) {
 void	ft_print_all_exported_vars(char **env)
 {
 	int		env_size;
-	printf("lets go\n");
 	env_size = 0;
 	while (env[env_size])
 		env_size++;

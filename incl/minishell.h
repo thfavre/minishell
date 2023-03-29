@@ -36,7 +36,6 @@ int		ft_cd(t_minishell *ms, char **paths);
 int		ft_unset(char **env, char **option);
 
 //		----- Ft_echo.c -----
-<<<<<<< HEAD
 int 	ft_echo(char **option);
 
 //		----- Ft_exit.c -----
@@ -44,15 +43,6 @@ void 	ft_exit(t_minishell *ms, char **option);
 
 //		----- Ft_export.c -----
 int 	ft_export(t_minishell *ms, char **option);
-=======
-int		ft_echo(char **option);
-
-//		----- Ft_exit.c -----
-void	ft_exit(t_minishell *ms, char **option);
-
-//		----- Ft_export.c -----
-int		ft_export(t_minishell *ms, char **option);
->>>>>>> 205d87d9df6d232a38589b6c004c42974e71d2ce
 
 //###########################################//
 //		===== CLOSE DIRECTORY =====

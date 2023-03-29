@@ -9,7 +9,7 @@ char	*ft_getenv(char **env, char *key)
 	i = 0;
 	if (ft_strcmp(key, "?") == 0)
 		return (ft_itoa(last_exit_status));
-	while (env[i])
+	while (env && env[i])
 	{
 		key_end_index = 0;
 		while (env[i][key_end_index] && env[i][key_end_index] != '=')

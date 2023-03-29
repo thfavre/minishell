@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:51:35 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/27 15:50:23 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/03/29 14:30:13 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 // (Do not erase, I need this function for the execution)
 int	ft_is_builtins(char *str)
 {
-	printf("adasd %s\n", str);
 	if (ft_strcmp(str, D_ECHO) == 0)
 		return (1);
 	else if (ft_strcmp(str, D_CD) == 0)

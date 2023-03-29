@@ -14,7 +14,6 @@ void	ft_execute_external(char **env, struct s_list_cmd *cmd)
 	while (splited_path && splited_path[i] != NULL)
 	{
 
-		// or create a filepath variable with malloc?
 		strcpy(filepath, splited_path[i]); // TODO repalce with ft version
 		strcat(filepath, "/"); // TODO repalce with ft version
 		strcat(filepath, cmd->cmd); // TODO repalce with ft version
@@ -28,7 +27,6 @@ void	ft_execute_external(char **env, struct s_list_cmd *cmd)
 	}
 	if (splited_path)
 		ft_freesplit(splited_path);
-
 	ft_putstr_fd(cmd->cmd, 2);
 	ft_putstr_fd(": command not found\n", 2);
 	exit(127);
