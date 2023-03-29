@@ -24,7 +24,6 @@ void	ft_execute_cmd(t_minishell *ms)
 		waitpid(fork_pid, &exit_status, 0);
 		last_exit_status = WEXITSTATUS(exit_status);
 	}
-	// reset the fd to write and read from terminal
 	if (ms->cmd->fd_read > 3)
 		close(ms->cmd->fd_read);
 	if (ms->cmd->fd_write > 3)
