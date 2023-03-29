@@ -35,6 +35,7 @@ int main(int ac, char **av, char **env)
 		{
 			add_history(prompt_output);
 			ft_parsing(&ms, prompt_output);
+			printf("ms cmd : %s\n", ms.cmd->cmd);
 			if (ms.syntax == 0)
 				ft_execute(&ms);
 			ft_free_token(&ms);

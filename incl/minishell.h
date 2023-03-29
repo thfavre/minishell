@@ -24,25 +24,25 @@
 //###########################################//
 //
 //		----- Ft_env.c -----
-void	ft_env(char **env);
+int		ft_env(char **env);
 
 //		----- Ft_pwd.c -----
-void	ft_pwd(void);
+int		ft_pwd(void);
 
 //		----- Ft_cd.c -----
-void	ft_cd(t_minishell *ms, char **paths);
+int		ft_cd(t_minishell *ms, char **paths);
 
 //		----- Ft_unset.c -----
-void	ft_unset(char **env, char **option);
+int		ft_unset(char **env, char **option);
 
 //		----- Ft_echo.c -----
-void 	ft_echo(char **option);
+int 	ft_echo(char **option);
 
 //		----- Ft_exit.c -----
-void 	ft_exit(t_minishell *ms);
+void 	ft_exit(t_minishell *ms, char **option);
 
 //		----- Ft_export.c -----
-void 	ft_export(t_minishell *ms, char **option);
+int 	ft_export(t_minishell *ms, char **option);
 
 //###########################################//
 //		===== CLOSE DIRECTORY =====
@@ -97,39 +97,7 @@ void	ft_execute_cmd(t_minishell *ms);
 void	ft_execute_cmds(t_minishell *ms);
 
 //		----- Ft_execute_external.c -----
-void	ft_execute_builtin(t_minishell *ms, struct s_list_cmd *cmd);
-
-//###########################################//
-//		===== EXPAND DIRECTORY =====
-//###########################################//
-//
-//		----- Ft_Add_Varenv_In_Token.c -----
-void	ft_add_varenv_in_token(t_list_token *token, char **env);
-
-//		----- Ft_Expand.c -----
-void	ft_expand(t_minishell *ms);
-void	ft_skip_dollars_alone(t_minishell *ms);
-int 	ft_dollars_alone(char *str);
-
-//		----- Ft_Expand_Utils.c -----
-char	*ft_get_name_varenv(char *str);
-int		ft_token_got_varenv(char *str);
-int		ft_nbr_varenv(char *str);
-
-//		----- Ft_Replace_Varenv.c -----
-void	ft_replace_varenv(t_list_token *token, char **env);
-char	*ft_get_new_word(char *word, char **var_env);
-int		ft_len_new_word(char *word, char **var_env);
-
-
-//		----- Ft_execute_cmd.c -----
-void	ft_execute_cmd(t_minishell *ms);
-
-//		----- Ft_execute_cmds.c -----
-void	ft_execute_cmds(t_minishell *ms);
-
-//		----- Ft_execute_external.c -----
-void	ft_execute_builtin(t_minishell *ms, struct s_list_cmd *cmd);
+int		ft_execute_builtin(t_minishell *ms, struct s_list_cmd *cmd);
 
 //###########################################//
 //		===== EXPAND DIRECTORY =====

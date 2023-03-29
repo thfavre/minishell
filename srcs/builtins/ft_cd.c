@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:00 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/27 14:21:37 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/03/27 16:34:06 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,8 @@ int	ft_cd(t_minishell *ms, char **paths)
 		ft_putstr_fd(dest, 2);
 		ft_putstr_fd(": No such file or directory\n", 2); // should write (strerror(errno) but it takes too much lines...)
 		return (errno);
-		// printf("cd: %s: %s ()\n", paths[1], strerror(errno)); // TODO do in on STDERROR fd...
 	}
 	else
-	{
 		ft_setenv(ms, "OLDPWD", old_cwd, 1); // WHY LEAKS?!!!
-	}
 	return (EXIT_SUCCESS);
 }
