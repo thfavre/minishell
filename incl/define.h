@@ -2,6 +2,8 @@
 #ifndef DEFINE_H
 # define DEFINE_H
 
+# define DEBUG 0 
+
 //		### COLORS ###
 
 # define GREEN_BOLD		"\e[1;32m"
@@ -15,11 +17,11 @@
 //		### ENUM TOKEN TYPE ###
 
 enum e_token_type {
-	E_BUILTINS = 1,
-	E_REDIRECTION = 2,
-	E_PIPE = 3,
-	E_SPACE = 4,
-	E_STRING = 5
+	E_BUILTINS = 11,
+	E_REDIRECTION = 12,
+	E_PIPE = 13,
+	E_SPACE = 14,
+	E_STRING = 15
 };
 
 //		### DEFINE BUILTINS ###
@@ -42,10 +44,11 @@ enum e_token_type {
 //		### ENUM REDIRECTION ###
 
 enum e_redirection {
-	E_INFILE = 1,
-	E_OUTFILE = 2,
-	E_HEREDOC = 3,
-	E_APPEND = 4
+	E_INFILE = 20,
+	E_OUTFILE = 21,
+	E_HEREDOC = 22,
+	E_APPEND = 23,
+	E_NORED = 24
 };
 
 //		### DEFINE PIPE & QUOTE ###
@@ -57,9 +60,9 @@ enum e_redirection {
 //		### ENUM QUOTE ###
 
 enum e_token_quoted {
-	E_NONE = 1,
-	E_SINGLE = 2,
-	E_DOUBLE = 3
+	E_NONE = 31,
+	E_SINGLE = 32,
+	E_DOUBLE = 33
 };
 
 #endif
