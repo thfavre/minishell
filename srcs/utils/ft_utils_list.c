@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:36:04 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/27 14:36:11 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:01:02 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_list_token	*ft_lstnew_token(char *word)
 		return (NULL);
 	new->word = word;
 	new->type = ft_get_token_type(word);
+	new->redirection = ft_which_redirection(word);
 	new->quote = ft_token_is_quoted(word);
 	new->next = NULL;
 	new->previous = NULL;

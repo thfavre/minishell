@@ -12,6 +12,7 @@ typedef struct s_minishell {
 	// char				**path;
 	int					fd_pipe[2];
 	int					fd_tmp_pipe;
+	int					fd_heredoc;
 	int					syntax;
 	struct s_list_token	*token;
 	struct s_list_cmd	*cmd;
@@ -23,6 +24,7 @@ typedef struct s_minishell {
 typedef struct s_list_token {
 	char				*word;
 	int					type;
+	int					redirection;
 	int					quote;
 	struct s_list_token	*next;
 	struct s_list_token	*previous;

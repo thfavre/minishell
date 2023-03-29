@@ -115,6 +115,8 @@ int 	ft_dollars_alone(char *str);
 char	*ft_get_name_varenv(char *str);
 int		ft_token_got_varenv(char *str);
 int		ft_nbr_varenv(char *str);
+int		ft_len_venv(char *str);
+int		ft_is_question_mark(char *str);
 
 //		----- Ft_Replace_Varenv.c -----
 void	ft_replace_varenv(t_list_token *token, char **env);
@@ -130,10 +132,15 @@ void	ft_init_minishell(t_minishell *ms, char **env);
 
 //		----- Ft_Init_Cmd.c -----
 t_cmd	*ft_init_cmd(t_list_token **pars);
+void	ft_open_files_redirection(t_list_token **pars, t_cmd *cmd);
+char	**ft_get_option_and_cmd(t_list_token **pars, t_cmd *cmd);
+char	**ft_get_option(char **option, char **option_tmp);
+int		ft_len_option(char **option);
 
 //		----- Ft_Redirection.c -----
 int		ft_get_infile(t_list_token **pars);
 int		ft_get_outfile(t_list_token **pars);
+int		ft_open_failed(char *str);
 
 //###########################################//
 //		===== PARSING DIRECTORY =====
@@ -169,6 +176,7 @@ int		ft_get_outfile(t_list_token **pars);
 
 //		----- Ft_Token_Type.c -----
 int		ft_is_redirection(char *str);
+int		ft_which_redirection(char *str);
 int		ft_is_builtins(char *str);
 int		ft_is_pipe(char *str);
 int		ft_is_space(char *str);

@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 17:28:16 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/27 18:01:37 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:07:11 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,13 @@ void	ft_print_list_cmd(t_list_cmd *cmd)
 	{
 		printf(" --- cmd[%d] ---\n", j);
 		printf("[%s] <- cmd\n", test->cmd);
-		while (test->option[i] != NULL)
+		if (test->cmd != NULL)
 		{
-			printf("[%s] <- option[%d]\n", test->option[i], i);
-			i++;
+			while (test->option[i] != NULL)
+			{
+				printf("[%s] <- option[%d]\n", test->option[i], i);
+				i++;
+			}
 		}
 		i = 0;
 		printf("[%d] <- fd_read\n", test->fd_read);
@@ -54,5 +57,6 @@ void	ft_parse_token(t_minishell *ms)
 			ft_lstadd_back_cmd(&ms->cmd, ft_lstnew_cmd(ft_init_cmd(&pars)));
 	}
 	ms->token = start;
-	ft_print_list_cmd(ms->cmd);
+	if (DEBUG == 1)
+		ft_print_list_cmd(ms->cmd);
 }

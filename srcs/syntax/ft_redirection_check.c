@@ -6,11 +6,12 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 17:36:40 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/27 17:57:02 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/28 14:52:02 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 int	ft_redirection_error(t_list_token *syntax);
 
 int	ft_redirection_check(t_list_token *syntax)
