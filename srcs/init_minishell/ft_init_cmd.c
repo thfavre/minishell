@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:18:31 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/28 15:00:47 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/30 14:03:27 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_cmd	*ft_init_cmd(t_list_token **pars)
 	cmd->write = 1;
 	while ((*pars) != NULL)
 	{
-		if ((*pars)->type == E_REDIRECTION)
+		if ((*pars)->redirection == E_INFILE || (*pars)->redirection == E_OUTFILE)
 			ft_open_files_redirection(pars, cmd);
 		else if ((*pars)->type == E_STRING)
 			cmd->option = ft_get_option_and_cmd(pars, cmd);

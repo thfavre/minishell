@@ -18,14 +18,14 @@ void	ft_execute_cmds(t_minishell *ms)
 		if (fork_pid == 0) // child
 		{
 			// read
-			if (cmd->fd_read > 3)
+			if (cmd->fd_read >= 3)
 				close(fd_pipe[0]);
 			else
 				cmd->fd_read = fd_pipe_read_tmp;
 			dup2(cmd->fd_read, 0);
 
 			// write
-			if (cmd->fd_write > 3)
+			if (cmd->fd_write >= 3)
 				close(fd_pipe[1]);
 			else if (!cmd->next)
 				cmd->fd_write = 1;

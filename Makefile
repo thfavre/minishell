@@ -14,6 +14,11 @@ SRCS_PATH	= srcs
 OBJS_PATH	= objs
 INCS_PATH	= -Iincl
 
+	### INCLUDE ###
+
+GNL			= srcs/gnl
+LIBFT		= srcs/libft
+
 	### SOURCE FILE ###
 
 SOURCES		= main.c
@@ -62,21 +67,11 @@ INIT_FILES	= ft_init_minishell.c\
 			  ft_init_cmd.c\
 			  ft_redirection.c
 
-	# LIBFT
-
-LIBFT_FILES	= ft_isalnum.c ft_isprint.c ft_memcmp.c ft_memchr.c\
-			ft_strncmp.c ft_isalpha.c ft_toupper.c ft_isdigit.c \
-			ft_memcpy.c  ft_strchr.c ft_strlcpy.c ft_strlcat.c ft_calloc.c\
-			ft_strnstr.c ft_tolower.c ft_bzero.c   ft_isascii.c ft_atoi.c\
-			ft_memmove.c  ft_strdup.c  ft_strlen.c  ft_strrchr.c ft_memset.c\
-			ft_strjoin.c ft_substr.c ft_strtrim.c ft_split.c ft_itoa.c \
-			ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c\
-			ft_putendl_fd.c ft_putnbr_fd.c ft_strcmp.c ft_isnumber.c\
-
 	# PARSING
 
 PARS_FILES	= ft_getword.c\
 			  ft_lenword.c\
+			  ft_heredoc.c\
 			  ft_parse_token.c\
 			  ft_parsing.c\
 			  ft_token_type.c\
@@ -136,7 +131,9 @@ OBJS		= $(addprefix $(OBJS_PATH)/, $(FILES:.c=.o))
 
 	### LIBS ###
 
-LIBS		= -lreadline
+LIBS		= -lreadline\
+			  -lgnl\
+			  -lft
 
 	### COLORS ###
 
@@ -153,35 +150,46 @@ RESET		= \033[0m
 	### READLINE PATH ###
 
 ifdef READLINE
-	LIBS_PATH	+= -L$(READLINE)/lib
+	LIBS_PATH	+= -L$(READLINE)/lib\
+				   -L$(GNL)\
+				   -L$(LIBFT)
 	INCS_PATH	+= -I$(READLINE)/include
 endif
 
 	### RULES ###
 
-all:		tmp $(NAME)
+all:		tmp libs $(NAME)
 
 $(NAME):	$(OBJS)
-			@echo "$(BLUE)##### Compiling Project #####$(RESET)"
-			$(CC) $(FLAGS) $(LIBS_PATH) $(LIBS) -o $@ $^
+			@echo "$(CYAN)##### Compiling Project #####$(RESET)"
+			@$(CC) $(FLAGS) -o $@ $^ $(LIBS_PATH) $(LIBS)
 			@echo "$(GREEN)##### Project Compilated #####$(RESET)"
 
 tmp:
-			@echo "$(CYAN)##### Compiling SRCS in OBJS #####$(RESET)"
 			@mkdir -p objs
+
+libs:
+			@echo "$(CYAN)##### Compiling LIBS #####$(WHITE)"
+			@make -sC $(GNL)
+			@make -sC $(LIBFT)
+			@echo "$(CYAN)##### Compiling SRCS in OBJS #####$(RESET)"
 
 $(OBJS_PATH)/%.o:	$(SRCS_PATH)/%.c
 					@mkdir -p $(@D)
-					$(CC) $(FLAGS) $(INCS_PATH) -c $< -o $@
+					@$(CC) $(FLAGS) $(INCS_PATH) -c $< -o $@
 
 clean:
 			@echo "$(VIOLET)##### Supressing FILES #####$(YELLOW)"
+			@make fclean -C $(GNL)
+			@make fclean -C $(LIBFT)
 			rm -rf $(OBJS_PATH)
+			@echo -n "$(WHITE)"
 
 fclean:		clean
-			@echo "$(VIOLET)##### Supressing EXEC and LIBS #####$(YELLOW)"
+			@echo "$(VIOLET)##### Supressing EXEC #####$(YELLOW)"
 			rm -rf $(NAME)
+			@echo -n "$(RESET)"
 
 re:			fclean all
 
-.PHONY:		clean, fclean, re, tmp, all, minishell
+.PHONY:		clean, fclean, re, tmp, libs all, minishell

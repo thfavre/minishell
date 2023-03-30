@@ -14,10 +14,10 @@
 # include <stdbool.h>
 # include <termios.h>
 
-
-# include "libft.h"
 # include "struct.h"
 # include "define.h"
+# include "../srcs/libft/libft.h"
+# include "../srcs/gnl/get_next_line.h"
 
 //###########################################//
 //		===== BUILTINS DIRECTORY =====
@@ -152,6 +152,9 @@ char	*ft_getword_space(char **str);
 char	*ft_getword(char **str);
 char	*ft_getword_quote(char **str, char c);
 
+//		----- Ft_heredoc.c -----
+void	ft_heredoc(t_minishell *ms);
+
 //		----- Ft_Join_Token.c -----
 void	ft_join_token(t_list_token *lst);
 int		ft_is_joinable(t_list_token *lst);
@@ -169,6 +172,7 @@ void	ft_parse_token(t_minishell *ms);
 
 //		----- Ft_parsing.c -----
 void	ft_parsing(t_minishell *ms, char *str_prompt);
+void	ft_print_list_token(t_list_token *token);
 
 //		----- Ft_Redirection.c -----
 int		ft_get_infile(t_list_token **pars);
