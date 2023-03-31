@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:44:43 by thfavre           #+#    #+#             */
-/*   Updated: 2023/03/30 12:10:35 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/31 12:12:46 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 /*	Additional functions	*/
-int	ft_strcmp(char *s1, char *s2);
-int	ft_isnumber(char *str);
+int		ft_strcmp(char *s1, char *s2);
+int		ft_isnumber(char *str);
 
 #endif

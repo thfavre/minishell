@@ -3,6 +3,7 @@
 
 CC			= gcc -g3 -fsanitize=address
 FLAGS		= -Wall -Werror -Wextra
+ECHO		= @echo 
 
 	### EXECUTABLE ###
 
@@ -183,12 +184,12 @@ clean:
 			@make fclean -C $(GNL)
 			@make fclean -C $(LIBFT)
 			rm -rf $(OBJS_PATH)
-			@echo -n "$(WHITE)"
+			$(ECHO) "$(WHITE)"
 
 fclean:		clean
 			@echo "$(VIOLET)##### Supressing EXEC #####$(YELLOW)"
 			rm -rf $(NAME)
-			@echo -n "$(RESET)"
+			$(ECHO) "$(RESET)"
 
 re:			fclean all
 

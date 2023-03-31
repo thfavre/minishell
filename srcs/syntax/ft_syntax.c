@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:09:27 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/30 13:35:29 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/31 13:05:32 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ void	ft_display_error_syntax(int code_error)
 {
 	last_exit_status = 258;
 	if (code_error == 1)
-		ft_putstr_fd("minishell: syntax error quote not closed\n", 1);
+		ft_putstr_fd("minishell: syntax error quote not closed\n", 2);
 	else if (code_error == 2)
-		ft_putstr_fd\
-			("minishell: syntax error near unexpected token `<' or `>'\n", 1);
+		ft_putstr_fd \
+			("minishell: syntax error near unexpected token `<' or `>'\n", 2);
 	else if (code_error == 3)
-		ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 1);
+		ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 2);
 }

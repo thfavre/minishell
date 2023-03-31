@@ -13,9 +13,6 @@ void ft_execute(t_minishell *ms)
 	}
 }
 
-
-
-
 // int main()
 // {
 //
