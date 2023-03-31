@@ -3,7 +3,7 @@
 
 void	ft_execute_external(char **env, struct s_list_cmd *cmd)
 {
-	char	filepath[256];
+	char	filepath[MAXPATHLEN];
 	char	**splited_path;
 	int		i;
 

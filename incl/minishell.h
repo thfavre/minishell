@@ -13,6 +13,8 @@
 # include <errno.h>
 # include <stdbool.h>
 # include <termios.h>
+# include <sys/param.h>
+
 
 
 # include "libft.h"

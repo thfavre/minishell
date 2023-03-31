@@ -42,6 +42,7 @@ void	ft_execute_cmds(t_minishell *ms)
 	}
 	close(fd_pipe[0]);
 	close(fd_pipe[1]);
+
 	// while (waitpid(-1, NULL, WUNTRACED) == -1)
 	// 	;
 	// wait for all child processes to finish
