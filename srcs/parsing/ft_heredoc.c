@@ -45,7 +45,6 @@ void	ft_heredoc(t_minishell *ms)
 	while (start->previous != NULL)
 		start = start->previous;
 	ms->token = start;
-	ft_print_list_token(ms->token);
 }
 
 t_list_token	*ft_get_heredoc(t_list_token *heredoc, t_minishell *ms)
@@ -94,7 +93,8 @@ void	ft_open_heredoc(t_list_token *heredoc)
 		free(line);
 		line = get_next_line(0);
 	}
-	ft_putstr_fd(all, fd_heredoc);
+	if (all != NULL)
+		ft_putstr_fd(all, fd_heredoc);
 	close(fd_heredoc);
 }
 
