@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:18:31 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/31 14:29:09 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:37:01 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_cmd	*ft_init_cmd(t_list_token **pars)
 	cmd->write = 1;
 	while ((*pars) != NULL)
 	{
-		if ((*pars)->redirection == E_INFILE || (*pars)->redirection == E_OUTFILE)
+		if ((*pars)->type == E_REDIRECTION)
 			ft_open_files_redirection(pars, cmd);
 		else if ((*pars)->type == E_STRING)
 			cmd->option = ft_get_option_and_cmd(pars, cmd);
@@ -52,6 +52,12 @@ void	ft_open_files_redirection(t_list_token **pars, t_cmd *cmd)
 	else if (ft_strcmp((*pars)->word, D_OUTFILE) == 0)
 	{
 		cmd->write = ft_get_outfile(pars);
+		if ((*pars) != NULL)
+			(*pars) = (*pars)->next;
+	}
+	else if (ft_strcmp((*pars)->word, D_APPEND) == 0)
+	{
+		cmd->write = ft_get_outfile_append(pars);
 		if ((*pars) != NULL)
 			(*pars) = (*pars)->next;
 	}

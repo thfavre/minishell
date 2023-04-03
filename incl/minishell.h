@@ -140,6 +140,7 @@ int		ft_len_option(char **option);
 //		----- Ft_Redirection.c -----
 int		ft_get_infile(t_list_token **pars);
 int		ft_get_outfile(t_list_token **pars);
+int		ft_get_outfile_append(t_list_token **pars);
 int		ft_open_failed(char *str);
 
 //###########################################//
