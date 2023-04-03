@@ -12,7 +12,6 @@ typedef struct s_minishell {
 	// char				**path;
 	int					fd_pipe[2];
 	int					fd_tmp_pipe;
-	int					fd_heredoc;
 	int					syntax;
 	struct s_list_token	*token;
 	struct s_list_cmd	*cmd;

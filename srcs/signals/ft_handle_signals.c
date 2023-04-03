@@ -5,7 +5,7 @@ void ft_handle_signals(int signo)
 {
 	if (signo == SIGINT)
 	{
-		printf("\n");
+		ft_putstr_fd("\n", 1);
 		rl_replace_line("", 0); // Clear the user input.
 		rl_on_new_line();
 		rl_redisplay();

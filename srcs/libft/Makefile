@@ -1,4 +1,3 @@
-OBJS		= ${SRCS:.c=.o}
 NAME		= libft.a
 CC			= gcc
 FLAGS		= -Wall -Werror -Wextra
@@ -14,16 +13,29 @@ SRCS		= ft_isalnum.c ft_isprint.c ft_memcmp.c ft_memchr.c\
 			  ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c\
 			  ft_putendl_fd.c ft_putnbr_fd.c ft_strcmp.c ft_isnumber.c\
 
-.c.o:		${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I ${INC}
+SRCS_PATH	= 
+OBJS_PATH	=
+
+SRCS_		:= $(addprefix $(SRCS_PATH), $(SRCS))
+OBJS_		:= $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
+
+GREEN		= \033[1;32m
+RESET		= \033[0m
+
+CHARG_LINE_TXT	= echo "$(GREEN)██$(RESET)\c"
 
 all:		${NAME}
 
-${NAME}:	${OBJS}
-			${LIB} ${NAME} ${OBJS}
+${NAME}:	${OBJS_}
+			@${LIB} ${NAME} ${OBJS_}
+			@echo ""
+
+$(OBJS_PATH)%.o:	$(SRCS_PATH)%.c
+					@${CC} ${FLAGS} -I ${INC} -c $< -o $@
+					@$(CHARG_LINE_TXT)
 
 clean:
-			@echo "LIBTF files suppressed"
-			@${RM} ${OBJS}
+			@${RM} ${OBJS_}
 
 fclean:		clean
 			@${RM} ${NAME}
@@ -31,4 +43,3 @@ fclean:		clean
 re:			fclean all
 
 .PHONY:		all clean flcean re
-

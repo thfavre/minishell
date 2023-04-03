@@ -13,10 +13,9 @@ SRCS		= get_next_line.c\
 all:		${NAME}
 
 ${NAME}:	${OBJS}
-			${LIB} ${NAME} ${OBJS}
+			@${LIB} ${NAME} ${OBJS}
 
 clean:
-			@echo "GNL files suppressed"
 			@${RM} ${OBJS}
 
 fclean:		clean

@@ -72,7 +72,8 @@ t_list_token	*ft_get_heredoc(t_list_token *heredoc, t_minishell *ms, int i)
 		{
 			ft_open_heredoc(heredoc, name);
 			tmp = heredoc;
-			ft_lstadd_back_token(&new->next, heredoc->next);
+			if (heredoc->next != NULL)
+				ft_lstadd_back_token(&new->next, heredoc->next);
 			free(tmp);
 			break ;
 		}

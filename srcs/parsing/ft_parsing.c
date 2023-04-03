@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:53:58 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/30 15:16:06 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/03 11:11:52 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	ft_parsing(t_minishell *ms, char *str_prompt)
 	ms->syntax = 0;
 	ft_tokenizing_prompt(ms, str_prompt);
 	ft_heredoc(ms);
-	// fonction  append
 	if (ms->syntax == 0)
 	{
 		ft_expand(ms);
