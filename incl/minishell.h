@@ -16,10 +16,10 @@
 # include <sys/param.h>
 
 
-
-# include "libft.h"
 # include "struct.h"
 # include "define.h"
+# include "../srcs/libft/libft.h"
+# include "../srcs/gnl/get_next_line.h"
 
 //###########################################//
 //		===== BUILTINS DIRECTORY =====
@@ -142,6 +142,7 @@ int		ft_len_option(char **option);
 //		----- Ft_Redirection.c -----
 int		ft_get_infile(t_list_token **pars);
 int		ft_get_outfile(t_list_token **pars);
+int		ft_get_outfile_append(t_list_token **pars);
 int		ft_open_failed(char *str);
 
 //###########################################//
@@ -153,6 +154,9 @@ char	*ft_getword_redirection(char **str, char c);
 char	*ft_getword_space(char **str);
 char	*ft_getword(char **str);
 char	*ft_getword_quote(char **str, char c);
+
+//		----- Ft_heredoc.c -----
+void	ft_heredoc(t_minishell *ms);
 
 //		----- Ft_Join_Token.c -----
 void	ft_join_token(t_list_token *lst);
@@ -171,6 +175,7 @@ void	ft_parse_token(t_minishell *ms);
 
 //		----- Ft_parsing.c -----
 void	ft_parsing(t_minishell *ms, char *str_prompt);
+void	ft_print_list_token(t_list_token *token);
 
 //		----- Ft_Redirection.c -----
 int		ft_get_infile(t_list_token **pars);

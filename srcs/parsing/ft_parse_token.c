@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 17:28:16 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/29 16:07:11 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/30 11:23:37 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	ft_print_list_cmd(t_list_cmd *cmd)
 	int			j;
 
 	i = 0;
-	j = 0;
+	j = 1;
 	test = cmd;
-	printf("###\nPARSING TOKEN\n");
+	printf("PARSING TOKEN -> \n");
 	while (test != NULL)
 	{
-		printf(" --- cmd[%d] ---\n", j);
+		printf(" --- cmd[%d] ---\n", j++);
 		printf("[%s] <- cmd\n", test->cmd);
 		if (test->cmd != NULL)
 		{
@@ -37,7 +37,6 @@ void	ft_print_list_cmd(t_list_cmd *cmd)
 		i = 0;
 		printf("[%d] <- fd_read\n", test->fd_read);
 		printf("[%d] <- fd_write\n", test->fd_write);
-		j++;
 		test = test->next;
 	}
 }

@@ -7,6 +7,5 @@
 # ===Crashes ===
 
 - cat | cat | ls
-- < infile cat > outfile
-- < infile ls > outfile does not put ls in outfile
+- < test | ls -la
 - need to protect program if no env is given

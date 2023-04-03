@@ -1,18 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_token_type.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 12:51:35 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/29 16:10:25 by mjulliat         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "minishell.h"
 
-// (Do not erase, I need this function for the execution)
 int	ft_is_builtins(char *str)
 {
 	if (ft_strcmp(str, D_ECHO) == 0)
@@ -56,7 +44,6 @@ int	ft_which_redirection(char *str)
 	else if (ft_strcmp(str, D_APPEND) == 0)
 		return (E_APPEND);
 	return (E_NORED);
-
 }
 
 int	ft_is_pipe(char *str)

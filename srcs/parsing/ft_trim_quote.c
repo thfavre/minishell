@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:50:58 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/27 12:51:02 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/31 11:55:23 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	ft_trim_quote(t_minishell *ms)
 	trim_quote = ms->token;
 	while (trim_quote != NULL)
 	{
-		trim_quote->word = ft_remove_quote(&trim_quote->word);
+		if (trim_quote->quote != E_NONE)
+			trim_quote->word = ft_remove_quote(&trim_quote->word);
 		trim_quote = trim_quote->next;
 	}
 }

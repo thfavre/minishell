@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/31 15:44:43 by thfavre           #+#    #+#             */
-/*   Updated: 2023/03/29 16:01:15 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/04/03 17:53:28 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,13 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 /*	Additional functions	*/
+<<<<<<< HEAD:incl/libft.h
 int	ft_strcmp(char *s1, char *s2);
 int	ft_isnumber(char *str);
 int	ft_str_isalnum(char *str);
+=======
+int		ft_strcmp(char *s1, char *s2);
+int		ft_isnumber(char *str);
+
+>>>>>>> heredoc:srcs/libft/libft.h
 #endif

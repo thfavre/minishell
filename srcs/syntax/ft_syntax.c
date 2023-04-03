@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:09:27 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/28 15:50:27 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/03/31 18:43:56 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ int	ft_check_syntax(t_list_token *syntax)
 			return (1);
 		else if (ft_redirection_check(syntax) == 1)
 			return (2);
-		else if (ft_pipe_check(syntax) == 1)
+		else if (ft_redirection_check(syntax) == 2)
 			return (3);
+		else if (ft_pipe_check(syntax) == 1)
+			return (4);
 		syntax = syntax->next;
 	}
 	return (0);
@@ -51,9 +53,12 @@ void	ft_display_error_syntax(int code_error)
 {
 	last_exit_status = 258;
 	if (code_error == 1)
-		printf("minishell: syntax error quote not closed\n");
+		ft_putstr_fd("minishell: syntax error quote not closed\n", 2);
 	else if (code_error == 2)
-		printf("minishell: syntax error near unexpected token `<' or `>'\n");
+		ft_putstr_fd \
+			("minishell: syntax error near unexpected token `<' or `>'\n", 2);
 	else if (code_error == 3)
-		printf("minishell: syntax error near unexpected token `|'\n");
+		ft_putstr_fd("minishell: syntax error near unexpected token `>>'\n", 2);
+	else if (code_error == 4)
+		ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 2);
 }
