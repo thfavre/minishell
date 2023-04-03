@@ -9,7 +9,6 @@ void	ft_execute_cmds(t_minishell *ms)
 	int fd_pipe_read_tmp = 0;
 	int fd_pipe[2];
 	int exit_status;
-	// if only one command => No need of a fork for ONLY the builtins ^^
 
 	while (cmd)
 	{
@@ -18,15 +17,15 @@ void	ft_execute_cmds(t_minishell *ms)
 		if (fork_pid == 0) // child
 		{
 			// read
-			if (cmd->fd_read > 3)
+			if (cmd->fd_read >= 3)
 				close(fd_pipe[0]);
 			else
 				cmd->fd_read = fd_pipe_read_tmp;
 			dup2(cmd->fd_read, 0);
 
 			// write
-			if (cmd->fd_write > 3)
-				close(fd_pipe[1]);
+			if (cmd->fd_write >= 3)
+					close(fd_pipe[1]);
 			else if (!cmd->next)
 				cmd->fd_write = 1;
 			else
@@ -36,8 +35,13 @@ void	ft_execute_cmds(t_minishell *ms)
 		}
 		// parent
 		close(fd_pipe[1]);
+		if (fd_pipe_read_tmp >= 3)
+			close(fd_pipe_read_tmp);
+		if (cmd->fd_write >= 3)
+			close(cmd->fd_write);
+		if (cmd->fd_read >= 3)
+			close(cmd->fd_read);
 		fd_pipe_read_tmp = fd_pipe[0];
-
 		cmd = cmd->next;
 	}
 	close(fd_pipe[0]);
@@ -56,9 +60,6 @@ void	ft_execute_cmds(t_minishell *ms)
 
 void	ft_run_cmd(t_minishell *ms, struct s_list_cmd *cmd)
 {
-	int exit_status;
-
-	exit_status = 3;
 	if (ft_is_builtins(cmd->cmd))
 		ft_execute_builtin(ms, cmd);
 	else

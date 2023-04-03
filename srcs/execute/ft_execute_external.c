@@ -1,11 +1,17 @@
 
 #include "minishell.h"
 
+// void sigint_handler(int sig) {
+// 	ft_putstr_fd("ERRRRR\n", 2);
+// }
+
 void	ft_execute_external(char **env, struct s_list_cmd *cmd)
 {
 	char	filepath[MAXPATHLEN];
 	char	**splited_path;
 	int		i;
+	// signal(SIGINT, sigint_handler);
+	// ft_putstr_fd("2\n", 2);
 
 	if (access(cmd->cmd, X_OK) == 0)
 		execve(cmd->cmd, cmd->option, env);
@@ -13,7 +19,6 @@ void	ft_execute_external(char **env, struct s_list_cmd *cmd)
 	i = 0;
 	while (splited_path && splited_path[i] != NULL)
 	{
-
 		strcpy(filepath, splited_path[i]); // TODO repalce with ft version
 		strcat(filepath, "/"); // TODO repalce with ft version
 		strcat(filepath, cmd->cmd); // TODO repalce with ft version
@@ -22,6 +27,8 @@ void	ft_execute_external(char **env, struct s_list_cmd *cmd)
 			// ft_freesplit(splited_path);  // It is free automaticaly ?
 			// ft_free_env(env);
 			execve(filepath, cmd->option, env);
+			ft_putstr_fd("AAA\n", 2);
+			exit(EXIT_FAILURE); // execve had a problem
 		}
 		i++;
 	}

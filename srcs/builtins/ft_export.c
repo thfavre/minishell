@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:00 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/29 16:20:52 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/04/03 15:35:52 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ bool	is_valid_key(char *key)
 	if (ft_strlen(key) > 0 && !ft_isalpha(key[0]))
 		return false;
 	return (ft_str_isalnum(key));
-
-
 }
 
 char **sort_strings(char **arr, int n) {

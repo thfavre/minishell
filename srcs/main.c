@@ -6,7 +6,7 @@ char	*ft_get_prompt(void)  // TODO put somewhere else (a folder ??) How to name 
 	char	*cwd;
 	size_t alloc_size;
 
-	alloc_size  = sizeof(*cwd) * 1024;
+	alloc_size  = sizeof(*cwd) * MAXPATHLEN;
 	cwd = malloc(alloc_size);
 	strcpy(cwd, PROMPT_COLOR);
 	// TODO what if malloc error ?
@@ -26,12 +26,17 @@ char	*ft_prompt(void)
 	char	*prompt_output;
 
 	prompt_text = ft_get_prompt();
-	prompt_output = readline(prompt_text);
+	prompt_output = readline(prompt_text); // "(prompt)"
 	free(prompt_text);
 	return (prompt_output);
 }
 
-int main(int ac, char **av, char **env)
+// void sigint_handler(int sig) {
+// 	ft_putstr_fd("ERRRRR\n", 2);
+// }
+
+
+int	main(int ac, char **av, char **env)
 {
 	t_minishell	ms;
 	char		*prompt_output;
@@ -40,11 +45,15 @@ int main(int ac, char **av, char **env)
 	(void)av;
 	ft_init_minishell(&ms, env); // TODO? make a function init that will init the minishell and signals..?
 	ft_init_signals();
+	// signal(SIGINT, sigint_handler);
+	// ft_putstr_fd("2\n", 2);
 	// ft_unsetenv(ms.env, "OLDPWD");
 	prompt_output = "ON!";
 	while (prompt_output != NULL)
 	{
+		// printf("(before ft_prompt)\n");
 		prompt_output = ft_prompt();
+		// printf("(after ft_prompt)\n\n");
 		if (prompt_output && !ft_isspace_only(prompt_output))
 		{
 			add_history(prompt_output);
