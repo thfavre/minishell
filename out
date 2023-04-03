@@ -1,16 +1,1 @@
-total 456
-drwxr-xr-x  15 thfavre  2022_lausanne     510 Apr  3 15:03 .
-drwxr-xr-x  34 thfavre  2022_lausanne    1156 Mar 29 13:45 ..
-drwxr-xr-x  15 thfavre  2022_lausanne     510 Mar 31 17:57 .git
--rw-r--r--   1 thfavre  2022_lausanne      24 Mar 15 15:30 .gitignore
--rw-r--r--   1 thfavre  2022_lausanne    3852 Apr  3 14:10 Makefile
--rw-r--r--   1 thfavre  2022_lausanne      73 Mar 20 16:30 README.md
-drwxr-xr-x   6 thfavre  2022_lausanne     204 Mar 29 16:28 incl
--rw-r--r--   1 thfavre  2022_lausanne      72 Mar 29 17:55 loop.sh
--rwxr-xr-x   1 thfavre  2022_lausanne  206968 Apr  3 15:01 minishell
-drwxr-xr-x  14 thfavre  2022_lausanne     476 Mar 31 17:58 objs
--rw-r--r--   1 thfavre  2022_lausanne       0 Apr  3 15:03 out
--rw-r--r--   1 thfavre  2022_lausanne       0 Apr  3 15:03 out2
--rw-r--r--   1 thfavre  2022_lausanne      77 Apr  3 14:50 outfile
-drwxr-xr-x  14 thfavre  2022_lausanne     476 Mar 29 16:28 srcs
--rw-r--r--   1 thfavre  2022_lausanne     222 Mar 29 16:28 todo_list.md
+a

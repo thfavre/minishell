@@ -6,11 +6,11 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:00:06 by thfavre           #+#    #+#             */
-/*   Updated: 2023/03/29 16:03:15 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/04/03 18:09:26 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 int ft_str_isalnum(char *str)
 {

@@ -1,2 +1,12 @@
-drwxr-xr-x  15 thfavre  2022_lausanne     510 Mar 31 17:57 .git
--rw-r--r--   1 thfavre  2022_lausanne      24 Mar 15 15:30 .gitignore
+Makefile
+README.md
+incl
+loop.sh
+minishell
+objs
+out
+out2
+outfile
+srcs
+test.txt
+todo_list.md
