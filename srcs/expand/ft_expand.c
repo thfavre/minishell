@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:26:05 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/05 15:57:44 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/05 16:29:27 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_expand(t_minishell *ms)
 		if (ms->token->type == E_STRING && ms->token->quote == E_NONE)
 		{
 			if (ft_token_got_varenv(ms->token->word) == 1)
-				code_error = ft_add_varenv_in_token(ms->token, ms->env);
+				code_error = ft_add_varenv_in_token(ms->token, ms->env, 0);
 		}
 		else if (ms->token->type == E_STRING && ms->token->quote == E_DOUBLE)
 		{

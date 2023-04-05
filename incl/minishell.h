@@ -107,6 +107,28 @@ int		ft_execute_builtin(t_minishell *ms, struct s_list_cmd *cmd);
 //
 //		----- Ft_Add_Varenv_In_Token.c -----
 int		ft_add_varenv_in_token(t_list_token *token, char **env, size_t i);
+void	ft_add_varenv_in_list(t_list_token *token, char **venv);
+t_venv	*ft_getwords_venv(char *word, char **venv);
+void	ft_join_word_venv(t_list_venv *lst);
+void	ft_free_excess(t_list_venv *lst, char *new_word);
+
+//		----- Ft_Add_Varenv_In_Token2.c -----
+char	*ft_get_one_word_venv(char ***venv);
+char	*ft_getword_space_venv(char ***venv);
+int		ft_lenword_nodollars(char *str);
+int		ft_norm(char ***venv, char *word, t_list_venv *create);
+int		ft_norm_two(char ***venv, char *word, t_list_venv *create);
+
+//		----- Ft_Add_Varenv_In_Token3.c -----
+int		ft_lenword_venv(char *str);
+int		ft_lenword_venv_space(char *str);
+t_venv	*ft_lstnew_venv(char *word);
+void	ft_lstadd_back_venv(t_list_venv **lst, t_list_venv *nw);
+void	ft_lastadd_middle_token(t_list_token *lst, t_list_token *nw);
+
+//		----- Ft_Add_Varenv_In_Token4.c -----
+char	*ft_getword_nodollars(char **str);
+t_venv	*ft_getwords_dollars(char **str, char ***venv);
 
 //		----- Ft_Expand.c -----
 int		ft_expand(t_minishell *ms);
@@ -171,6 +193,7 @@ int		ft_lenword_quote(char *str, char c);
 
 //		----- Ft_Parse_Token.c -----
 void	ft_parse_token(t_minishell *ms);
+void	ft_print_error_parsing(int code_error);
 
 //		----- Ft_parsing.c -----
 void	ft_parsing(t_minishell *ms, char *str_prompt);

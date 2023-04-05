@@ -1,7 +1,7 @@
 
 	### COMPILATION ###
 
-CC			= gcc -g3 -fsanitize=address
+CC			= gcc -g3 #-fsanitize=address
 FLAGS		= -Wall -Werror -Wextra
 
 	### EXECUTABLE ###
@@ -60,6 +60,9 @@ EXEC_FILES	= ft_execute.c\
 EXP_FILES	= ft_expand.c\
 			  ft_replace_varenv.c\
 			  ft_add_varenv_in_token.c\
+			  ft_add_varenv_in_token2.c\
+			  ft_add_varenv_in_token3.c\
+			  ft_add_varenv_in_token4.c\
 			  ft_expand_utils.c
 
 	# INIT_MINISHELL

@@ -6,26 +6,16 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:26:09 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/05 16:25:45 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/05 17:05:30 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 void	ft_add_varenv_in_list(t_list_token *token, char **venv);
-void	ft_free_list_venv(t_list_venv *lst);
 t_venv	*ft_getwords_venv(char *word, char **venv);
-char	*ft_getword_nodollars(char **str);
-t_venv	*ft_getwords_dollars(char **str, char ***venv);
 void	ft_join_word_venv(t_list_venv *lst);
-char	*ft_get_one_word_venv(char ***venv);
-char	*ft_getword_space_venv(char ***venv);
-int		ft_lenword_nodollars(char *str);
-int		ft_lenword_venv(char *str);
-int		ft_lenword_venv_space(char *str);
-t_venv	*ft_lstnew_venv(char *word);
-void	ft_lstadd_back_venv(t_list_venv **lst, t_list_venv *nw);
-void	ft_lastadd_middle_token(t_list_token *lst, t_list_token *nw);
+void	ft_free_excess(t_list_venv *lst, char *new_word);
 
 int	ft_add_varenv_in_token(t_list_token *token, char **env, size_t i)
 {
@@ -101,8 +91,6 @@ t_list_venv	*ft_getwords_venv(char *word, char **venv)
 	return (create);
 }
 
-void	ft_free_excess(t_list_venv *lst, char *new_word);
-
 void	ft_join_word_venv(t_list_venv *lst)
 {
 	char		*new_word;
@@ -139,198 +127,4 @@ void	ft_free_excess(t_list_venv *lst, char *new_word)
 	lst->next = tmp->next;
 	free(tmp->word);
 	free(tmp);
-}
-
-char	*ft_getword_nodollars(char **str)
-{
-	char	*word;
-	int		i;
-
-	i = 0;
-	word = ft_calloc(sizeof(char), ft_lenword_nodollars(*str) + 1);
-	if (!word)
-		return (NULL);
-	while (**str != '\0')
-	{
-		word[i] = (**str);
-		i++;
-		(*str)++;
-		if (**str == '$')
-			break ;
-	}
-	return (word);
-}
-
-t_list_venv	*ft_getwords_dollars(char **str, char ***venv)
-{
-	t_list_venv	*create;
-	char		*word;
-
-	if (***venv != ' ')
-	{
-		word = ft_get_one_word_venv(venv);
-		if (!word)
-			return (NULL);
-		create = ft_lstnew_venv(word);
-		free(word);
-	}
-	else
-	{
-		word = ft_getword_space_venv(venv);
-		if (!word)
-			return (NULL);
-		create = ft_lstnew_venv(word);
-		free(word);
-	}
-	while (***venv != '\0')
-	{
-		if (***venv != ' ')
-		{
-			word = ft_get_one_word_venv(venv);
-			if (!word)
-				return (NULL);
-			ft_lstadd_back_venv(&create, ft_lstnew_venv(word));
-			free(word);
-		}
-		else
-		{
-			word = ft_getword_space_venv(venv);
-			if (!word)
-				return (NULL);
-			ft_lstadd_back_venv(&create, ft_lstnew_venv(word));
-			free(word);
-		}
-	}
-	while (**str != '\0')
-	{
-		(*str)++;
-		if (**str == '$')
-			break ;
-	}
-	(*venv)++;
-	return (create);
-}
-
-char	*ft_get_one_word_venv(char ***venv)
-{
-	char	*word;
-	int		i;
-
-	i = 0;
-	word = ft_calloc(sizeof(char), ft_lenword_venv(**venv) + 1);
-	if (!word)
-		return (NULL);
-	while (***venv != '\0')
-	{
-		word[i] = ***venv;
-		(**venv)++;
-		i++;
-		if (***venv == ' ')
-			break ;
-	}
-	return (word);
-}
-
-char	*ft_getword_space_venv(char ***venv)
-{
-	char	*word;
-	int		i;
-
-	i = 0;
-	word = ft_calloc(sizeof(char), ft_lenword_venv_space(**venv) + 1);
-	if (!word)
-		return (NULL);
-	while (***venv == ' ')
-	{
-		word[i] = ***venv;
-		(**venv)++;
-		i++;
-	}
-	return (word);
-}
-
-int	ft_lenword_nodollars(char *str)
-{
-	int	len;
-
-	len = 0;
-	while (str[len] != '\0')
-	{
-		if (str[len] == '$')
-			break ;
-		len++;
-	}
-	return (len);
-}
-
-int	ft_lenword_venv(char *str)
-{
-	int	len;
-
-	len = 0;
-	while (str[len] != '\0')
-	{
-		if (str[len] == ' ')
-			break ;
-		len++;
-	}
-	return (len);
-}
-
-int	ft_lenword_venv_space(char *str)
-{
-	int	len;
-
-	len = 0;
-	while (str[len] != '\0')
-	{
-		if (str[len] != ' ')
-			break ;
-		len ++;
-	}
-	return (len);
-}
-
-t_list_venv	*ft_lstnew_venv(char *word)
-{
-	t_list_venv	*new;
-	int			i;
-
-	i = 0;
-	new = malloc(sizeof(t_list_venv));
-	if (!new)
-		return (NULL);
-	new->word = ft_calloc(sizeof(char), ft_strlen(word) + 1);
-	if (!new->word)
-		return (NULL);
-	while (word[i] != '\0')
-	{
-		new->word[i] = word[i];
-		i++;
-	}
-	new->next = NULL;
-	new->previous = NULL;
-	return (new);
-}
-
-void	ft_lstadd_back_venv(t_list_venv **lst, t_list_venv *nw)
-{
-	t_list_venv	*node;
-
-	node = *lst;
-	if (node == NULL)
-		node = nw;
-	else
-	{
-		while (node->next != NULL)
-			node = node->next;
-		node->next = nw;
-		nw->previous = node;
-	}
-}
-
-void	ft_lastadd_middle_token(t_list_token *lst, t_list_token *nw)
-{
-	nw->next = lst->next;
-	lst->next = nw;
 }
