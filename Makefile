@@ -72,13 +72,13 @@ INIT_FILES	= ft_init_minishell.c\
 
 PARS_FILES	= ft_getword.c\
 			  ft_lenword.c\
-			  ft_heredoc.c\
 			  ft_parse_token.c\
 			  ft_parsing.c\
 			  ft_token_type.c\
 			  ft_tokenizing_prompt.c\
 			  ft_trim_quote.c\
-			  ft_join_token.c
+			  ft_join_token.c\
+			  heredoc/ft_heredoc.c
 
 	# SIGNALS
 
@@ -168,7 +168,7 @@ endif
 all:		art tmp libs $(NAME)
 
 art:
-#			@tput setaf 2; cat .ascii_art/minishell; tput setaf default
+			@tput setaf 2; cat .ascii_art/projet; tput setaf default
 			@tput setaf 2; cat .ascii_art/name; tput setaf default
 
 $(NAME):	$(OBJS)
