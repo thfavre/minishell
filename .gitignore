@@ -1,5 +1,4 @@
-.*
 a.out
 minishell
 test
-.heredoc
+.DS_Store
