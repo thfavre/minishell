@@ -78,7 +78,9 @@ PARS_FILES	= ft_getword.c\
 			  ft_tokenizing_prompt.c\
 			  ft_trim_quote.c\
 			  ft_join_token.c\
-			  heredoc/ft_heredoc.c
+			  heredoc/ft_heredoc.c\
+			  heredoc/ft_heredoc_utils.c\
+			  heredoc/ft_error_heredoc.c
 
 	# SIGNALS
 

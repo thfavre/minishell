@@ -6,38 +6,39 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:59:56 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/27 13:12:52 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/05 12:20:20 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_join_token(t_list_token *lst)
+int	ft_join_token(t_list_token *l)
 {
 	char			*new_word;
 	int				i;
 	int				j;
 
-	while (lst != NULL)
+	while (l != NULL)
 	{
-		if (ft_is_joinable(lst) == 1)
-			lst = lst->next;
-		else if (lst->next != NULL && *lst->word != ' ' && \
-			*lst->next->word != ' ')
+		if (ft_is_joinable(l) == 1)
+			l = l->next;
+		else if (l->next != NULL && *l->word != ' ' && *l->next->word != ' ')
 		{
 			i = 0;
 			j = 0;
 			new_word = ft_calloc(sizeof(char), \
-				ft_strlen(lst->word) + ft_strlen(lst->next->word) + 1);
-			//	TODO malloc error
-			ft_strcat_join_token(new_word, lst->word, &i, &j);
+				ft_strlen(l->word) + ft_strlen(l->next->word) + 1);
+			if (!new_word)
+				return (1);
+			ft_strcat_join_token(new_word, l->word, &i, &j);
 			i = 0;
-			ft_strcat_join_token(new_word, lst->next->word, &i, &j);
-			ft_free_and_get_new_word(lst, new_word);
+			ft_strcat_join_token(new_word, l->next->word, &i, &j);
+			ft_free_and_get_new_word(l, new_word);
 		}
 		else
-			lst = lst->next;
+			l = l->next;
 	}
+	return (0);
 }
 
 int	ft_is_joinable(t_list_token *lst)

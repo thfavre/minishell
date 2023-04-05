@@ -1,57 +1,56 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_heredoc.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/05 10:54:46 by mjulliat          #+#    #+#             */
+/*   Updated: 2023/04/05 12:10:03 by mjulliat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
-t_list_token	*ft_get_heredoc(t_list_token *heredoc, t_minishell *ms, int i);
-int				ft_syntax_heredoc(t_list_token *heredoc, t_minishell *ms);
-char			*ft_getword_heredoc(char *word);
-void	ft_open_heredoc(t_list_token *heredoc, char *name);
-char	*ft_getname_heredoc(int nb);
-int	ft_strcmp_heredoc(char *s1, char *s2);
-int				ft_error_eof_heredoc(char *str);
-int				ft_error_heredoc(t_minishell *ms, int code_error);
-
 void	ft_heredoc(t_minishell *ms)
 {
-	t_list_token	*start;
+	t_list_token	*st;
 	int				i;
 
 	i = 0;
-	start = ms->token;
-	while (start->next != NULL)
+	st = ms->token;
+	ft_add_previous(st);
+	while (st != NULL)
 	{
-		start->next->previous = start;
-		start = start->next;
-	}
-	while (start->previous != NULL)
-		start = start->previous;
-	while (start != NULL)
-	{
-		if (start->next == NULL && start->previous == NULL && start->redirection == E_HEREDOC)
+		if (st->next == NULL && st->previous == NULL && st->red == E_HEREDOC)
 		{
 			ft_error_heredoc(ms, 1);
 			break ;
 		}
-		if (start->next != NULL && start->redirection == E_HEREDOC)
-		{
-			if (start->previous == NULL)
-			{
-				i++;
-				start = ft_get_heredoc(start, ms, i);
-			}
-			else
-			{
-				i++;
-				start = start->previous;
-				start->next = ft_get_heredoc(start->next, ms, i);
-			}
-		}
-		if (start->next == NULL)
+		if (st->next != NULL && st->red == E_HEREDOC)
+			ft_heredoc_found(&st, ms, &i);
+		if (st->next == NULL)
 			break ;
-		start = start->next;
+		st = st->next;
 	}
-	while (start->previous != NULL)
-		start = start->previous;
-	ms->token = start;
+	while (st->previous != NULL)
+		st = st->previous;
+	ms->token = st;
+}
+
+void	ft_heredoc_found(t_list_token **st, t_minishell *ms, int *i)
+{
+	if ((*st)->previous == NULL)
+	{
+		(*i)++;
+		(*st) = ft_get_heredoc((*st), ms, (*i));
+	}
+	else
+	{
+		(*i)++;
+		(*st) = (*st)->previous;
+		(*st)->next = ft_get_heredoc((*st)->next, ms, (*i));
+	}
 }
 
 t_list_token	*ft_get_heredoc(t_list_token *heredoc, t_minishell *ms, int i)
@@ -60,9 +59,9 @@ t_list_token	*ft_get_heredoc(t_list_token *heredoc, t_minishell *ms, int i)
 	t_list_token	*tmp;
 	char			*name;
 
-	name = ft_getname_heredoc(i);
 	if (ft_syntax_heredoc(heredoc, ms) == 1)
 		return (heredoc);
+	name = ft_getname_heredoc(i);
 	new = ft_lstnew_token(ft_getword_heredoc("<"));
 	new->previous = heredoc->previous;
 	ft_lstadd_back_token(&new, ft_lstnew_token(ft_getword_heredoc(name)));
@@ -70,11 +69,7 @@ t_list_token	*ft_get_heredoc(t_list_token *heredoc, t_minishell *ms, int i)
 	{
 		if (heredoc->type == E_STRING)
 		{
-			ft_open_heredoc(heredoc, name);
-			tmp = heredoc;
-			if (heredoc->next != NULL)
-				ft_lstadd_back_token(&new->next, heredoc->next);
-			free(tmp);
+			ft_eof_found(heredoc, new, name);
 			break ;
 		}
 		tmp = heredoc;
@@ -85,125 +80,38 @@ t_list_token	*ft_get_heredoc(t_list_token *heredoc, t_minishell *ms, int i)
 	return (new);
 }
 
+void	ft_eof_found(t_list_token *heredoc, t_list_token *new, char *name)
+{
+	t_list_token	*tmp;
+
+	ft_open_heredoc(heredoc, name);
+	tmp = heredoc;
+	if (heredoc->next != NULL)
+		ft_lstadd_back_token(&(*new).next, heredoc->next);
+	free(tmp);
+}
+
 void	ft_open_heredoc(t_list_token *heredoc, char *name)
 {
 	int		fd_heredoc;
 	char	*line;
+	char	*nl;
 	char	*all;
 
 	all = NULL;
 	fd_heredoc = open(name, O_TRUNC | O_CREAT | O_WRONLY, 0664);
-	// line = get_next_line(0);
 	line = readline("> ");
 	while (line != NULL)
 	{
-		if (ft_strcmp_heredoc(heredoc->word, line) == 0)
+		if (ft_strcmp(heredoc->word, line) == 0)
 			break ;
-		all = ft_strjoin(all, line);
-		// TODO add \n
+		nl = ft_strjoin(line, "\n");
 		free(line);
+		all = ft_strjoin(all, nl);
+		free(nl);
 		line = readline("> ");
 	}
 	if (all != NULL)
 		ft_putstr_fd(all, fd_heredoc);
 	close(fd_heredoc);
-}
-
-char	*ft_getname_heredoc(int nb)
-{
-	char	*name;
-	char	*heredoc;
-	int		i;
-
-	i = 0;
-	heredoc = ".heredoc0\0";
-	name = ft_calloc(sizeof(char), ft_strlen(".heredoc0") + 1);
-	while (heredoc[i] != '\0')
-	{
-		name[i] = heredoc[i];
-		i++;
-	}
-	name[i - 1] += nb;
-	return (name);
-}
-
-int	ft_strcmp_heredoc(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	while (s1[i] && s1[i] == s2[i])
-	{
-		if (s2[i + 1] == '\n')
-			break ;
-		i++;
-	}
-	return (s1[i] - s2[i]);
-}
-
-int	ft_syntax_heredoc(t_list_token *heredoc, t_minishell *ms)
-{
-	heredoc = heredoc->next;
-	while (heredoc != NULL)
-	{
-		if (heredoc->type == E_PIPE || heredoc->type == E_REDIRECTION)
-			return (ft_error_heredoc(ms, 1));
-		else if (heredoc->type == E_STRING)
-		{
-			if (ft_error_eof_heredoc(heredoc->word) == 1)
-				return (ft_error_heredoc(ms, 2));
-			ms->syntax = 0;
-			last_exit_status = 0;
-			return (0);
-		}
-		heredoc = heredoc->next;
-	}
-	if (heredoc == NULL)
-		return (ft_error_heredoc(ms, 1));
-	return (0);
-}
-
-char	*ft_getword_heredoc(char *word)
-{
-	char	*str;
-	size_t	i;
-
-	i = 0;
-	str = ft_calloc(sizeof(char), ft_strlen(word) + 1);
-	if (!str)
-		return (NULL);
-	while (word[i] != '\0')
-	{
-		str[i] = word[i];
-		i++;
-	}
-	return (str);
-}
-
-int	ft_error_eof_heredoc(char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == '#')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-int	ft_error_heredoc(t_minishell *ms, int code_error)
-{
-	if (code_error == 1)
-		ft_putstr_fd("minishell: parse error near <<\n", 2);
-	else
-	{
-		ft_putstr_fd("minishell: syntax error near unexpected token", 2);
-		ft_putstr_fd(" `newline'\n", 1);
-	}
-	ms->syntax = 1;
-	last_exit_status = 258;
-	return (1);
 }

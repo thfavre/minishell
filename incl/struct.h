@@ -23,11 +23,13 @@ typedef struct s_minishell {
 typedef struct s_list_token {
 	char				*word;
 	int					type;
-	int					redirection;
+	int					red;
 	int					quote;
 	struct s_list_token	*next;
 	struct s_list_token	*previous;
 }						t_list_token;
+
+typedef t_list_token t_tok;
 
 //		### Chain List Var_env ####
 
@@ -36,6 +38,7 @@ typedef struct s_list_venv {
 	struct s_list_venv	*next;
 	struct s_list_venv	*previous;
 }						t_list_venv;
+typedef t_list_venv t_venv;
 
 //		### Chain List Cmd ###
 
@@ -46,6 +49,8 @@ typedef struct s_list_cmd {
 	int					fd_write;
 	struct s_list_cmd	*next;
 }						t_list_cmd;
+
+typedef t_list_cmd t_lcmd;
 
 typedef struct s_cmd {
 	char	*cmd;

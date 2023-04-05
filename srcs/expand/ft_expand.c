@@ -6,16 +6,18 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:26:05 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/27 12:31:21 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/05 15:57:44 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_expand(t_minishell *ms)
+int	ft_expand(t_minishell *ms)
 {
 	t_list_token	*start;
+	int				code_error;
 
+	code_error = 0;
 	start = ms->token;
 	while (ms->token != NULL)
 	{
@@ -25,16 +27,17 @@ void	ft_expand(t_minishell *ms)
 		if (ms->token->type == E_STRING && ms->token->quote == E_NONE)
 		{
 			if (ft_token_got_varenv(ms->token->word) == 1)
-				ft_add_varenv_in_token(ms->token, ms->env);
+				code_error = ft_add_varenv_in_token(ms->token, ms->env);
 		}
 		else if (ms->token->type == E_STRING && ms->token->quote == E_DOUBLE)
 		{
 			if (ft_token_got_varenv(ms->token->word) == 1)
-				ft_replace_varenv(ms->token, ms->env);
+				code_error = ft_replace_varenv(ms->token, ms->env, 0);
 		}
 		ms->token = ms->token->next;
 	}
 	ms->token = start;
+	return (code_error);
 }
 
 void	ft_skip_dollars_alone(t_minishell *ms)

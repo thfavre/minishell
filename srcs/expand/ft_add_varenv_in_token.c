@@ -6,46 +6,46 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:26:09 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/28 14:13:14 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/05 16:25:45 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-void		ft_add_varenv_in_list(t_list_token *token, char **venv);
-t_list_venv	*ft_getwords_venv(char *word, char **venv);
-char		*ft_getword_nodollars(char **str);
-t_list_venv	*ft_getwords_dollars(char **str, char ***venv);
-void		ft_join_word_venv(t_list_venv *lst);
-char		*ft_get_one_word_venv(char ***venv);
-char		*ft_getword_space_venv(char ***venv);
-int			ft_lenword_nodollars(char *str);
-int			ft_lenword_venv(char *str);
-int			ft_lenword_venv_space(char *str);
-t_list_venv	*ft_lstnew_venv(char *word);
-void		ft_lstadd_back_venv(t_list_venv **lst, t_list_venv *nw);
-void		ft_lastadd_middle_token(t_list_token *lst, t_list_token *nw);
 
-void	ft_add_varenv_in_token(t_list_token *token, char **env)
+void	ft_add_varenv_in_list(t_list_token *token, char **venv);
+void	ft_free_list_venv(t_list_venv *lst);
+t_venv	*ft_getwords_venv(char *word, char **venv);
+char	*ft_getword_nodollars(char **str);
+t_venv	*ft_getwords_dollars(char **str, char ***venv);
+void	ft_join_word_venv(t_list_venv *lst);
+char	*ft_get_one_word_venv(char ***venv);
+char	*ft_getword_space_venv(char ***venv);
+int		ft_lenword_nodollars(char *str);
+int		ft_lenword_venv(char *str);
+int		ft_lenword_venv_space(char *str);
+t_venv	*ft_lstnew_venv(char *word);
+void	ft_lstadd_back_venv(t_list_venv **lst, t_list_venv *nw);
+void	ft_lastadd_middle_token(t_list_token *lst, t_list_token *nw);
+
+int	ft_add_varenv_in_token(t_list_token *token, char **env, size_t i)
 {
-	size_t	i;
 	size_t	nb_venv;
 	char	*name_venv;
 	char	**var_env;
-	
+
 	var_env = ft_calloc(sizeof(char *), ft_nbr_varenv(token->word) + 1);
-	//	TODO check error malloc
+	if (!var_env)
+		return (1);
 	i = 0;
 	nb_venv = 0;
 	while (token->word[i] != '\0')
 	{
 		if (token->word[i] == '$')
 		{
-			i++;
-			name_venv = ft_get_name_varenv(&token->word[i]);
-			var_env[nb_venv] = ft_getenv(env, name_venv);
-			if (var_env[nb_venv] == NULL)
+			name_venv = ft_get_name_varenv(&token->word[++i]);
+			var_env[nb_venv++] = ft_getenv(env, name_venv);
+			if (var_env[nb_venv - 1] == NULL)
 				break ;
-			nb_venv++;
 			free(name_venv);
 		}
 		else
@@ -53,6 +53,7 @@ void	ft_add_varenv_in_token(t_list_token *token, char **env)
 	}
 	ft_add_varenv_in_list(token, var_env);
 	free(var_env);
+	return (0);
 }
 
 void	ft_add_varenv_in_list(t_list_token *token, char **venv)
@@ -78,12 +79,11 @@ void	ft_add_varenv_in_list(t_list_token *token, char **venv)
 			add_in = add_in->previous;
 		}
 	}
-	//free(init) and his word
 }
 
 t_list_venv	*ft_getwords_venv(char *word, char **venv)
 {
-	t_list_venv *create;
+	t_list_venv	*create;
 
 	if (*word != '$')
 		create = ft_lstnew_venv(ft_getword_nodollars(&word));
@@ -101,12 +101,13 @@ t_list_venv	*ft_getwords_venv(char *word, char **venv)
 	return (create);
 }
 
+void	ft_free_excess(t_list_venv *lst, char *new_word);
+
 void	ft_join_word_venv(t_list_venv *lst)
 {
-	t_list_venv	*tmp;
 	char		*new_word;
-	int			i;
-	int			j;
+	size_t		i;
+	size_t		j;
 
 	while (lst != NULL)
 	{
@@ -116,30 +117,28 @@ void	ft_join_word_venv(t_list_venv *lst)
 			j = 0;
 			new_word = ft_calloc(sizeof(char), \
 				ft_strlen(lst->word) + ft_strlen(lst->next->word) + 1);
-			//	TODO check malloc error
-			while (lst->word[i] != '\0')	// TODO need to replace by strcat
-			{
-				new_word[j] = lst->word[i];
-				i++;
-				j++;
-			}
+			while (lst->word[i] != '\0')
+				ft_strcat_expand(new_word, lst->word, &i, &j);
 			i = 0;
-			while (lst->next->word[i] != '\0')	// TODO need to replace by strcat
-			{
-				new_word[j] = lst->next->word[i];
-				i++;
-				j++;
-			}
-			free(lst->word);
-			lst->word = new_word;
-			tmp = lst->next;
-			lst->next = tmp->next;
-			free(tmp->word);
-			free(tmp);
+			while (lst->next->word[i] != '\0')
+				ft_strcat_expand(new_word, lst->next->word, &i, &j);
+			ft_free_excess(lst, new_word);
 		}
 		else
 			lst = lst->next;
 	}
+}
+
+void	ft_free_excess(t_list_venv *lst, char *new_word)
+{
+	t_list_venv	*tmp;
+
+	free(lst->word);
+	lst->word = new_word;
+	tmp = lst->next;
+	lst->next = tmp->next;
+	free(tmp->word);
+	free(tmp);
 }
 
 char	*ft_getword_nodollars(char **str)
@@ -166,7 +165,7 @@ t_list_venv	*ft_getwords_dollars(char **str, char ***venv)
 {
 	t_list_venv	*create;
 	char		*word;
-	
+
 	if (***venv != ' ')
 	{
 		word = ft_get_one_word_venv(venv);
@@ -266,7 +265,7 @@ int	ft_lenword_nodollars(char *str)
 
 int	ft_lenword_venv(char *str)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (str[len] != '\0')

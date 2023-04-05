@@ -106,10 +106,10 @@ int		ft_execute_builtin(t_minishell *ms, struct s_list_cmd *cmd);
 //###########################################//
 //
 //		----- Ft_Add_Varenv_In_Token.c -----
-void	ft_add_varenv_in_token(t_list_token *token, char **env);
+int		ft_add_varenv_in_token(t_list_token *token, char **env, size_t i);
 
 //		----- Ft_Expand.c -----
-void	ft_expand(t_minishell *ms);
+int		ft_expand(t_minishell *ms);
 void	ft_skip_dollars_alone(t_minishell *ms);
 int 	ft_dollars_alone(char *str);
 
@@ -121,9 +121,11 @@ int		ft_len_venv(char *str);
 int		ft_is_question_mark(char *str);
 
 //		----- Ft_Replace_Varenv.c -----
-void	ft_replace_varenv(t_list_token *token, char **env);
-char	*ft_get_new_word(char *word, char **var_env);
-int		ft_len_new_word(char *word, char **var_env);
+int		ft_replace_varenv(t_list_token *token, char **env, size_t i);
+void	ft_strcat_expand(char *s1, char *s2, size_t *i, size_t *j);
+void	ft_put_new_word(char *var_env, char *new_word, size_t *i, size_t *j);
+char	*ft_get_new_word(char *w, char **var_env);
+int		ft_len_new_word(char *w, char **var_env);
 
 //###########################################//
 //		===== INIT_MINISHELL DIRECTORY =====
@@ -155,11 +157,8 @@ char	*ft_getword_space(char **str);
 char	*ft_getword(char **str);
 char	*ft_getword_quote(char **str, char c);
 
-//		----- Ft_heredoc.c -----
-void	ft_heredoc(t_minishell *ms);
-
 //		----- Ft_Join_Token.c -----
-void	ft_join_token(t_list_token *lst);
+int		ft_join_token(t_list_token *lst);
 int		ft_is_joinable(t_list_token *lst);
 void	ft_strcat_join_token(char *s1, char *s2, int *i, int *j);
 void	ft_free_and_get_new_word(t_list_token *lst, char *new_word);
@@ -200,6 +199,27 @@ char	*ft_remove_quote(char **str);
 void	ft_strcat_trim_quote(char *s1, char *s2, size_t *i, size_t *j);
 
 //###########################################//
+//		===== HEREDOC DIRECTORY =====
+//###########################################//
+
+//		----- Ft_heredoc.c -----
+void	ft_heredoc(t_minishell *ms);
+void	ft_heredoc_found(t_list_token **st, t_minishell *ms, int *i);
+t_tok	*ft_get_heredoc(t_list_token *heredoc, t_minishell *ms, int i);
+void	ft_eof_found(t_list_token *heredoc, t_list_token *new, char *name);
+void	ft_open_heredoc(t_list_token *heredoc, char *name);
+
+//		----- Ft_heredoc_utils.c ---
+int		ft_syntax_heredoc(t_list_token *heredoc, t_minishell *ms);
+void	ft_add_previous(t_list_token *st);
+char	*ft_getname_heredoc(int nb);
+char	*ft_getword_heredoc(char *word);
+
+//		----- Ft_error_heredoc.c -----
+int		ft_error_eof_heredoc(char *str);
+int		ft_error_heredoc(t_minishell *ms, int code_error);
+
+//###########################################//
 //		===== SIGNAL DIRECTORY ======
 //###########################################//
 //
@@ -237,10 +257,10 @@ void	ft_display_error_syntax(int code_error);
 void	ft_freesplit(char **strs);
 
 //		----- Ft_Utils_List.c -----
-t_list_cmd		*ft_lstnew_cmd(t_cmd *cmd);
-t_list_token	*ft_lstnew_token(char *word);
-void			ft_lstadd_back_cmd(t_list_cmd **lst, t_list_cmd *nw);
-void			ft_lstadd_back_token(t_list_token **lst, t_list_token *nw);
+t_lcmd	*ft_lstnew_cmd(t_cmd *cmd);
+t_tok	*ft_lstnew_token(char *word);
+void	ft_lstadd_back_cmd(t_list_cmd **lst, t_list_cmd *nw);
+void	ft_lstadd_back_token(t_list_token **lst, t_list_token *nw);
 
 //		----- Utils.c -----
 bool 	ft_isspace(char c);
