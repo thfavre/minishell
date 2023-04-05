@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:09:27 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/31 18:43:56 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/05 17:41:03 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_check_syntax(t_list_token *syntax)
 
 void	ft_display_error_syntax(int code_error)
 {
-	last_exit_status = 258;
+	g_last_exit_status = 258;
 	if (code_error == 1)
 		ft_putstr_fd("minishell: syntax error quote not closed\n", 2);
 	else if (code_error == 2)

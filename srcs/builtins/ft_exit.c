@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:00 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/27 14:58:21 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/04/05 17:38:44 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_exit(t_minishell *ms, char **option)
 
 	ft_close(ms);
 	if (option[1] == NULL)
-		exit_status = last_exit_status;
+		exit_status = g_last_exit_status;
 		// exit_status = ms->last_exit_status;
 	else if (ft_isnumber(option[1]))
 		exit_status = ft_atoi(option[1]);

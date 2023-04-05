@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 14:35:11 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/03 17:53:59 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/05 17:39:44 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ void	ft_init_minishell(t_minishell *ms, char **env)
 {
 	*ms = (t_minishell){};
 	ms->env = ft_initenv(env);
-	last_exit_status = EXIT_SUCCESS;
+	g_last_exit_status = EXIT_SUCCESS;
 	ms->syntax = 0;
 }

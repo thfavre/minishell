@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:04:31 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/05 12:12:10 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/05 17:40:28 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	ft_syntax_heredoc(t_list_token *heredoc, t_minishell *ms)
 			if (ft_error_eof_heredoc(heredoc->word) == 1)
 				return (ft_error_heredoc(ms, 2));
 			ms->syntax = 0;
-			last_exit_status = 0;
+			g_last_exit_status = 0;
 			return (0);
 		}
 		heredoc = heredoc->next;

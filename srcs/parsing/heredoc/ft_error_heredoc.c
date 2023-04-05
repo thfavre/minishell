@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:07:55 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/05 12:07:56 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/05 17:40:36 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ int	ft_error_heredoc(t_minishell *ms, int code_error)
 		ft_putstr_fd(" `newline'\n", 1);
 	}
 	ms->syntax = 1;
-	last_exit_status = 258;
+	g_last_exit_status = 258;
 	return (1);
 }

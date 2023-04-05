@@ -16,7 +16,7 @@ void	ft_execute_cmd(t_minishell *ms)
 	if (ms->cmd->fd_write >= 3)
 		dup2(ms->cmd->fd_write, STDOUT_FILENO);
 	if (ft_is_builtins(ms->cmd->cmd))
-		last_exit_status = ft_execute_builtin(ms, ms->cmd);
+		g_last_exit_status = ft_execute_builtin(ms, ms->cmd);
 	else
 	{
 		fork_pid = fork();
@@ -24,7 +24,7 @@ void	ft_execute_cmd(t_minishell *ms)
 			ft_execute_external(ms->env, ms->cmd);
 		waitpid(fork_pid, &exit_status, 0);
 		if (WIFEXITED(exit_status))
-			last_exit_status = WEXITSTATUS(exit_status);
+			g_last_exit_status = WEXITSTATUS(exit_status);
 		// printf("last_exit_status %d\n", last_exit_status);
 	}
 	// reset the fd to write and read from terminal

@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:53:01 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/05 16:56:03 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/05 17:40:02 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	ft_get_infile(t_list_token **pars)
 		printf("[%d] < fd\n", fd);
 	}
 	if (fd == -1)
-		last_exit_status = ft_open_failed((*pars)->word);
+		g_last_exit_status = ft_open_failed((*pars)->word);
 	else
-		last_exit_status = 0;
+		g_last_exit_status = 0;
 	return (fd);
 }
 
@@ -60,7 +60,7 @@ int	ft_get_outfile(t_list_token **pars)
 	}
 	if ((*pars) != NULL)
 		fd = open((*pars)->word, O_TRUNC | O_CREAT | O_WRONLY, 0644);
-	last_exit_status = 0;
+	g_last_exit_status = 0;
 	return (fd);
 }
 
@@ -83,7 +83,7 @@ int	ft_get_outfile_append(t_list_token **pars)
 	}
 	if ((*pars) != NULL)
 		fd = open((*pars)->word, O_APPEND | O_CREAT | O_WRONLY, 0644);
-	last_exit_status = 0;
+	g_last_exit_status = 0;
 	return (fd);
 }
 

@@ -15,7 +15,6 @@
 # include <termios.h>
 # include <sys/param.h>
 
-
 # include "struct.h"
 # include "define.h"
 # include "../srcs/libft/libft.h"
@@ -38,13 +37,13 @@ int		ft_cd(t_minishell *ms, char **paths);
 int		ft_unset(char **env, char **option);
 
 //		----- Ft_echo.c -----
-int 	ft_echo(char **option);
+int		ft_echo(char **option);
 
 //		----- Ft_exit.c -----
-void 	ft_exit(t_minishell *ms, char **option);
+void	ft_exit(t_minishell *ms, char **option);
 
 //		----- Ft_export.c -----
-int 	ft_export(t_minishell *ms, char **option);
+int		ft_export(t_minishell *ms, char **option);
 
 //###########################################//
 //		===== CLOSE DIRECTORY =====
@@ -133,7 +132,7 @@ t_venv	*ft_getwords_dollars(char **str, char ***venv);
 //		----- Ft_Expand.c -----
 int		ft_expand(t_minishell *ms);
 void	ft_skip_dollars_alone(t_minishell *ms);
-int 	ft_dollars_alone(char *str);
+int		ft_dollars_alone(char *str);
 
 //		----- Ft_Expand_Utils.c -----
 char	*ft_get_name_varenv(char *str);
@@ -286,7 +285,7 @@ void	ft_lstadd_back_cmd(t_list_cmd **lst, t_list_cmd *nw);
 void	ft_lstadd_back_token(t_list_token **lst, t_list_token *nw);
 
 //		----- Utils.c -----
-bool 	ft_isspace(char c);
-bool 	ft_isspace_only(char *str);
+bool	ft_isspace(char c);
+bool	ft_isspace_only(char *str);
 
 #endif

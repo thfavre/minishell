@@ -6,16 +6,11 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:26:09 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/05 17:05:30 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/05 17:48:49 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	ft_add_varenv_in_list(t_list_token *token, char **venv);
-t_venv	*ft_getwords_venv(char *word, char **venv);
-void	ft_join_word_venv(t_list_venv *lst);
-void	ft_free_excess(t_list_venv *lst, char *new_word);
 
 int	ft_add_varenv_in_token(t_list_token *token, char **env, size_t i)
 {

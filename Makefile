@@ -1,7 +1,7 @@
 
 	### COMPILATION ###
 
-CC			= gcc -g3 #-fsanitize=address
+CC			= gcc -g3 -fsanitize=address
 FLAGS		= -Wall -Werror -Wextra
 
 	### EXECUTABLE ###
