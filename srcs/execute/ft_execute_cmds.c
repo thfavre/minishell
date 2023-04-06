@@ -17,18 +17,14 @@ void	ft_execute_cmds(t_minishell *ms)
 		if (fork_pid == 0) // child
 		{
 			// read
-			if (cmd->fd_read >= 3)
-				close(fd_pipe[0]);
-			else
-			{
-				clsoe(fd);
+			close(fd_pipe[0]);
+			if (cmd->fd_read == 0)
 				cmd->fd_read = fd_pipe_read_tmp;
-			}
 			dup2(cmd->fd_read, 0);
 
 			// write
 			if (cmd->fd_write >= 3)
-					close(fd_pipe[1]);
+				close(fd_pipe[1]);
 			else if (!cmd->next)
 				cmd->fd_write = 1;
 			else
@@ -47,19 +43,14 @@ void	ft_execute_cmds(t_minishell *ms)
 		fd_pipe_read_tmp = fd_pipe[0];
 		cmd = cmd->next;
 	}
-	close(fd_pipe[0]);
-	close(fd_pipe[1]);
-
-	// while (waitpid(-1, NULL, WUNTRACED) == -1)
-	// 	;
-	// wait for all child processes to finish
-
 	while (waitpid(-1, &exit_status, 0) > 0)
 		;
 	// printf("status : %d\n", WEXITSTATUS(status));
 	// ms->last_exit_status = WEXITSTATUS(exit_status);
 	if (WIFEXITED(exit_status))
 		g_last_exit_status = WEXITSTATUS(exit_status);
+	// if ()
+
 }
 
 void	ft_run_cmd(t_minishell *ms, struct s_list_cmd *cmd)

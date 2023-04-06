@@ -24,16 +24,14 @@ char	*ft_prompt(void)
 {
 	char	*prompt_text;
 	char	*prompt_output;
-
-	prompt_text = ft_get_prompt();
+	// if (g_last_exit_status == 130)
+	// 	prompt_text = ft_strdup("T");
+	// else
+		prompt_text = ft_get_prompt();
 	prompt_output = readline(prompt_text); // "(prompt)"
 	free(prompt_text);
 	return (prompt_output);
 }
-
-// void sigint_handler(int sig) {
-// 	ft_putstr_fd("ERRRRR\n", 2);
-// }
 
 
 int	main(int ac, char **av, char **env)
@@ -44,16 +42,15 @@ int	main(int ac, char **av, char **env)
 	(void)ac;
 	(void)av;
 	ft_init_minishell(&ms, env); // TODO? make a function init that will init the minishell and signals..?
-	ft_init_signals();
 	// signal(SIGINT, sigint_handler);
 	// ft_putstr_fd("2\n", 2);
 	// ft_unsetenv(ms.env, "OLDPWD");
 	prompt_output = "ON!";
 	while (prompt_output != NULL)
 	{
-		// printf("(before ft_prompt)\n");
+		ft_init_signals(ft_handle_signals_prompt);
 		prompt_output = ft_prompt();
-		// printf("(after ft_prompt)\n\n");
+		ft_init_signals(ft_handle_signals_execution);
 		if (prompt_output && !ft_isspace_only(prompt_output))
 		{
 			add_history(prompt_output);

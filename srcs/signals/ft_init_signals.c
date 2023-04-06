@@ -1,7 +1,7 @@
 
 #include "minishell.h"
 
-void ft_init_signals()
+void ft_init_signals(void (*handle_signals)(int))
 {
 	struct sigaction sa;
 	struct termios	termios;
@@ -12,7 +12,7 @@ void ft_init_signals()
 	termios.c_lflag &= ~(ECHOCTL);
 	if ((tcsetattr(STDIN_FILENO, TCSANOW, &termios)) == -1)
 		exit(EXIT_FAILURE);
-	sa.sa_handler = ft_handle_signals;
+	sa.sa_handler = handle_signals;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = SA_RESTART;
 	if (sigaction(SIGINT, &sa, NULL) == -1)

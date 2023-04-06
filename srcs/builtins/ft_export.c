@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:00 by thomas            #+#    #+#             */
-/*   Updated: 2023/04/03 15:35:52 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/04/06 16:01:01 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_export(t_minishell *ms, char **option)
 				// printf("key : %s\n", key);
 				// printf("value : %s\n", value);
 				ft_setenv(ms, key, value, 1);
-				// if (new_env != NULL)
+				// if (new_env<< != NULL)
 				// {
 				// 	ft_free_env(ms->env);
 				// 	ms->env = new_env;

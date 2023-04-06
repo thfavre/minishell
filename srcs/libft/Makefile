@@ -22,7 +22,7 @@ OBJS_		:= $(addprefix $(OBJS_PATH), $(SRCS:.c=.o))
 GREEN		= \033[1;32m
 RESET		= \033[0m
 
-CHARG_LINE_TXT	= echo "$(GREEN)██$(RESET)\c"
+CHARG_LINE_TXT	= echo "$(GREEN)█$(RESET)\c"
 
 all:		${NAME}
 

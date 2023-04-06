@@ -4,7 +4,7 @@
 void	ft_execute_cmd(t_minishell *ms)
 {
 	pid_t	fork_pid;
-	// int		exit_status;
+	int		exit_status;
 	int original_stdin;
 	int original_stdout;
 
@@ -22,7 +22,14 @@ void	ft_execute_cmd(t_minishell *ms)
 		fork_pid = fork();
 		if (fork_pid == 0)
 			ft_execute_external(ms->env, ms->cmd);
-		waitpid(fork_pid, &g_last_exit_status, 0);
+		waitpid(fork_pid, &exit_status, 0);
+		if (WIFEXITED(exit_status))
+			g_last_exit_status = WEXITSTATUS(exit_status);
+		if (WIFSIGNALED(exit_status))
+			g_last_exit_status = 130;
+		// printf("g_last_exit_status %d", g_last_exit_status);
+		// if (WIFSIGNALED(exit_status))
+		// 	g_last_exit_status = 130; // TODO
 		// if (WIFSIGNALED(exit_status)) {
         //         if (WTERMSIG(exit_status) == SIGINT) {
         //             // Handle the case when the child process received the SIGINT signal.

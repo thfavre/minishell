@@ -208,6 +208,6 @@ fclean:		clean
 re:			fclean all
 
 credit:
-			@tput setaf 2; cat .ascii_art/name; tput setaf default
+		@tput setaf 2; cat .ascii_art/name; tput setaf default
 
 .PHONY:		clean fclean re tmp libs all credit
