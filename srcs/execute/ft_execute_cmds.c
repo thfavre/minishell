@@ -20,7 +20,10 @@ void	ft_execute_cmds(t_minishell *ms)
 			if (cmd->fd_read >= 3)
 				close(fd_pipe[0]);
 			else
+			{
+				clsoe(fd);
 				cmd->fd_read = fd_pipe_read_tmp;
+			}
 			dup2(cmd->fd_read, 0);
 
 			// write
@@ -55,7 +58,8 @@ void	ft_execute_cmds(t_minishell *ms)
 		;
 	// printf("status : %d\n", WEXITSTATUS(status));
 	// ms->last_exit_status = WEXITSTATUS(exit_status);
-	g_last_exit_status = WEXITSTATUS(exit_status);
+	if (WIFEXITED(exit_status))
+		g_last_exit_status = WEXITSTATUS(exit_status);
 }
 
 void	ft_run_cmd(t_minishell *ms, struct s_list_cmd *cmd)

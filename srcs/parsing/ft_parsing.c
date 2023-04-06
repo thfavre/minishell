@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:53:58 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/05 15:58:58 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:18:11 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ void	ft_print_list_token(t_list_token *token)
 	t_list_token	*test;
 
 	test = token;
-	printf("\nPROMPT TOKENIZED ->\n");
+	// printf("\nPROMPT TOKENIZED ->\n");
 	while (test != NULL)
 	{
-		printf("-----\n");
-		printf("[%s] <- token\n", test->word);
-		printf("{%d} <- type\n", test->type);
-		printf("{%d} <- redirection\n", test->red);
-		printf("{%d} <- quote\n", test->quote);
+		// printf("-----\n");
+		// printf("[%s] <- token\n", test->word);
+		// printf("{%d} <- type\n", test->type);
+		// printf("{%d} <- redirection\n", test->red);
+		// printf("{%d} <- quote\n", test->quote);
 		test = test->next;
 	}
 }
@@ -33,7 +33,7 @@ void	ft_print_error_parsing(int code_error)
 {
 	if (code_error == 1)
 	{
-		printf("Error Malloc in parsing\n");
+		// printf("Error Malloc in parsing\n");
 		exit (0);
 	}
 }

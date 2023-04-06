@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse_token.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 17:28:16 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/30 11:23:37 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/06 14:17:31 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,22 @@ void	ft_print_list_cmd(t_list_cmd *cmd)
 	i = 0;
 	j = 1;
 	test = cmd;
-	printf("PARSING TOKEN -> \n");
+	// printf("PARSING TOKEN -> \n");
 	while (test != NULL)
 	{
-		printf(" --- cmd[%d] ---\n", j++);
-		printf("[%s] <- cmd\n", test->cmd);
+		// printf(" --- cmd[%d] ---\n", j++);
+		// printf("[%s] <- cmd\n", test->cmd);
 		if (test->cmd != NULL)
 		{
 			while (test->option[i] != NULL)
 			{
-				printf("[%s] <- option[%d]\n", test->option[i], i);
+				// printf("[%s] <- option[%d]\n", test->option[i], i);
 				i++;
 			}
 		}
 		i = 0;
-		printf("[%d] <- fd_read\n", test->fd_read);
-		printf("[%d] <- fd_write\n", test->fd_write);
+		// printf("[%d] <- fd_read\n", test->fd_read);
+		// printf("[%d] <- fd_write\n", test->fd_write);
 		test = test->next;
 	}
 }
