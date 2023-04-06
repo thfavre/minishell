@@ -156,14 +156,12 @@ NL_TXT			= echo ""
 	### LIBS ###
 
 LIBS		= -lreadline\
-			  -lgnl\
 			  -lft
 
 	### LIBS PATH ###
 
 ifdef READLINE
 	LIBS_PATH	+= -L$(READLINE)/lib\
-				   -L$(GNL)\
 				   -L$(LIBFT)
 	INCS_PATH	+= -I$(READLINE)/include
 endif
@@ -186,7 +184,6 @@ tmp:
 
 libs:
 			@$(LIBS_TXT)
-			@make -sC $(GNL)
 			@make -C $(LIBFT)
 			@$(LIBS_END_TXT)
 			@$(NL_TXT)
@@ -200,7 +197,6 @@ $(OBJS_PATH)/%.o:	$(SRCS_PATH)/%.c
 clean:
 			@$(CLEAN_TXT)
 			@tput setaf 1; cat .ascii_art/trash; tput setaf default
-			@make fclean -C $(GNL)
 			@make fclean -C $(LIBFT)
 			@rm -rf $(OBJS_PATH)
 

@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:59:23 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/05 16:59:33 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/06 11:21:11 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,7 @@ t_list_venv	*ft_lstnew_venv(char *word)
 	new = malloc(sizeof(t_list_venv));
 	if (!new)
 		return (NULL);
-	new->word = ft_calloc(sizeof(char), ft_strlen(word) + 1);
-	if (!new->word)
-		return (NULL);
-	while (word[i] != '\0')
-	{
-		new->word[i] = word[i];
-		i++;
-	}
+	new->word = word;
 	new->next = NULL;
 	new->previous = NULL;
 	return (new);

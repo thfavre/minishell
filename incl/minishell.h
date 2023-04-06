@@ -18,7 +18,6 @@
 # include "struct.h"
 # include "define.h"
 # include "../srcs/libft/libft.h"
-# include "../srcs/gnl/get_next_line.h"
 
 //###########################################//
 //		===== BUILTINS DIRECTORY =====
@@ -115,8 +114,8 @@ void	ft_free_excess(t_list_venv *lst, char *new_word);
 char	*ft_get_one_word_venv(char ***venv);
 char	*ft_getword_space_venv(char ***venv);
 int		ft_lenword_nodollars(char *str);
-int		ft_norm(char ***venv, char *word, t_list_venv *create);
-int		ft_norm_two(char ***venv, char *word, t_list_venv *create);
+int		ft_norm(char ***venv, char *word, t_list_venv **create);
+int		ft_norm_two(char ***venv, char *word, t_list_venv **create);
 
 //		----- Ft_Add_Varenv_In_Token3.c -----
 int		ft_lenword_venv(char *str);

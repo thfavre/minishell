@@ -6,34 +6,32 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:59:54 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/05 17:00:07 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/06 11:31:43 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_norm(char ***venv, char *word, t_list_venv *create)
+int	ft_norm(char ***venv, char *word, t_list_venv **create)
 {
 	if (***venv != ' ')
 	{
 		word = ft_get_one_word_venv(venv);
 		if (!word)
 			return (1);
-		create = ft_lstnew_venv(word);
-		free(word);
+		(*create) = ft_lstnew_venv(word);
 	}
 	else
 	{
 		word = ft_getword_space_venv(venv);
 		if (!word)
 			return (1);
-		create = ft_lstnew_venv(word);
-		free(word);
+		(*create) = ft_lstnew_venv(word);
 	}
 	return (0);
 }
 
-int	ft_norm_two(char ***venv, char *word, t_list_venv *create)
+int	ft_norm_two(char ***venv, char *word, t_list_venv **create)
 {
 	while (***venv != '\0')
 	{
@@ -42,16 +40,14 @@ int	ft_norm_two(char ***venv, char *word, t_list_venv *create)
 			word = ft_get_one_word_venv(venv);
 			if (!word)
 				return (1);
-			ft_lstadd_back_venv(&create, ft_lstnew_venv(word));
-			free(word);
+			ft_lstadd_back_venv(create, ft_lstnew_venv(word));
 		}
 		else
 		{
 			word = ft_getword_space_venv(venv);
 			if (!word)
 				return (1);
-			ft_lstadd_back_venv(&create, ft_lstnew_venv(word));
-			free(word);
+			ft_lstadd_back_venv(create, ft_lstnew_venv(word));
 		}
 	}
 	return (0);

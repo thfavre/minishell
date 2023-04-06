@@ -2,7 +2,7 @@
 #ifndef DEFINE_H
 # define DEFINE_H
 
-# define DEBUG 0
+# define DEBUG 1
 
 //		### COLORS ###
 
