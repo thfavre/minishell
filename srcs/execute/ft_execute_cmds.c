@@ -16,6 +16,20 @@ void	ft_execute_cmds(t_minishell *ms)
 		pid_t fork_pid = fork();
 		if (fork_pid == 0) // child
 		{
+			if (cmd->fd_read)
+			ft_run_cmd(ms, cmd);
+		}
+		// parent
+		close(fd_pipe[1]);
+		if (fd_pipe_read_tmp >= 3)
+			close(fd_pipe_read_tmp);
+		if (cmd->fd_write >= 3)
+			close(cmd->fd_write);
+		if (cmd->fd_read >= 3)
+			close(cmd->fd_read);
+		fd_pipe_read_tmp = fd_pipe[0];
+		cmd = cmd->next;
+	/*	{
 			// read
 			if (cmd->fd_read >= 3)
 				close(fd_pipe[0]);
@@ -31,18 +45,7 @@ void	ft_execute_cmds(t_minishell *ms)
 			else
 				cmd->fd_write = fd_pipe[1];
 			dup2(cmd->fd_write, 1); // write
-			ft_run_cmd(ms, cmd);
-		}
-		// parent
-		close(fd_pipe[1]);
-		if (fd_pipe_read_tmp >= 3)
-			close(fd_pipe_read_tmp);
-		if (cmd->fd_write >= 3)
-			close(cmd->fd_write);
-		if (cmd->fd_read >= 3)
-			close(cmd->fd_read);
-		fd_pipe_read_tmp = fd_pipe[0];
-		cmd = cmd->next;
+		}*/
 	}
 	close(fd_pipe[0]);
 	close(fd_pipe[1]);
