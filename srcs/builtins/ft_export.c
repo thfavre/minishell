@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:00 by thomas            #+#    #+#             */
-/*   Updated: 2023/04/06 16:01:01 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/04/06 17:44:12 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,31 +35,15 @@ int	ft_export(t_minishell *ms, char **option)
 			key[ft_strlen(*option) - ft_strlen(ft_strchr(*option, '='))] = '\0';
 			value = ft_strchr(*option, '=') + 1;
 			if (is_valid_key(key))
-			{
-				// printf("key : %s\n", key);
-				// printf("value : %s\n", value);
 				ft_setenv(ms, key, value, 1);
-				// if (new_env<< != NULL)
-				// {
-				// 	ft_free_env(ms->env);
-				// 	ms->env = new_env;
-				// }
-				free(key);
-			}
+			free(key);
 			// else
 			// 	ft_putstr_fd("export: not a valid identifier: \n", 2);
 		}
 		else // only add it
-		{
-			// char *new_key;
+
 			if (is_valid_key(*option))
 				ft_setenv(ms, *option, "", 1);
-			// ft_unsetenv(ms->env, )
-			// if the key is not already in the env, add the key with setenv
-			// int i = 0;
-			// while (ms->env[i] && ft_strncmp(*option, ft_strlen(ms->env[i])))
-
-		}
 		// else
 		// {
 		// 	// ft_putstr_fd("export: not a valid identifier: \n", 2); // what if there is no '=' ?
