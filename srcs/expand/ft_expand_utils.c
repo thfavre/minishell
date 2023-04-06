@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:28:22 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/28 15:42:09 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/06 11:37:33 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_is_question_mark(char *str)
 	int	i;
 
 	i = 0;
-	if (str[i] == '?' && str[i + 1] == '\0')
+	if (str[i] == '?' && (str[i + 1] == '\0' || str[i + 1] == '"'))
 		return (1);
 	return (0);
 }
