@@ -6,12 +6,11 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:56:36 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/06 17:28:13 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/07 15:04:08 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-void	ft_del_file(char *str);
 
 void	ft_del_heredoc(t_list_token *token)
 {
