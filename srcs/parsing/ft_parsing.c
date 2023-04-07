@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:53:58 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/06 15:26:57 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/04/07 15:37:37 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,3 @@ void	ft_parsing(t_minishell *ms, char *str_prompt)
 	if (DEBUG == 1)
 		ft_print_list_token(ms->token);
 }
-// Bonus : Expand the wildcard pattern

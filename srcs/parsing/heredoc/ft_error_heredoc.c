@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:07:55 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/05 17:40:36 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/07 11:48:30 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,8 @@
 
 int	ft_error_eof_heredoc(char *str)
 {
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == '#')
-			return (1);
-		i++;
-	}
+	if (*str == '#')
+		return (1);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 10:54:46 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/06 17:39:30 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/04/07 15:37:25 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_heredoc(t_minishell *ms)
 			ft_error_heredoc(ms, 1);
 			break ;
 		}
-		if (st->next != NULL && st->red == E_HEREDOC)
+		if (st->red == E_HEREDOC)
 			ft_heredoc_found(&st, ms, &i);
 		if (st->next == NULL)
 			break ;
@@ -40,7 +40,9 @@ void	ft_heredoc(t_minishell *ms)
 
 void	ft_heredoc_found(t_list_token **st, t_minishell *ms, int *i)
 {
-	if ((*st)->previous == NULL)
+	if ((*st)->next == NULL)
+		ft_error_heredoc(ms, 2);
+	else if ((*st)->previous == NULL)
 	{
 		(*i)++;
 		(*st) = ft_get_heredoc((*st), ms, (*i));
@@ -50,6 +52,11 @@ void	ft_heredoc_found(t_list_token **st, t_minishell *ms, int *i)
 		(*i)++;
 		(*st) = (*st)->previous;
 		(*st)->next = ft_get_heredoc((*st)->next, ms, (*i));
+	}
+	if ((*st)->next != NULL)
+	{
+		if ((*st)->next->red == E_HEREDOC)
+			(*st) = (*st)->next;
 	}
 }
 
@@ -74,6 +81,7 @@ t_list_token	*ft_get_heredoc(t_list_token *heredoc, t_minishell *ms, int i)
 		}
 		tmp = heredoc;
 		heredoc = heredoc->next;
+		free(tmp->word);
 		free(tmp);
 	}
 	free(name);
@@ -88,6 +96,7 @@ void	ft_eof_found(t_list_token *heredoc, t_list_token *new, char *name)
 	tmp = heredoc;
 	if (heredoc->next != NULL)
 		ft_lstadd_back_token(&(*new).next, heredoc->next);
+	free(tmp->word);
 	free(tmp);
 }
 
@@ -107,11 +116,14 @@ void	ft_open_heredoc(t_list_token *heredoc, char *name)
 			break ;
 		nl = ft_strjoin(line, "\n");
 		free(line);
-		all = ft_strjoin(all, nl);
-		free(nl);
+		all = ft_strjoin_heredoc(all, nl);
 		line = readline("> ");
 	}
+	free(line);
 	if (all != NULL)
+	{
 		ft_putstr_fd(all, fd_heredoc);
+		free(all);
+	}
 	close(fd_heredoc);
 }

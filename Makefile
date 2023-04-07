@@ -83,7 +83,8 @@ PARS_FILES	= ft_getword.c\
 			  ft_join_token.c\
 			  heredoc/ft_heredoc.c\
 			  heredoc/ft_heredoc_utils.c\
-			  heredoc/ft_error_heredoc.c
+			  heredoc/ft_error_heredoc.c\
+			  heredoc/ft_del_heredoc.c
 
 	# SIGNALS
 
@@ -148,7 +149,7 @@ LIBS_TXT		= echo "$(CYAN)=== Compiling LIBS ===$(RESET)"
 LIBS_END_TXT	= echo "$(GREEN)=== LIBS Compilated ===$(RESET)"
 START_TXT		= echo "$(CYAN)=== Compiling Project ===$(RESET)"
 END_TXT			= echo "$(GREEN)=== Project Compilated ===$(RESET)"
-CHARG_LINE_TXT	= echo "$(GREEN)██$(RESET)\c"
+CHARG_LINE_TXT	= echo "$(GREEN)█$(RESET)\c"
 CLEAN_TXT		= echo "$(RED) Deleting all files$(RESET)"
 FCLEAN_TXT		= echo "$(RED) Deleting $(NAME)$(RESET)"
 NL_TXT			= echo ""

@@ -30,6 +30,7 @@ void	ft_free_token(t_minishell *ms)
 {
 	t_list_token *tmp;
 
+	ft_del_heredoc(ms->token);
 	while (ms->token != NULL)
 	{
 		tmp = ms->token;
