@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:53:01 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/05 17:40:02 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/06 17:08:11 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ int	ft_get_infile(t_list_token **pars)
 		(*pars) = (*pars)->next;
 	}
 	if ((*pars) != NULL)
-	{
 		fd = open((*pars)->word, O_RDONLY);
-		printf("[%d] < fd\n", fd);
-	}
 	if (fd == -1)
 		g_last_exit_status = ft_open_failed((*pars)->word);
 	else

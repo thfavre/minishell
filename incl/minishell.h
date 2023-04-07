@@ -235,10 +235,15 @@ int		ft_syntax_heredoc(t_list_token *heredoc, t_minishell *ms);
 void	ft_add_previous(t_list_token *st);
 char	*ft_getname_heredoc(int nb);
 char	*ft_getword_heredoc(char *word);
+char	*ft_strjoin_heredoc(char *s1, char *s2);
 
 //		----- Ft_error_heredoc.c -----
 int		ft_error_eof_heredoc(char *str);
 int		ft_error_heredoc(t_minishell *ms, int code_error);
+
+//		----- Ft_Del_Heredoc.c -----
+void	ft_del_heredoc(t_list_token *token);
+void	ft_del_file(char *str);
 
 //###########################################//
 //		===== SIGNAL DIRECTORY ======

@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:04:31 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/05 17:40:28 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/07 12:43:15 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,25 @@ int	ft_syntax_heredoc(t_list_token *heredoc, t_minishell *ms)
 	if (heredoc == NULL)
 		return (ft_error_heredoc(ms, 1));
 	return (0);
+}
+
+char	*ft_strjoin_heredoc(char *s1, char *s2)
+{
+	char	*str;
+	char	*new_str;
+
+	new_str = NULL;
+	str = ft_calloc(sizeof(char), ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!str)
+		return (NULL);
+	if (s1 != NULL)
+	{
+		str = ft_memcpy(str, s1, ft_strlen(s1));
+		free(s1);
+	}
+	new_str = ft_strjoin(str, s2);
+	free(str);
+	if (s2 != NULL)
+		free(s2);
+	return (new_str);
 }
