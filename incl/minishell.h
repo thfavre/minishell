@@ -241,6 +241,7 @@ char	*ft_strjoin_heredoc(char *s1, char *s2);
 //		----- Ft_heredoc_utils2.c -----
 int		ft_strcmp_heredoc(t_list_token *heredoc, char *line);
 void	ft_open_hd_two(char *all, t_minishell *ms, int fd_heredoc, t_tok *hd);
+void	ft_free_init(t_list_venv *init);
 
 //		----- Ft_error_heredoc.c -----
 int		ft_error_eof_heredoc(char *str);

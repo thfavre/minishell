@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:26:09 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/05 17:48:49 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:52:12 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	ft_add_varenv_in_list(t_list_token *token, char **venv)
 			add_in = add_in->previous;
 		}
 	}
+	ft_free_init(init);
 }
 
 t_list_venv	*ft_getwords_venv(char *word, char **venv)

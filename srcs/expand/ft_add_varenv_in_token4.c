@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 17:03:58 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/06 11:30:40 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:53:51 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,16 @@ t_list_venv	*ft_getwords_dollars(char **str, char ***venv)
 	}
 	(*venv)++;
 	return (create);
+}
+
+void	ft_free_init(t_list_venv *init)
+{
+	t_list_venv	*tmp;
+
+	while (init != NULL)
+	{
+		tmp = init;
+		init = init->next;
+		free(tmp);
+	}
 }
