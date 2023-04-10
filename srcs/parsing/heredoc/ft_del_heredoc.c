@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:56:36 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/07 15:04:08 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/10 17:17:47 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ void	ft_del_file(char *str)
 
 	option = ft_calloc(sizeof(char *), 3);
 	if (!option)
-		exit(printf("Error Malloc\n"));
+		exit(printf("Error Malloc\n") + 247);
 	option[0] = ft_strdup("/bin/rm");
 	if (!option[0])
-		exit(printf("Error Malloc\n"));
+		exit(printf("Error Malloc\n") + 247);
 	option[1] = ft_strdup(str);
 	if (!option[1])
-		exit(printf("Error Malloc\n"));
+		exit(printf("Error Malloc\n") + 247);
 	if (access(str, F_OK) == 0)
 	{
 		pid_fork = fork();

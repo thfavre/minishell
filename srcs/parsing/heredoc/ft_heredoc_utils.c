@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 12:04:31 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/07 12:43:15 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/10 17:16:44 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ char	*ft_getname_heredoc(int nb)
 	i = 0;
 	heredoc = ".heredoc0\0";
 	name = ft_calloc(sizeof(char), ft_strlen(".heredoc0") + 1);
+	if (!name)
+		return (NULL);
 	while (heredoc[i] != '\0')
 	{
 		name[i] = heredoc[i];

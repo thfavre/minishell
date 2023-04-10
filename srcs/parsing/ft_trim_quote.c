@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:50:58 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/31 11:55:23 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/10 17:16:12 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ char	*ft_remove_quote(char **str)
 	i = 0;
 	j = 0;
 	trim = ft_calloc(sizeof(char), ft_strlen(*str) + 1);
+	if (!trim)
+		exit(printf("Malloc Error\n") + 247);
 	while (str[0][i] != '\0')
 	{
 		if (str[0][i] == '"' || str[0][i] == '\'')

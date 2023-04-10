@@ -2,3 +2,6 @@
 - &&
 - ||
 - *
+
+# === LEAKS ===
+- when $? is used 

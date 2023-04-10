@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:09:19 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/29 16:11:06 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/04/10 17:49:01 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_pipe_error(t_list_token *syntax)
 		cpy = cpy->next;
 	if (cpy->next != NULL)
 	{
-		if (cpy->next->type != E_STRING)
+		if (cpy->next->type != E_STRING && cpy->next->type != E_REDIRECTION)
 			return (1);
 	}
 	if (cpy->next == NULL)

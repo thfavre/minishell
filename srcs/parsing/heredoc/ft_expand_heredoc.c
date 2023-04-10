@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 10:41:03 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/10 10:57:02 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/10 17:18:03 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_replace_varenv_heredoc(char **str, t_minishell *ms)
 
 	var_env = ft_calloc(sizeof(char *), ft_nbr_varenv((*str)) + 1);
 	if (!var_env)
-		exit(printf("Malloc Error\n"));
+		exit(printf("Malloc Error\n") + 247);
 	i = 0;
 	nb_venv = 0;
 	while ((*str)[i] != '\0')
