@@ -1,7 +1,7 @@
 
 	### COMPILATION ###
 
-CC			= gcc -g3 #-fsanitize=address
+CC			= gcc -g3 -fsanitize=address
 FLAGS		= -Wall -Werror -Wextra
 
 	### EXECUTABLE ###
@@ -83,8 +83,10 @@ PARS_FILES	= ft_getword.c\
 			  ft_join_token.c\
 			  heredoc/ft_heredoc.c\
 			  heredoc/ft_heredoc_utils.c\
+			  heredoc/ft_heredoc_utils2.c\
 			  heredoc/ft_error_heredoc.c\
-			  heredoc/ft_del_heredoc.c
+			  heredoc/ft_del_heredoc.c\
+			  heredoc/ft_expand_heredoc.c
 
 	# SIGNALS
 

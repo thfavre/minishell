@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 10:54:46 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/07 15:37:25 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/10 10:51:25 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ t_list_token	*ft_get_heredoc(t_list_token *heredoc, t_minishell *ms, int i)
 	{
 		if (heredoc->type == E_STRING)
 		{
-			ft_eof_found(heredoc, new, name);
+			ft_eof_found(heredoc, new, name, ms);
 			break ;
 		}
 		tmp = heredoc;
@@ -88,11 +88,11 @@ t_list_token	*ft_get_heredoc(t_list_token *heredoc, t_minishell *ms, int i)
 	return (new);
 }
 
-void	ft_eof_found(t_list_token *heredoc, t_list_token *new, char *name)
+void	ft_eof_found(t_tok *heredoc, t_tok *new, char *name, t_minishell *ms)
 {
 	t_list_token	*tmp;
 
-	ft_open_heredoc(heredoc, name);
+	ft_open_heredoc(heredoc, name, ms);
 	tmp = heredoc;
 	if (heredoc->next != NULL)
 		ft_lstadd_back_token(&(*new).next, heredoc->next);
@@ -100,7 +100,7 @@ void	ft_eof_found(t_list_token *heredoc, t_list_token *new, char *name)
 	free(tmp);
 }
 
-void	ft_open_heredoc(t_list_token *heredoc, char *name)
+void	ft_open_heredoc(t_list_token *heredoc, char *name, t_minishell *ms)
 {
 	int		fd_heredoc;
 	char	*line;
@@ -112,7 +112,7 @@ void	ft_open_heredoc(t_list_token *heredoc, char *name)
 	line = readline("> ");
 	while (line != NULL)
 	{
-		if (ft_strcmp(heredoc->word, line) == 0)
+		if (ft_strcmp_heredoc(heredoc, line) == 0)
 			break ;
 		nl = ft_strjoin(line, "\n");
 		free(line);
@@ -121,9 +121,6 @@ void	ft_open_heredoc(t_list_token *heredoc, char *name)
 	}
 	free(line);
 	if (all != NULL)
-	{
-		ft_putstr_fd(all, fd_heredoc);
-		free(all);
-	}
+		ft_open_hd_two(all, ms, fd_heredoc, heredoc);
 	close(fd_heredoc);
 }

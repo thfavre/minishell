@@ -228,15 +228,19 @@ void	ft_strcat_trim_quote(char *s1, char *s2, size_t *i, size_t *j);
 void	ft_heredoc(t_minishell *ms);
 void	ft_heredoc_found(t_list_token **st, t_minishell *ms, int *i);
 t_tok	*ft_get_heredoc(t_list_token *heredoc, t_minishell *ms, int i);
-void	ft_eof_found(t_list_token *heredoc, t_list_token *new, char *name);
-void	ft_open_heredoc(t_list_token *heredoc, char *name);
+void	ft_eof_found(t_tok *heredoc, t_tok *new, char *name, t_minishell *ms);
+void	ft_open_heredoc(t_list_token *heredoc, char *name, t_minishell *ms);
 
-//		----- Ft_heredoc_utils.c ---
+//		----- Ft_heredoc_utils.c -----
 int		ft_syntax_heredoc(t_list_token *heredoc, t_minishell *ms);
 void	ft_add_previous(t_list_token *st);
 char	*ft_getname_heredoc(int nb);
 char	*ft_getword_heredoc(char *word);
 char	*ft_strjoin_heredoc(char *s1, char *s2);
+
+//		----- Ft_heredoc_utils2.c -----
+int		ft_strcmp_heredoc(t_list_token *heredoc, char *line);
+void	ft_open_hd_two(char *all, t_minishell *ms, int fd_heredoc, t_tok *hd);
 
 //		----- Ft_error_heredoc.c -----
 int		ft_error_eof_heredoc(char *str);
@@ -245,6 +249,13 @@ int		ft_error_heredoc(t_minishell *ms, int code_error);
 //		----- Ft_Del_Heredoc.c -----
 void	ft_del_heredoc(t_list_token *token);
 void	ft_del_file(char *str);
+
+//		----- Ft_Expand_heredoc.c -----
+void	ft_replace_varenv_heredoc(char **str, t_minishell *ms);
+void	ft_strcat_expand_heredoc(char *s1, char *s2, size_t *i, size_t *j);
+void	ft_put_new_word_hd(char *var_env, char *new_word, size_t *i, size_t *j);
+char	*ft_get_new_word_heredoc(char *w, char **var_env, size_t i);
+int		ft_len_new_word_hd(char *w, char **var_env, int i);
 
 //###########################################//
 //		===== SIGNAL DIRECTORY ======
@@ -255,7 +266,7 @@ void	ft_handle_signals_execution(int signo);
 void	ft_handle_signals_prompt(int signo);
 
 //		----- Ft_init_signals.c -----
-void ft_init_signals(void (*handle_signals)(int));
+void	ft_init_signals(void (*handle_signals)(int));
 
 //###########################################//
 //		===== SYNTAX DIRECTORY =====
