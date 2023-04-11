@@ -3,36 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_setenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 01:08:03 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/15 14:53:12 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/11 15:05:49 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_setenv(t_minishell *ms, char *key, char *value, int overwrite)
+int	ft_setenv(t_minishell *ms, char *key, char *value)
 {
 	char	*new_element;
 	char	**new_env;
 
-	if (key == NULL || key[0] == '\0' || strchr(key, '=') != NULL ||
+	if (key == NULL || key[0] == '\0' || ft_strchr(key, '=') != NULL || \
 			value == NULL)
-		return -1;
-	if (ft_getenv(ms->env, key) != NULL)
-	{
-		if (overwrite == 0)
-			return 0;
-		ft_unsetenv(ms->env, key);
-	}
+		return (-1);
+	ft_unsetenv(ms->env, key);
 	new_element = malloc(strlen(key) + strlen(value) + 2);
 	if (new_element == NULL)
-		return -1;
-	strcpy(new_element, key); // TODO repalce with ft version
+		return (-1);
+	strcpy(new_element, key);
 	if (value[0] != '\0')
-		strcat(new_element, "="); // TODO repalce with ft version
-	strcat(new_element, value); // TODO repalce with ft version
+		strcat(new_element, "=");
+	strcat(new_element, value);
 	new_env = ft_putenv(ms->env, new_element);
 	ft_free_env(ms->env);
 	ms->env = new_env;
@@ -64,17 +59,6 @@ char	**ft_putenv(char **env, char *string)
 	}
 	new_env[i] = strdup(string);
 	if (!new_env[i])
-			return (ft_free_env(new_env));
+		return (ft_free_env(new_env));
 	return (new_env);
 }
-
-// void	*ft_free_env(char **env)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (env[i])
-// 		free(env[i++]);
-// 	free(env);
-// 	return (NULL);
-// }

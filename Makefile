@@ -1,7 +1,7 @@
 
 	### COMPILATION ###
 
-CC			= gcc -g3 #-fsanitize=address
+CC			= gcc -g #-fsanitize=address
 FLAGS		= -Wall -Werror -Wextra
 
 	### EXECUTABLE ###
@@ -32,7 +32,8 @@ BUILT_FILES	= ft_cd.c\
 			  ft_echo.c\
 			  ft_unset.c\
 			  ft_exit.c\
-			  ft_export.c
+			  ft_export.c\
+			  ft_print_export.c
 
 	# CLOSE
 
@@ -88,6 +89,10 @@ PARS_FILES	= ft_getword.c\
 			  heredoc/ft_del_heredoc.c\
 			  heredoc/ft_expand_heredoc.c
 
+	# PROMPT
+
+PROMPT_FILES	= ft_prompt.c
+
 	# SIGNALS
 
 SIGN_FILES	= ft_init_signals.c\
@@ -116,6 +121,7 @@ EXP_FILES	:= $(addprefix $(OBJS_PATH)/expand/, $(EXP_FILES:.c=.o))
 INIT_FILES	:= $(addprefix $(OBJS_PATH)/init_minishell/, $(INIT_FILES:.c=.o))
 LIBFT_FILES	:= $(addprefix $(OBJS_PATH)/libft/, $(LIBFT_FILES:.c=.o))
 PARS_FILES	:= $(addprefix $(OBJS_PATH)/parsing/, $(PARS_FILES:.c=.o))
+PROMPT_FILES	:= $(addprefix $(OBJS_PATH)/prompt/, $(PROMPT_FILES:.c=.o))
 SIGN_FILES	:= $(addprefix $(OBJS_PATH)/signals/, $(SIGN_FILES:.c=.o))
 STAX_FILES	:= $(addprefix $(OBJS_PATH)/syntax/, $(STAX_FILES:.c=.o))
 UTILS_FILES	:= $(addprefix $(OBJS_PATH)/utils/, $(UTILS_FILES:.c=.o))
@@ -129,6 +135,7 @@ OBJS		:=  $(BUILT_FILES)\
 				$(INIT_FILES)\
 				$(LIBFT_FILES)\
 				$(PARS_FILES)\
+				$(PROMPT_FILES)\
 				$(SIGN_FILES)\
 				$(STAX_FILES)\
 				$(UTILS_FILES)\
@@ -169,6 +176,7 @@ ifdef READLINE
 	LIBS_PATH	+= -L$(READLINE)/lib
 	INCS_PATH	+= -I$(READLINE)/include
 endif
+LIBS_PATH	+= -L$(LIBFT)
 
 	### RULES ###
 

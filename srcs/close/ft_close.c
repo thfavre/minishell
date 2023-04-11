@@ -1,11 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_close.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/11 14:49:27 by thomas            #+#    #+#             */
+/*   Updated: 2023/04/11 14:49:33 by thomas           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
-void ft_close(t_minishell *ms)
+void	ft_close(t_minishell *ms)
 {
-	ft_putstr_fd("exit\n", 1); // TODO in on STDERROR or STDOUT fd ?
+	ft_putstr_fd("exit\n", STDOUT_FILENO);
 	ft_free_env(ms->env);
 	rl_clear_history();
-	// ft_free_path(ms); // TODO change ms to ms->path to be more specific (or remove this and replace with ft_getenv("PATH") when implemented)
-	// printf("??exit??\n"); // message done in ft_exit.c
 }

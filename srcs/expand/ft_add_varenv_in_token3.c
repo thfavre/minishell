@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_add_varenv_in_token3.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 16:59:23 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/06 11:21:11 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/10 18:53:59 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,7 @@ int	ft_lenword_venv_space(char *str)
 t_list_venv	*ft_lstnew_venv(char *word)
 {
 	t_list_venv	*new;
-	int			i;
 
-	i = 0;
 	new = malloc(sizeof(t_list_venv));
 	if (!new)
 		return (NULL);

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_execute_builtin.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/11 15:20:45 by thomas            #+#    #+#             */
+/*   Updated: 2023/04/11 15:30:07 by thomas           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
@@ -5,7 +16,7 @@ int	ft_execute_builtin(t_minishell *ms, struct s_list_cmd *cmd)
 {
 	int	exit_status;
 
-	exit_status = 13;
+	exit_status = EXIT_SUCCESS;
 	if (ft_strcmp("pwd", cmd->cmd) == 0)
 		exit_status = ft_pwd();
 	else if (ft_strcmp("env", cmd->cmd) == 0)

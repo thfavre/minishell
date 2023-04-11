@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:00 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/23 15:56:49 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/04/11 14:45:56 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int ft_echo(char **option)
+int	ft_echo(char **option)
 {
 	bool	newline;
 
-	option++; // skip the command name
+	option++;
 	newline = true;
 	if (*option && ft_strcmp(*option, "-n") == 0)
 	{

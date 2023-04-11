@@ -1,38 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/11 15:10:35 by thomas            #+#    #+#             */
+/*   Updated: 2023/04/11 15:20:21 by thomas           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_get_prompt(void)  // TODO put somewhere else (a folder ??) How to name this function ? Is it realy the prompt?
-{
-	char	*cwd;
-	size_t alloc_size;
-
-	alloc_size  = sizeof(*cwd) * MAXPATHLEN;
-	cwd = malloc(alloc_size);
-	strcpy(cwd, PROMPT_COLOR);
-	// TODO what if malloc error ?
-	if (getcwd(cwd + ft_strlen(PROMPT_COLOR), alloc_size) == NULL)
-		perror("getcwd() error");
-	else
-	{
-		strcat(cwd, COLOR_RESET);
-		strcat(cwd, "$ ");
-	}
-	return (cwd);
-}
-
-char	*ft_prompt(void)
-{
-	char	*prompt_text;
-	char	*prompt_output;
-	// if (g_last_exit_status == 130)
-	// 	prompt_text = ft_strdup("T");
-	// else
-		prompt_text = ft_get_prompt();
-	prompt_output = readline(prompt_text); // "(prompt)"
-	free(prompt_text);
-	return (prompt_output);
-}
-
+int	g_last_exit_status;
 
 int	main(int ac, char **av, char **env)
 {
@@ -41,10 +21,7 @@ int	main(int ac, char **av, char **env)
 
 	(void)ac;
 	(void)av;
-	ft_init_minishell(&ms, env); // TODO? make a function init that will init the minishell and signals..?
-	// signal(SIGINT, sigint_handler);
-	// ft_putstr_fd("2\n", 2);
-	// ft_unsetenv(ms.env, "OLDPWD");
+	ft_init_minishell(&ms, env);
 	prompt_output = "ON!";
 	while (prompt_output != NULL)
 	{
@@ -62,7 +39,6 @@ int	main(int ac, char **av, char **env)
 		}
 		free(prompt_output);
 	}
-	// ft_putstr_fd("exit\n", 1); // TODO in on STDERROR or STDOUT fd ?
 	ft_close(&ms);
 	return (EXIT_SUCCESS);
 }
