@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:26:14 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/05 16:19:03 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/11 13:47:38 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,17 @@
 
 int	ft_replace_varenv(t_list_token *token, char **env, size_t i)
 {
-	size_t	nb_venv;
-	char	*name_venv;
 	char	**var_env;
+	int		save;
 
 	var_env = ft_calloc(sizeof(char *), ft_nbr_varenv(token->word) + 1);
 	if (!var_env)
 		return (1);
-	i = 0;
-	nb_venv = 0;
-	while (token->word[i] != '\0')
-	{
-		if (token->word[i] == '$')
-		{
-			name_venv = ft_get_name_varenv(&token->word[++i]);
-			var_env[nb_venv++] = ft_getenv(env, name_venv);
-			if (var_env[nb_venv - 1] == NULL)
-				break ;
-			free(name_venv);
-		}
-		else
-			i++;
-	}
+	save = ft_norm_expand(token, &var_env, env, i);
 	token->word = ft_get_new_word(token->word, var_env);
+	ft_free_empty_venv(var_env);
+	if (save >= 0)
+		free(var_env[save]);
 	free(var_env);
 	return (0);
 }

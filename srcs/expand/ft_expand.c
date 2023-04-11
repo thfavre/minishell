@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:26:05 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/05 16:29:27 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/11 13:47:22 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,30 @@ int	ft_expand(t_minishell *ms)
 	return (code_error);
 }
 
+int	ft_norm_expand(t_list_token *token, char ***venv, char **env, size_t i)
+{
+	int		save;
+	size_t	nb_venv;
+	char	*name_venv;
+
+	save = -1;
+	nb_venv = 0;
+	while (token->word[i] != '\0')
+	{
+		if (token->word[i] == '$')
+		{
+			name_venv = ft_get_name_varenv(&token->word[++i]);
+			if (*name_venv == '?')
+				save = nb_venv;
+			(*venv)[nb_venv++] = ft_getenv(env, name_venv);
+			free(name_venv);
+		}
+		else
+			i++;
+	}
+	return (save);
+}
+
 void	ft_skip_dollars_alone(t_minishell *ms)
 {
 	while (ms->token != NULL)
@@ -64,4 +88,17 @@ int	ft_dollars_alone(char *str)
 		i++;
 	}
 	return (0);
+}
+
+void	ft_free_empty_venv(char **venv)
+{
+	size_t	i;
+
+	i = 0;
+	while (venv[i] != NULL)
+	{
+		if (venv[i][0] == '\0')
+			free(venv[i]);
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:53:58 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/10 10:51:02 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/11 11:15:40 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_print_error_parsing(int code_error)
 {
 	if (code_error == 1)
 	{
-		printf("Error Malloc in parsing\n");
+		printf("Malloc Error\n");
 		exit (0);
 	}
 }

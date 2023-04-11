@@ -3,7 +3,7 @@
 # define STRUCT_H
 
 // global variable
-int	g_last_exit_status;
+int						g_last_exit_status;
 
 //		### All Data ###
 
@@ -37,7 +37,7 @@ typedef struct s_list_venv {
 	struct s_list_venv	*previous;
 }						t_list_venv;
 
-typedef t_list_venv	t_venv;
+typedef t_list_venv		t_venv;
 
 //		### Chain List Cmd ###
 
@@ -49,7 +49,7 @@ typedef struct s_list_cmd {
 	struct s_list_cmd	*next;
 }						t_list_cmd;
 
-typedef t_list_cmd	t_lcmd;
+typedef t_list_cmd		t_lcmd;
 
 typedef struct s_cmd {
 	char				*cmd;

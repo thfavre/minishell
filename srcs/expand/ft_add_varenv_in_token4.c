@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 17:03:58 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/04/10 16:53:51 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/11 11:51:47 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ t_list_venv	*ft_getwords_dollars(char **str, char ***venv)
 {
 	t_list_venv	*create;
 	char		*word;
+	char		*tmp;
 
 	create = NULL;
 	word = NULL;
+	tmp = (**venv);
 	if (ft_norm(venv, word, &create) != 0)
 		ft_print_error_parsing(1);
 	if (ft_norm_two(venv, word, &create) != 0)
@@ -49,6 +51,7 @@ t_list_venv	*ft_getwords_dollars(char **str, char ***venv)
 		if (**str == '$')
 			break ;
 	}
+	(**venv) = tmp;
 	(*venv)++;
 	return (create);
 }

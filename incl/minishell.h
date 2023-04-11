@@ -115,8 +115,7 @@ char	*ft_get_one_word_venv(char ***venv);
 char	*ft_getword_space_venv(char ***venv);
 int		ft_lenword_nodollars(char *str);
 int		ft_norm(char ***venv, char *word, t_list_venv **create);
-int		ft_norm_two(char ***venv, char *word, \
-			t_list_venv **create);
+int		ft_norm_two(char ***venv, char *word, t_list_venv **create);
 
 //		----- Ft_Add_Varenv_In_Token3.c -----
 int		ft_lenword_venv(char *str);
@@ -131,8 +130,10 @@ t_venv	*ft_getwords_dollars(char **str, char ***venv);
 
 //		----- Ft_Expand.c -----
 int		ft_expand(t_minishell *ms);
+int		ft_norm_expand(t_tok *token, char ***venv, char **env, size_t i);
 void	ft_skip_dollars_alone(t_minishell *ms);
 int		ft_dollars_alone(char *str);
+void	ft_free_empty_venv(char **venv);
 
 //		----- Ft_Expand_Utils.c -----
 char	*ft_get_name_varenv(char *str);

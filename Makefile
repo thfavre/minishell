@@ -163,9 +163,10 @@ LIBS		= -lreadline\
 
 	### LIBS PATH ###
 
+LIBS_PATH	= -L$(LIBFT)
+
 ifdef READLINE
-	LIBS_PATH	+= -L$(READLINE)/lib\
-				   -L$(LIBFT)
+	LIBS_PATH	+= -L$(READLINE)/lib
 	INCS_PATH	+= -I$(READLINE)/include
 endif
 
