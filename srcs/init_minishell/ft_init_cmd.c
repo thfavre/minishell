@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:18:31 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/31 18:37:01 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/10 18:54:16 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,10 @@
 t_cmd	*ft_init_cmd(t_list_token **pars)
 {
 	t_cmd	*cmd;
-	int		i;
 
 	cmd = malloc(sizeof(t_cmd));
 	if (!cmd)
 		return (NULL);
-	i = 1;
 	*cmd = (t_cmd){};
 	cmd->read = 0;
 	cmd->write = 1;

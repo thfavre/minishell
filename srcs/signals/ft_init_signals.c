@@ -1,11 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_init_signals.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/11 15:07:30 by thomas            #+#    #+#             */
+/*   Updated: 2023/04/11 15:07:39 by thomas           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
-void ft_init_signals(void (*handle_signals)(int))
+void	ft_init_signals(void (*handle_signals)(int))
 {
-	struct sigaction sa;
-	struct termios	termios;
-
+	struct sigaction	sa;
+	struct termios		termios;
 
 	if ((tcgetattr(STDIN_FILENO, &termios)) == -1)
 		exit(EXIT_FAILURE);
@@ -19,8 +29,4 @@ void ft_init_signals(void (*handle_signals)(int))
 		perror("Error: cannot handle SIGINT");
 	if (sigaction(SIGQUIT, &sa, NULL) == -1)
 		perror("Error: cannot handle SIGQUIT");
-
-	// To be able to close the program with CTRL-Z
-	// if (sigaction(SIGTSTP, &sa, NULL) == -1)
-	// 	perror("Error: cannot handle SIGTSTP");
 }

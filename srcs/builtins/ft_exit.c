@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:00 by thomas            #+#    #+#             */
-/*   Updated: 2023/04/05 17:38:44 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/11 14:48:59 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,20 @@
 
 void	ft_exit(t_minishell *ms, char **option)
 {
-	(void)ms;
-	int exit_status;
+	int	exit_status;
 
 	ft_close(ms);
 	if (option[1] == NULL)
 		exit_status = g_last_exit_status;
-		// exit_status = ms->last_exit_status;
 	else if (ft_isnumber(option[1]))
 		exit_status = ft_atoi(option[1]);
 	else
 	{
-		ft_putstr_fd(option[1], 2);
-		ft_putstr_fd(" :numeric argument required\n", 2); // TODO in on STDERROR or STDOUT
+		ft_putstr_fd(option[1], STDERR_FILENO);
+		ft_putstr_fd(" :numeric argument required\n", STDERR_FILENO);
 		exit(255);
 	}
 	if (exit_status < 0)
 		exit_status = -exit_status;
-	exit(exit_status%256);
+	exit(exit_status % 256);
 }

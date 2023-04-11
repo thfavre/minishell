@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/11 15:41:41 by thomas            #+#    #+#             */
+/*   Updated: 2023/04/11 15:42:23 by thomas           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -53,7 +64,6 @@ void	ft_close(t_minishell *ms);
 
 //		----- Ft_Free_Allocation.c -----
 void	*ft_free_env(char **env);
-void	ft_free_path(t_minishell *ms);
 void	ft_free_token(t_minishell *ms);
 void	ft_free_pars(t_minishell *ms);
 
@@ -65,10 +75,10 @@ void	ft_free_pars(t_minishell *ms);
 char	**ft_initenv(char **env);
 
 //		----- Ft_setenv.c -----
-int		ft_setenv(t_minishell *ms, char *key, char *value, int overwrite);
+int		ft_setenv(t_minishell *ms, char *key, char *value);
 
 //		----- Ft_unsetenv.c -----
-int		ft_unsetenv(char **env, char *key);
+void		ft_unsetenv(char **env, char *key);
 
 //		----- Ft_putenv.c -----
 char	**ft_putenv(char **env, char *string);
@@ -223,6 +233,13 @@ void	ft_strcat_trim_quote(char *s1, char *s2, size_t *i, size_t *j);
 //###########################################//
 //		===== HEREDOC DIRECTORY =====
 //###########################################//
+//
+//		----- Ft_prompt.c.c -----
+char	*ft_prompt(void);
+
+//###########################################//
+//		===== HEREDOC DIRECTORY =====
+//###########################################//
 
 //		----- Ft_heredoc.c -----
 void	ft_heredoc(t_minishell *ms);
@@ -305,5 +322,6 @@ void	ft_lstadd_back_token(t_list_token **lst, t_list_token *nw);
 //		----- Utils.c -----
 bool	ft_isspace(char c);
 bool	ft_isspace_only(char *str);
+void	swap_strings(char **a, char **b);
 
 #endif
