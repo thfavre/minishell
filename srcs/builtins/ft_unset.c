@@ -20,7 +20,7 @@ int	ft_unset(char **env, char **option)
 	option++;
 	while (*option)
 	{
-		if (strchr(*option, '-') != NULL)
+		if (ft_strchr(*option, '-') != NULL)
 		{
 			ft_putstr_fd("unset: '", STDERR_FILENO);
 			ft_putstr_fd(*option, STDERR_FILENO);

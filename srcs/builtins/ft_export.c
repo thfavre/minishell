@@ -27,7 +27,7 @@ int	ft_export(t_minishell *ms, char **option)
 		ft_print_export(ms->env);
 	while (*option)
 	{
-		if (strchr(*option, '=') != NULL)
+		if (ft_strchr(*option, '=') != NULL)
 			export_key_value(ms, *option, &exit_status);
 		else
 			export_key(ms, *option, &exit_status);

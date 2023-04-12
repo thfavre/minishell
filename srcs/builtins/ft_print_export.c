@@ -35,7 +35,7 @@ static char	**sort_strings(char **arr, int n)
 		j = 0;
 		while (j < n - i - 1)
 		{
-			if (strcmp(arr[j], arr[j + 1]) > 0)
+			if (ft_strcmp(arr[j], arr[j + 1]) > 0)
 				swap_strings(&arr[j], &arr[j + 1]);
 			j++;
 		}
