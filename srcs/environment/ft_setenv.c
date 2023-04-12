@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_setenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 01:08:03 by thomas            #+#    #+#             */
-/*   Updated: 2023/04/11 15:05:49 by thomas           ###   ########.fr       */
+/*   Updated: 2023/04/12 13:11:38 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	ft_setenv(t_minishell *ms, char *key, char *value)
 	new_element = malloc(strlen(key) + strlen(value) + 2);
 	if (new_element == NULL)
 		return (-1);
-	strcpy(new_element, key);
+	ft_strcpy(new_element, key);
 	if (value[0] != '\0')
-		strcat(new_element, "=");
-	strcat(new_element, value);
+		ft_strcat(new_element, "=");
+	ft_strcat(new_element, value);
 	new_env = ft_putenv(ms->env, new_element);
 	ft_free_env(ms->env);
 	ms->env = new_env;

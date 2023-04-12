@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 16:15:45 by thfavre           #+#    #+#             */
-/*   Updated: 2022/10/30 15:38:27 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/04/12 13:06:18 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ int main ()
    ft_memcpy(dest, src, strlen(src)+1);
    printf("After memcpy dest = %s\n", dest);
 //	ft_memcpy(((void *)0), ((void *)0), 3);
-} 
+}
 */

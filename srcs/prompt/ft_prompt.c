@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_prompt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:11:53 by thomas            #+#    #+#             */
-/*   Updated: 2023/04/11 15:17:22 by thomas           ###   ########.fr       */
+/*   Updated: 2023/04/12 13:05:52 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static char	*ft_prompt_text(void)
 	alloc_size = sizeof(*cwd) * MAXPATHLEN + \
 		ft_strlen(PROMPT_COLOR) + ft_strlen(COLOR_RESET) + 3;
 	cwd = malloc(alloc_size);
-	strcpy(cwd, PROMPT_COLOR);
+	ft_strcpy(cwd, PROMPT_COLOR);
 	if (getcwd(cwd + ft_strlen(PROMPT_COLOR), MAXPATHLEN) == NULL)
 		perror("getcwd() error");
 	else
 	{
-		strcat(cwd, COLOR_RESET);
-		strcat(cwd, "$ ");
+		ft_strcat(cwd, COLOR_RESET);
+		ft_strcat(cwd, "$ ");
 	}
 	return (cwd);
 }
