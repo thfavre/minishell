@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execute_external.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:40:21 by thomas            #+#    #+#             */
-/*   Updated: 2023/04/11 15:40:22 by thomas           ###   ########.fr       */
+/*   Updated: 2023/04/12 18:21:20 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	ft_execute_external(char **env, struct s_list_cmd *cmd)
 	i = 0;
 	while (splited_path && splited_path[i] != NULL)
 	{
-		strcpy(filepath, splited_path[i]);
-		strcat(filepath, "/");
-		strcat(filepath, cmd->cmd);
+		ft_strcpy(filepath, splited_path[i]);
+		ft_strcat(filepath, "/");
+		ft_strcat(filepath, cmd->cmd);
 		if (access(filepath, X_OK) == 0)
 		{
 			execve(filepath, cmd->option, env);

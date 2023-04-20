@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execute_cmds.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:36:17 by thomas            #+#    #+#             */
-/*   Updated: 2023/04/11 15:38:57 by thomas           ###   ########.fr       */
+/*   Updated: 2023/04/20 13:33:15 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,10 @@ static void	handle_exit_status(int exit_status)
 {
 	if (WIFEXITED(exit_status))
 		g_last_exit_status = WEXITSTATUS(exit_status);
-	if (WIFSIGNALED(exit_status))
+	else if (WIFSIGNALED(exit_status))
 		g_last_exit_status = 128 + WTERMSIG(exit_status);
+	else
+		g_last_exit_status = 1;
 }
 
 void	ft_execute_cmds(t_minishell *ms)
