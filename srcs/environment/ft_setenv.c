@@ -21,7 +21,7 @@ int	ft_setenv(t_minishell *ms, char *key, char *value)
 			value == NULL)
 		return (-1);
 	ft_unsetenv(ms->env, key);
-	new_element = malloc(strlen(key) + strlen(value) + 2);
+	new_element = malloc(ft_strlen(key) + ft_strlen(value) + 2);
 	if (new_element == NULL)
 		return (-1);
 	ft_strcpy(new_element, key);
@@ -52,12 +52,12 @@ char	**ft_putenv(char **env, char *string)
 	i = 0;
 	while (env[i] != NULL)
 	{
-		new_env[i] = strdup(env[i]);
+		new_env[i] = ft_strdup(env[i]);
 		if (!new_env[i])
 			return (ft_free_env(new_env));
 		i++;
 	}
-	new_env[i] = strdup(string);
+	new_env[i] = ft_strdup(string);
 	if (!new_env[i])
 		return (ft_free_env(new_env));
 	return (new_env);
