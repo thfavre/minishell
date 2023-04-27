@@ -3,6 +3,7 @@
 		"struct.h": "c",
 		"define.h": "c",
 		"minishell.h": "c",
-		"limits.h": "c"
+		"limits.h": "c",
+		"chrono": "c"
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:10:35 by thomas            #+#    #+#             */
-/*   Updated: 2023/04/11 15:20:21 by thomas           ###   ########.fr       */
+/*   Updated: 2023/04/27 17:00:26 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,5 @@ int	main(int ac, char **av, char **env)
 		free(prompt_output);
 	}
 	ft_close(&ms);
-	return (EXIT_SUCCESS);
+	return (g_last_exit_status);
 }

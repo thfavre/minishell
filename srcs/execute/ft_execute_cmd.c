@@ -6,7 +6,7 @@
 /*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 15:26:33 by thomas            #+#    #+#             */
-/*   Updated: 2023/04/20 13:37:49 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/04/27 17:00:00 by thfavre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@ static void	ft_execute_external_in_fork(t_minishell *ms, pid_t *fork_pid,
 	waitpid(*fork_pid, exit_status, 0);
 	if (WIFEXITED(*exit_status))
 		g_last_exit_status = WEXITSTATUS(*exit_status);
-	else if (WIFSIGNALED(*exit_status))
-		g_last_exit_status = 128 + WTERMSIG(*exit_status);
-	else
-		g_last_exit_status = 1;
 }
 
 void	ft_execute_cmd(t_minishell *ms)
