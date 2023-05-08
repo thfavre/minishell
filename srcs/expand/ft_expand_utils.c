@@ -6,13 +6,11 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:28:22 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/27 16:59:48 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/10 17:21:04 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-int	ft_len_venv(char *str);
-int	ft_is_question_mark(char *str);
 
 char	*ft_get_name_varenv(char *str)
 {
@@ -41,7 +39,7 @@ int	ft_is_question_mark(char *str)
 	int	i;
 
 	i = 0;
-	if (str[i] == '?' && str[i + 1] == '\0')
+	if (str[i] == '?' && (str[i + 1] == '\0' || str[i + 1] == '"'))
 		return (1);
 	return (0);
 }

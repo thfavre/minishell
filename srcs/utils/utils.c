@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/08 14:48:42 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/27 14:36:56 by mjulliat         ###   ########.fr       */
+/*   Created: 2023/04/11 15:08:05 by thomas            #+#    #+#             */
+/*   Updated: 2023/04/11 15:08:30 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,13 @@ bool	ft_isspace_only(char *str)
 		str++;
 	}
 	return (true);
+}
+
+void	swap_strings(char **a, char **b)
+{
+	char	*temp;
+
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }

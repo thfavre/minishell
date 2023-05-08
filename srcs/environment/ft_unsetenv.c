@@ -1,21 +1,29 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_unsetenv.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/11 15:01:28 by thomas            #+#    #+#             */
+/*   Updated: 2023/04/11 15:01:54 by thomas           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
-
-int	ft_unsetenv(char **env, char *key)
+void	ft_unsetenv(char **env, char *key)
 {
 	size_t	i;
 	size_t	j;
 	size_t	len;
 
-	if (key == NULL || key[0] == '\0' || ft_strchr(key, '=') != NULL)
-		return (-1);
 	len = ft_strlen(key);
 	i = 0;
 	while (env[i] != NULL)
 	{
-		if (ft_strncmp(env[i], key, len) == 0 && (env[i][len] == '=' || env[i][len] == '\0'))
+		if (ft_strncmp(env[i], key, len) == 0 && \
+			(env[i][len] == '=' || env[i][len] == '\0'))
 		{
 			j = i;
 			while (env[j] != NULL)
@@ -28,9 +36,7 @@ int	ft_unsetenv(char **env, char *key)
 					env[j] = NULL;
 				j++;
 			}
-			// free(env[j]); // Is it leak free?
 		}
 		i++;
 	}
-	return (0);
 }

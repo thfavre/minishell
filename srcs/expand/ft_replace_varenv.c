@@ -6,87 +6,81 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:26:14 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/27 12:26:16 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/11 13:47:38 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_replace_varenv(t_list_token *token, char **env)
+int	ft_replace_varenv(t_list_token *token, char **env, size_t i)
 {
-	size_t	i;
-	size_t	nb_venv;
-	char	*name_venv;
 	char	**var_env;
+	int		save;
 
 	var_env = ft_calloc(sizeof(char *), ft_nbr_varenv(token->word) + 1);
-	// TODO check error malloc
-	i = 0;
-	nb_venv = 0;
-	while (token->word[i] != '\0')
-	{
-		if (token->word[i] == '$')
-		{
-			i++;
-			name_venv = ft_get_name_varenv(&token->word[i]);
-			var_env[nb_venv] = ft_getenv(env, name_venv);
-			if (var_env[nb_venv] == NULL)
-				break ;
-			nb_venv++;
-			free(name_venv);
-		}
-		else
-			i++;
-	}
+	if (!var_env)
+		return (1);
+	save = ft_norm_expand(token, &var_env, env, i);
 	token->word = ft_get_new_word(token->word, var_env);
+	ft_free_empty_venv(var_env);
+	if (save >= 0)
+		free(var_env[save]);
 	free(var_env);
+	return (0);
 }
 
-char	*ft_get_new_word(char *word, char **var_env)
+void	ft_strcat_expand(char *s1, char *s2, size_t *i, size_t *j)
+{
+	s1[(*j)] = s2[(*i)];
+	(*i)++;
+	(*j)++;
+}
+
+void	ft_put_new_word(char *var_env, char *new_word, size_t *i, size_t *j)
+{
+	size_t	save;
+
+	save = (*i) + 1;
+	(*i) = 0;
+	if (var_env != NULL)
+	{
+		while (var_env[(*i)] != '\0')
+			ft_strcat_expand(new_word, var_env, i, j);
+	}
+	(*i) = save;
+	(*i)++;
+}
+
+char	*ft_get_new_word(char *w, char **var_env)
 {
 	char	*new_word;
 	size_t	i;
 	size_t	j;
 	size_t	k;
-	size_t	save;
 
 	i = 0;
 	j = 0;
 	k = 0;
-	new_word = ft_calloc(sizeof(char), ft_len_new_word(word, var_env) + 1);
-	while (word[i] != '\0')
+	new_word = ft_calloc(sizeof(char), ft_len_new_word(w, var_env) + 1);
+	if (!new_word)
+		return (NULL);
+	while (w[i] != '\0')
 	{
-		if (word[i] == '$')
+		if (w[i] == '$')
 		{
-			save = i + 1;
-			i = 0;
-			if (var_env[k] != NULL)
-			{
-				while (var_env[k][i] != '\0') // TODO need to replace by strcat
-				{
-					new_word[j] = var_env[k][i];
-					i++;
-					j++;
-				}
-			}
+			ft_put_new_word(var_env[k], new_word, &i, &j);
 			k++;
-			i = save;
-			i++;
-			while (word[i] != '"' && word[i] != ' ' && word[i] != '$' && word[i] != '\0')
+			while (w[i] != '"' && w[i] != ' ' && w[i] != '$' && w[i] != '\0')
 				i++;
 		}
-		else	// TODO need to replace by strcat
-		{
-			new_word[j] = word[i];
-			i++;
-			j++;
-		}
+		else
+			ft_strcat_expand(new_word, w, &i, &j);
 	}
-	free(word);
+	free(w);
 	return (new_word);
 }
 
-int	ft_len_new_word(char *word, char **var_env)
+int	ft_len_new_word(char *w, char **var_env)
 {
 	int	count;
 	int	i;
@@ -95,16 +89,15 @@ int	ft_len_new_word(char *word, char **var_env)
 	i = 0;
 	j = 0;
 	count = 0;
-	while (word[i] != '\0')
+	while (w[i] != '\0')
 	{
-		if (word[i] == '$')
+		if (w[i] == '$')
 		{
 			if (var_env[j] != NULL)
 				count += ft_strlen(var_env[j]);
 			j++;
 			i++;
-			while (word[i] != '"' && word[i] != ' ' \
-					&& word[i] != '$' && word[i] != '\0')
+			while (w[i] != '"' && w[i] != ' ' && w[i] != '$' && w[i] != '\0')
 				i++;
 		}
 		else

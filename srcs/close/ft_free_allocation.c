@@ -1,35 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_free_allocation.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/11 14:50:42 by thomas            #+#    #+#             */
+/*   Updated: 2023/04/11 14:51:17 by thomas           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
 void	*ft_free_env(char **env)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (env[i] != NULL)
-			free(env[i++]);
+		free(env[i++]);
 	free(env);
 	return (NULL);
 }
 
-void	ft_free_path(t_minishell *ms)
-{
-	// int i;
-
-	// i = 0;
-	// while (ms->path[i] != NULL)
-	// {
-	// 	free(ms->path[i]);
-	// 	i++;
-	// }
-	// free(ms->path);
-	(void)ms;
-}
-
 void	ft_free_token(t_minishell *ms)
 {
-	t_list_token *tmp;
+	t_list_token	*tmp;
 
+	ft_del_heredoc(ms->token);
 	while (ms->token != NULL)
 	{
 		tmp = ms->token;
@@ -41,7 +39,7 @@ void	ft_free_token(t_minishell *ms)
 
 void	ft_free_pars(t_minishell *ms)
 {
-	t_list_cmd *tmp;
+	t_list_cmd	*tmp;
 
 	while (ms->cmd != NULL)
 	{

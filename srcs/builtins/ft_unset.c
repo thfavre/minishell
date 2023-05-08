@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: thomas <thomas@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 00:39:31 by thomas            #+#    #+#             */
-/*   Updated: 2023/03/27 13:22:14 by thfavre          ###   ########.fr       */
+/*   Updated: 2023/04/11 15:00:57 by thomas           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,21 @@
 
 int	ft_unset(char **env, char **option)
 {
-	option++; // skip the command name
+	int	exit_status;
+
+	exit_status = EXIT_SUCCESS;
+	option++;
 	while (*option)
 	{
-		if (strchr(*option, '-') != NULL || ft_unsetenv(env, *option) == -1)
+		if (ft_strchr(*option, '-') != NULL)
 		{
-			ft_putstr_fd("unset: not a valid identifier: \n", 2);
-			return (EXIT_FAILURE);
+			ft_putstr_fd("unset: '", STDERR_FILENO);
+			ft_putstr_fd(*option, STDERR_FILENO);
+			ft_putstr_fd("' :not a valid identifier: \n", STDERR_FILENO);
+			exit_status = EXIT_FAILURE;
 		}
+		ft_unsetenv(env, *option);
 		option++;
 	}
-	return (EXIT_SUCCESS);
+	return (exit_status);
 }

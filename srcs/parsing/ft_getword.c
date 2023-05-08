@@ -6,7 +6,7 @@
 /*   By: mjulliat <mjulliat@student.42.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 12:55:50 by mjulliat          #+#    #+#             */
-/*   Updated: 2023/03/27 12:55:53 by mjulliat         ###   ########.fr       */
+/*   Updated: 2023/04/10 17:18:38 by mjulliat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_getword_redirection(char **str, char c)
 
 	i = 0;
 	word = ft_calloc(sizeof(char), ft_lenword_redirection(*str, c) + 1);
+	if (!word)
+		return (NULL);
 	while (**str == c)
 	{
 		word[i] = **str;
@@ -35,6 +37,8 @@ char	*ft_getword_space(char **str)
 
 	i = 0;
 	word = ft_calloc(sizeof(char), ft_lenword_space(*str) + 1);
+	if (!word)
+		return (NULL);
 	while (**str == ' ' || **str == '\t')
 	{
 		word[i] = (**str);
@@ -51,6 +55,8 @@ char	*ft_getword(char **str)
 
 	i = 0;
 	word = ft_calloc(sizeof(char), ft_lenword(*str) + 1);
+	if (!word)
+		return (NULL);
 	while (**str != '\0')
 	{
 		if (**str == '<' || **str == '>' || **str == '|' || **str == ' ')
@@ -74,6 +80,8 @@ char	*ft_getword_quote(char **str, char c)
 
 	i = 0;
 	word = ft_calloc(sizeof(char), ft_lenword_quote(*str, c) + 1);
+	if (!word)
+		return (NULL);
 	word[i] = (**str);
 	i++;
 	(*str)++;

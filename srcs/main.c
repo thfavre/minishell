@@ -1,36 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thfavre <thfavre@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/11 15:10:35 by thomas            #+#    #+#             */
+/*   Updated: 2023/04/27 17:00:26 by thfavre          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_prompt(void);
+int	g_last_exit_status;
 
-/*TODO LIST
-Errors :
-	ls >|	should not create the file when file start with ., <, >, ...(-bash: syntax error near unexpected token `newline')
-
-Crashes :
-	>
-	<
-	>test
-	<test
-
-Bonus :
-	cd -
-*/
-
-int main(int ac, char **av, char **env)
+int	main(int ac, char **av, char **env)
 {
 	t_minishell	ms;
 	char		*prompt_output;
 
 	(void)ac;
 	(void)av;
-	ft_init_minishell(&ms, env); // TODO? make a function init that will init the minishell and signals..?
-	ft_init_signals();
-	// ft_unsetenv(ms.env, "OLDPWD");
+	ft_init_minishell(&ms, env);
 	prompt_output = "ON!";
 	while (prompt_output != NULL)
 	{
+		ft_init_signals(ft_handle_signals_prompt);
 		prompt_output = ft_prompt();
+		ft_init_signals(ft_handle_signals_execution);
 		if (prompt_output && !ft_isspace_only(prompt_output))
 		{
 			add_history(prompt_output);
@@ -42,37 +39,6 @@ int main(int ac, char **av, char **env)
 		}
 		free(prompt_output);
 	}
-	// ft_putstr_fd("exit\n", 1); // TODO in on STDERROR or STDOUT fd ?
 	ft_close(&ms);
-	return (EXIT_SUCCESS);
-}
-
-char	*ft_get_prompt(void)  // TODO put somewhere else (a folder ??) How to name this function ? Is it realy the prompt?
-{
-	char	*cwd;
-	size_t alloc_size;
-
-	alloc_size  = sizeof(*cwd) * 1024;
-	cwd = malloc(alloc_size);
-	strcpy(cwd, PROMPT_COLOR);
-	// TODO what if malloc error ?
-	if (getcwd(cwd + ft_strlen(PROMPT_COLOR), alloc_size) == NULL)
-		perror("getcwd() error");
-	else
-	{
-		strcat(cwd, COLOR_RESET);
-		strcat(cwd, "$ ");
-	}
-	return (cwd);
-}
-
-char	*ft_prompt(void)
-{
-	char	*prompt_text;
-	char	*prompt_output;
-
-	prompt_text = ft_get_prompt();
-	prompt_output = readline(prompt_text);
-	free(prompt_text);
-	return (prompt_output);
+	return (g_last_exit_status);
 }
